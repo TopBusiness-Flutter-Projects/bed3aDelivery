@@ -24,8 +24,8 @@
     </queries>
    <application
        android:name="${applicationName}"
-       android:label="6 valley delivery boy"
-       android:requestLegacyExternalStorage="true"
+       android:label="bed3aDelivery"
+       android:requestLegacyExternalStorage="tarabDevCom/bed3aDeliveryrue"
        android:usesCleartextTraffic="true"
        android:icon="@mipmap/ic_launcher">
        <meta-data android:name="com.google.android.geo.API_KEY"
