@@ -94,15 +94,15 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(mainAxisSize: MainAxisSize.min, children: [
             Image.asset(Images.splashLogo, width: Dimensions.splashLogoWidth),
              SizedBox(height: Dimensions.paddingSizeDefault),
-            Row(mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(AppConstants.appName,
-                    style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeOverLarge), textAlign: TextAlign.center),
-                 SizedBox(width: Dimensions.fontSizeExtraSmall),
-                Text('APP',
-                    style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeOverLarge, color: Theme.of(context).primaryColor), textAlign: TextAlign.center),
-              ],
-            ),
+            // Row(mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Text(AppConstants.appName,
+            //         style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeOverLarge), textAlign: TextAlign.center),
+            //      SizedBox(width: Dimensions.fontSizeExtraSmall),
+            //     Text('APP',
+            //         style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeOverLarge, color: Theme.of(context).primaryColor), textAlign: TextAlign.center),
+            //   ],
+            // ),
 
           ]),
         ),
