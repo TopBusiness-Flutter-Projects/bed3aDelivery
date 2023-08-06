@@ -17,7 +17,7 @@ import 'package:bed3aDelivery/view/screens/withdraw/widget/withdraw_list_view.da
 
 
 class WalletScreen extends StatefulWidget {
-  const WalletScreen({Key key}) : super(key: key);
+  const WalletScreen({Key? key}) : super(key: key);
 
   @override
   State<WalletScreen> createState() => _WalletScreenState();
@@ -27,10 +27,10 @@ class _WalletScreenState extends State<WalletScreen> {
   final ScrollController _scrollController = ScrollController();
 
   final List<TransactionTypeModel> _transactionTypes = [
-    TransactionTypeModel(Images.delivery, 'delivery_charge_earned', Get.find<ProfileController>().profileModel.totalEarn, 0),
-    TransactionTypeModel(Images.withdrawn, 'withdrawn', Get.find<ProfileController>().profileModel.totalWithdraw, 1),
-    TransactionTypeModel(Images.pendingWithdraw, 'pending_withdrawn', Get.find<ProfileController>().profileModel.pendingWithdraw, 2),
-    TransactionTypeModel(Images.deposit, 'already_deposited', Get.find<ProfileController>().profileModel.totalDeposit, 3),
+    TransactionTypeModel(Images.delivery, 'delivery_charge_earned', Get.find<ProfileController>().profileModel!.totalEarn, 0),
+    TransactionTypeModel(Images.withdrawn, 'withdrawn', Get.find<ProfileController>().profileModel!.totalWithdraw, 1),
+    TransactionTypeModel(Images.pendingWithdraw, 'pending_withdrawn', Get.find<ProfileController>().profileModel!.pendingWithdraw, 2),
+    TransactionTypeModel(Images.deposit, 'already_deposited', Get.find<ProfileController>().profileModel!.totalDeposit, 3),
   ];
 
   @override

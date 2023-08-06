@@ -10,9 +10,9 @@ import 'package:bed3aDelivery/view/screens/profile/profile_screen.dart';
 class BottomMenuController extends GetxController implements GetxService{
   int _currentTab = 0;
   int get currentTab => _currentTab;
-  List<Widget> screen;
-  Widget _currentScreen;
-  Widget get currentScreen => _currentScreen;
+  late List<Widget> screen;
+  Widget? _currentScreen;
+  Widget? get currentScreen => _currentScreen;
   BottomMenuController() {
     initPage();
   }

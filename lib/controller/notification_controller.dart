@@ -8,16 +8,16 @@ import 'package:bed3aDelivery/data/repository/notification_repo.dart';
 
 class NotificationController extends GetxController implements GetxService {
   final NotificationRepo notificationRepo;
-  NotificationController({@required this.notificationRepo});
+  NotificationController({required this.notificationRepo});
 
 
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
-  NotificationModel _notificationModel;
-  NotificationModel get notificationModel => _notificationModel;
-  List<Notifications> _notificationList;
-  List<Notifications> get notificationList => _notificationList;
+  NotificationModel? _notificationModel;
+  NotificationModel? get notificationModel => _notificationModel;
+  List<Notifications>? _notificationList;
+  List<Notifications>? get notificationList => _notificationList;
 
   Future<void> getNotificationList(int offset, {bool reload = true}) async {
     if(reload){
@@ -28,11 +28,11 @@ class NotificationController extends GetxController implements GetxService {
     if (response.statusCode == 200) {
       if(offset == 1){
         _notificationModel =  NotificationModel.fromJson(response.body);
-        _notificationList.addAll(NotificationModel.fromJson(response.body).notifications);
+        _notificationList!.addAll(NotificationModel.fromJson(response.body).notifications!);
       }else{
-        _notificationModel.totalSize = NotificationModel.fromJson(response.body).totalSize;
-        _notificationModel.offset = NotificationModel.fromJson(response.body).offset;
-        _notificationModel.notifications.addAll(NotificationModel.fromJson(response.body).notifications);
+        _notificationModel!.totalSize = NotificationModel.fromJson(response.body).totalSize;
+        _notificationModel!.offset = NotificationModel.fromJson(response.body).offset;
+        _notificationModel!.notifications!.addAll(NotificationModel.fromJson(response.body).notifications!);
       }
     } else {
       ApiChecker.checkApi(response);
@@ -45,7 +45,7 @@ class NotificationController extends GetxController implements GetxService {
     notificationRepo.saveSeenNotificationCount(count);
   }
 
-  int getSeenNotificationCount() {
+  int? getSeenNotificationCount() {
     return notificationRepo.getSeenNotificationCount();
   }
 

@@ -10,7 +10,7 @@ import 'package:bed3aDelivery/data/repository/tracker_repo.dart';
 class TrackerController extends GetxController implements GetxService {
   final TrackerRepo trackerRepo;
 
-  TrackerController({@required this.trackerRepo});
+  TrackerController({required this.trackerRepo});
 
   final List<TrackBody> _trackList = [];
 
@@ -27,23 +27,23 @@ class TrackerController extends GetxController implements GetxService {
   bool get canDismiss => _canDismiss;
 
   bool _startTrack = false;
-  Timer timer;
+  Timer? timer;
 
   bool get startTrack => _startTrack;
 
   updateTrackStart(bool status) {
     _startTrack = status;
     if (status == false && timer != null) {
-      timer.cancel();
+      timer!.cancel();
     }
     update();
   }
 
-  Future<ResponseModel> addTrack({TrackBody trackBody}) async {
-    ResponseModel responseModel;
+  Future<ResponseModel?> addTrack({TrackBody? trackBody}) async {
+    ResponseModel? responseModel;
     timer = Timer.periodic(const Duration(seconds: 30), (timer) async {
       if (_startTrack) {
-        Response apiResponse = await trackerRepo.addHistory(trackBody);
+        Response apiResponse = await trackerRepo.addHistory(trackBody!);
         if (apiResponse.statusCode == 200) {
           responseModel = ResponseModel(true, 'Successfully start track');
         } else {
@@ -60,7 +60,7 @@ class TrackerController extends GetxController implements GetxService {
 }
 
 class MyBackgroundService {
-  static StreamSubscription timer;
+  static StreamSubscription? timer;
 
   static void stop() {
     timer?.cancel();

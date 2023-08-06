@@ -6,22 +6,22 @@ import 'package:bed3aDelivery/utill/styles.dart';
 
 class MyTextField extends StatefulWidget {
   final String hintText;
-  final TextEditingController controller;
-  final FocusNode focusNode;
-  final FocusNode nextFocus;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final FocusNode? nextFocus;
   final TextInputType inputType;
   final TextInputAction inputAction;
   final int maxLines;
   final bool isPassword;
-  final Function onTap;
-  final Function onChanged;
-  final Function onSubmit;
+  final Function? onTap;
+  final Function? onChanged;
+  final Function? onSubmit;
   final bool isEnabled;
   final TextCapitalization capitalization;
-  final Color fillColor;
+  final Color? fillColor;
 
   const MyTextField(
-      {Key key, this.hintText = '',
+      {Key? key, this.hintText = '',
         this.controller,
         this.focusNode,
         this.nextFocus,
@@ -47,7 +47,7 @@ class _MyTextFieldState extends State<MyTextField> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 800 : 200], spreadRadius: 2, blurRadius: 5, offset: const Offset(0, 5))],
+        boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 800 : 200]!, spreadRadius: 2, blurRadius: 5, offset: const Offset(0, 5))],
       ),
       child: TextField(
         maxLines: widget.maxLines,
@@ -75,10 +75,10 @@ class _MyTextFieldState extends State<MyTextField> {
             onPressed: _toggle,
           ) : null,
         ),
-        onTap: widget.onTap,
+        onTap: widget.onTap as void Function()?,
         onSubmitted: (text) => widget.nextFocus != null ? FocusScope.of(context).requestFocus(widget.nextFocus)
-            : widget.onSubmit != null ? widget.onSubmit(text) : null,
-        onChanged: widget.onChanged,
+            : widget.onSubmit != null ? widget.onSubmit!(text) : null,
+        onChanged: widget.onChanged as void Function(String)?,
       ),
     );
   }

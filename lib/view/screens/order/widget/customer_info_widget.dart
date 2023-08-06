@@ -12,9 +12,9 @@ import 'package:bed3aDelivery/view/base/custom_image.dart';
 
 class CustomerInfoWidget extends StatelessWidget {
   final bool showCustomerImage;
-  final OrderModel orderModel;
+  final OrderModel? orderModel;
   final bool isShowShippingBilling;
-  const CustomerInfoWidget({Key key, this.orderModel, this.showCustomerImage = false, this.isShowShippingBilling = false}) : super(key: key);
+  const CustomerInfoWidget({Key? key, this.orderModel, this.showCustomerImage = false, this.isShowShippingBilling = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +42,8 @@ class CustomerInfoWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  orderModel.customer != null?
-                  Text('${orderModel.customer.fName??''} ${orderModel.customer.lName??''}',
+                  orderModel!.customer != null?
+                  Text('${orderModel!.customer!.fName??''} ${orderModel!.customer!.lName??''}',
                       style: rubikRegular.copyWith()):const SizedBox(),
                    SizedBox(width: Dimensions.paddingSizeSmall),
 
@@ -55,8 +55,8 @@ class CustomerInfoWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30)),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
-                      child: orderModel.customer != null? CustomImage(
-                        image: '${Get.find<SplashController>().baseUrls.customerImageUrl}/${orderModel.customer.image}',
+                      child: orderModel!.customer != null? CustomImage(
+                        image: '${Get.find<SplashController>().baseUrls!.customerImageUrl}/${orderModel!.customer!.image}',
                         height: 20, width: 20, fit: BoxFit.cover,
                       ):const SizedBox(),
                     ),
@@ -66,8 +66,8 @@ class CustomerInfoWidget extends StatelessWidget {
 
 
                SizedBox(height: Dimensions.paddingSizeExtraSmall),
-              orderModel.customer != null?
-              Text('${jsonDecode(orderModel.shippingAddressData)['address']}',
+              orderModel!.customer != null?
+              Text('${jsonDecode(orderModel!.shippingAddressData!)['address']}',
                   style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall,
                       color: Theme.of(context).hintColor)):const SizedBox(),
                SizedBox(height: Dimensions.paddingSizeSmall),
@@ -77,7 +77,7 @@ class CustomerInfoWidget extends StatelessWidget {
                 Row(crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('${'shipping_address'.tr} : ', style: rubikMedium,),
-                    Expanded(child: Text('${jsonDecode(orderModel.shippingAddressData)['address']}', style: rubikRegular,)),
+                    Expanded(child: Text('${jsonDecode(orderModel!.shippingAddressData!)['address']}', style: rubikRegular,)),
                   ],
                 ),
                  SizedBox(height: Dimensions.paddingSizeSmall),
@@ -86,8 +86,8 @@ class CustomerInfoWidget extends StatelessWidget {
                     Text('${'billing_address'.tr} : ',
                         style: rubikMedium),
                     Expanded(
-                      child: Text('${orderModel.billingAddress != null ?
-                      jsonDecode(orderModel.billingAddress)['address'] : orderModel.billingAddress ?? ''}',
+                      child: Text('${orderModel!.billingAddress != null ?
+                      jsonDecode(orderModel!.billingAddress!)['address'] : orderModel!.billingAddress ?? ''}',
                           style: rubikRegular),
                     ),
                   ],

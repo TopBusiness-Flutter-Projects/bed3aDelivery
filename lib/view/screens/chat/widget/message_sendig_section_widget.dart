@@ -8,8 +8,8 @@ import 'package:bed3aDelivery/utill/styles.dart';
 import 'package:bed3aDelivery/view/base/custom_snackbar.dart';
 
 class MessageSendingSectionWidget extends StatefulWidget {
-  final int userId;
-  const MessageSendingSectionWidget({Key key, @required this.userId}) : super(key: key);
+  final int? userId;
+  const MessageSendingSectionWidget({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<MessageSendingSectionWidget> createState() => _MessageSendingSectionWidgetState();
@@ -26,7 +26,7 @@ class _MessageSendingSectionWidgetState extends State<MessageSendingSectionWidge
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(Dimensions.paddingSizeOverLarge),
-          boxShadow: [BoxShadow(color: Get.isDarkMode ? Colors.grey[900] :Colors.grey[300], blurRadius: 5, spreadRadius: 1, offset: const Offset(0,2))],
+          boxShadow: [BoxShadow(color: Get.isDarkMode ? Colors.grey[900]! :Colors.grey[300]!, blurRadius: 5, spreadRadius: 1, offset: const Offset(0,2))],
         ),
         child: Row(children: [
           Expanded(

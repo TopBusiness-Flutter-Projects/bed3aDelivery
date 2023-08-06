@@ -9,9 +9,9 @@ import 'package:bed3aDelivery/view/screens/dashboard/dashboard_screen.dart';
 import 'package:bed3aDelivery/view/screens/review/review_screen.dart';
 
 class OrderPlaceScreen extends StatelessWidget {
-  final OrderModel orderModel;
-  final String orderID;
-  const OrderPlaceScreen({Key key, this.orderID, this.orderModel}) : super(key: key);
+  final OrderModel? orderModel;
+  final String? orderID;
+  const OrderPlaceScreen({Key? key, this.orderID, this.orderModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

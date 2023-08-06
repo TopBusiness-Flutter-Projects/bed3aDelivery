@@ -15,7 +15,7 @@ import 'package:bed3aDelivery/view/screens/forget_password/widget/otp_verificati
 
 
 class ForgetPasswordScreen extends StatefulWidget {
-  const ForgetPasswordScreen({Key key}) : super(key: key);
+  const ForgetPasswordScreen({Key? key}) : super(key: key);
 
   @override
   State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
@@ -24,12 +24,12 @@ class ForgetPasswordScreen extends StatefulWidget {
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   final TextEditingController _numberController = TextEditingController();
   final FocusNode _numberFocus = FocusNode();
-  String _countryDialCode = '880';
+  String? _countryDialCode = '880';
 
   @override
   void initState() {
     _countryDialCode = CountryCode.fromCountryCode(
-        Get.find<SplashController>().configModel.countryCode).dialCode;
+        Get.find<SplashController>().configModel!.countryCode!).dialCode;
     super.initState();
   }
 
@@ -88,7 +88,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                               showDropDownButton: true,
                               padding: EdgeInsets.zero,
                               showFlagMain: true,
-                              textStyle: TextStyle(color: Theme.of(context).textTheme.headline1.color),
+                              textStyle: TextStyle(color: Theme.of(context).textTheme.displayLarge!.color),
 
                             ),
                           ),
@@ -119,14 +119,14 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   CustomButton(
                     btnTxt: 'send_otp'.tr,
                     onTap: () {
-                      String code;
+                      String? code;
 
                         if(_numberController.text.isEmpty) {
                          showCustomSnackBar('phone_number_is_required'.tr);
 
                         }else{
-                          if(_countryDialCode.contains('+')){
-                            code = _countryDialCode.replaceAll('+', '');
+                          if(_countryDialCode!.contains('+')){
+                            code = _countryDialCode!.replaceAll('+', '');
                           }
 
                           profileController.forgetPassword( code,_numberController.text.trim()).then((value) {

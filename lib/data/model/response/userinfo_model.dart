@@ -1,34 +1,34 @@
 import 'dart:convert';
 
 class UserInfoModel {
-  int id;
-  String fName;
-  String lName;
-  String phone;
-  String email;
-  String image;
-  String identityNumber;
-  String identityType;
-  List<dynamic> identityImage;
-  int isActive;
-  String createdAt;
-  String updatedAt;
-  double withdrawableBalance;
-  double currentBalance;
-  double cashInHand;
-  double pendingWithdraw;
-  double totalWithdraw;
-  double totalEarn;
-  int completedDelivery;
-  int totalDelivery;
-  int pendingDelivery;
-  double totalDeposit;
-  String countryCode;
-  String address;
-  String bankName;
-  String branch;
-  String accountNo;
-  String holderName;
+  int? id;
+  String? fName;
+  String? lName;
+  String? phone;
+  String? email;
+  String? image;
+  String? identityNumber;
+  String? identityType;
+  List<dynamic>? identityImage;
+  int? isActive;
+  String? createdAt;
+  String? updatedAt;
+  double? withdrawableBalance;
+  double? currentBalance;
+  double? cashInHand;
+  double? pendingWithdraw;
+  double? totalWithdraw;
+  double? totalEarn;
+  int? completedDelivery;
+  int? totalDelivery;
+  int? pendingDelivery;
+  double? totalDeposit;
+  String? countryCode;
+  String? address;
+  String? bankName;
+  String? branch;
+  String? accountNo;
+  String? holderName;
 
   UserInfoModel(
       {this.id,

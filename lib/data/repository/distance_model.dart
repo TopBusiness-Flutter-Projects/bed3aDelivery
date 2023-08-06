@@ -1,8 +1,8 @@
 class DistanceModel {
-  List<String> destinationAddresses;
-  List<String> originAddresses;
-  List<Rows> rows;
-  String status;
+  List<String>? destinationAddresses;
+  List<String>? originAddresses;
+  List<Rows>? rows;
+  String? status;
 
   DistanceModel(
       {this.destinationAddresses,
@@ -16,7 +16,7 @@ class DistanceModel {
     if (json['rows'] != null) {
       rows = [];
       json['rows'].forEach((v) {
-        rows.add(Rows.fromJson(v));
+        rows!.add(Rows.fromJson(v));
       });
     }
     status = json['status'];
@@ -27,7 +27,7 @@ class DistanceModel {
     data['destination_addresses'] = destinationAddresses;
     data['origin_addresses'] = originAddresses;
     if (rows != null) {
-      data['rows'] = rows.map((v) => v.toJson()).toList();
+      data['rows'] = rows!.map((v) => v.toJson()).toList();
     }
     data['status'] = status;
     return data;
@@ -35,7 +35,7 @@ class DistanceModel {
 }
 
 class Rows {
-  List<Elements> elements;
+  List<Elements>? elements;
 
   Rows({this.elements});
 
@@ -43,7 +43,7 @@ class Rows {
     if (json['elements'] != null) {
       elements = [];
       json['elements'].forEach((v) {
-        elements.add(Elements.fromJson(v));
+        elements!.add(Elements.fromJson(v));
       });
     }
   }
@@ -51,16 +51,16 @@ class Rows {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (elements != null) {
-      data['elements'] = elements.map((v) => v.toJson()).toList();
+      data['elements'] = elements!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Elements {
-  Distance distance;
-  Distance duration;
-  String status;
+  Distance? distance;
+  Distance? duration;
+  String? status;
 
   Elements({this.distance, this.duration, this.status});
 
@@ -73,10 +73,10 @@ class Elements {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (distance != null) {
-      data['distance'] = distance.toJson();
+      data['distance'] = distance!.toJson();
     }
     if (duration != null) {
-      data['duration'] = duration.toJson();
+      data['duration'] = duration!.toJson();
     }
     data['status'] = status;
     return data;
@@ -84,8 +84,8 @@ class Elements {
 }
 
 class Distance {
-  String text;
-  double value;
+  String? text;
+  double? value;
 
   Distance({this.text, this.value});
 

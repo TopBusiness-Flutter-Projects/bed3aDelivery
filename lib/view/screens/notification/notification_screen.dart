@@ -9,7 +9,7 @@ import 'package:bed3aDelivery/view/screens/notification/widget/notification_card
 
 
 class NotificationScreen extends StatelessWidget {
-  const NotificationScreen({Key key}) : super(key: key);
+  const NotificationScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Get.find<NotificationController>().getNotificationList(1);
@@ -22,16 +22,16 @@ class NotificationScreen extends StatelessWidget {
           onRefresh: () async {
             await notificationController.getNotificationList(1);
           },
-          child: !notificationController.isLoading? notificationController.notificationList.isNotEmpty?
+          child: !notificationController.isLoading? notificationController.notificationList!.isNotEmpty?
           Scrollbar(child: SingleChildScrollView(child: Center(child: SizedBox(width: 1170, child:
            ListView.builder(
-            itemCount: notificationController.notificationList.length,
+            itemCount: notificationController.notificationList!.length,
             padding: EdgeInsets.zero,
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) {
               bool _addTitle = false;
-              return NotificationCardWidget(notificationModel: notificationController.notificationList[index],addTitle: _addTitle);
+              return NotificationCardWidget(notificationModel: notificationController.notificationList![index],addTitle: _addTitle);
             },
           ))))):const NoDataScreen(): const CustomLoader(),
         );

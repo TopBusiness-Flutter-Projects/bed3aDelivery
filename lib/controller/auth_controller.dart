@@ -13,11 +13,11 @@ import 'package:http/http.dart' as http;
 
 class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;
-  AuthController({@required this.authRepo}) ;
+  AuthController({required this.authRepo}) ;
 
 
   final bool _notification = true;
-  XFile _pickedFile;
+  XFile? _pickedFile;
   final String _loginErrorMessage = '';
   String get loginErrorMessage => _loginErrorMessage;
 
@@ -25,16 +25,16 @@ class AuthController extends GetxController implements GetxService {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
   bool get notification => _notification;
-  XFile get pickedFile => _pickedFile;
+  XFile? get pickedFile => _pickedFile;
 
-  File file;
+  File? file;
   final picker = ImagePicker();
 
   int _selectionTabIndex = 1;
   int get selectionTabIndex =>_selectionTabIndex;
 
-  UserInfoModel _userInfoModel;
-  UserInfoModel get userInfoModel => _userInfoModel;
+  UserInfoModel? _userInfoModel;
+  UserInfoModel? get userInfoModel => _userInfoModel;
 
 
 
@@ -96,7 +96,7 @@ class AuthController extends GetxController implements GetxService {
     if (response.statusCode == 200) {
       Get.find<ProfileController>().getProfile();
       Map map = jsonDecode(await response.stream.bytesToString());
-      String message = map["message"];
+      String? message = map["message"];
       _userInfoModel = updateUserModel;
       responseModel = ResponseModel(true, message);
       showCustomSnackBar(message, isError: false);

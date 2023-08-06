@@ -6,8 +6,8 @@ import 'package:bed3aDelivery/view/screens/chat/widget/message_bubble.dart';
 class MessageListView extends StatelessWidget {
   final ChatController chatController;
   final ScrollController scrollController;
-  final int userId;
-  const MessageListView({Key key, @required this.chatController, @required this.scrollController, this.userId}) : super(key: key);
+  final int? userId;
+  const MessageListView({Key? key, required this.chatController, required this.scrollController, this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +18,18 @@ class MessageListView extends StatelessWidget {
         reverse: true,
         scrollController: scrollController,
         totalSize: chatController.messageModel?.totalSize,
-        offset: chatController.messageModel != null ? int.parse(chatController.messageModel.offset) : null,
-        onPaginate: (int offset) async {
-          await chatController.getMessages(offset, userId);
+        offset: chatController.messageModel != null ? int.parse(chatController.messageModel!.offset!) : null,
+        onPaginate: (int? offset) async {
+          await chatController.getMessages(offset!, userId);
         },
 
         itemView: ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           reverse: true,
-          itemCount: chatController.messageModel.message.length,
+          itemCount: chatController.messageModel!.message!.length,
           itemBuilder: (context, index) {
-            return MessageBubble(message: chatController.messageModel.message[index]);
+            return MessageBubble(message: chatController.messageModel!.message![index]);
           },
         ),
       ),

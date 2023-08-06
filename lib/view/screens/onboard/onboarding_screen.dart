@@ -9,7 +9,7 @@ import 'package:bed3aDelivery/utill/styles.dart';
 import 'package:bed3aDelivery/view/screens/auth/login_screen.dart';
 
 class OnBoardingScreen extends StatefulWidget {
-  const OnBoardingScreen({Key key}) : super(key: key);
+  const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();

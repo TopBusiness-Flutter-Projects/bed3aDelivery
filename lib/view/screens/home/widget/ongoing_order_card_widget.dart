@@ -14,9 +14,9 @@ import 'package:bed3aDelivery/view/screens/order/order_details_screen.dart';
 import 'package:bed3aDelivery/view/screens/order_tracking/order_tracking_screen.dart';
 
 class OnGoingOrderWidget extends StatelessWidget {
-  final OrderModel orderModel;
-  final int index;
-  const OnGoingOrderWidget({Key key, this.orderModel, this.index}) : super(key: key);
+  final OrderModel? orderModel;
+  final int? index;
+  const OnGoingOrderWidget({Key? key, this.orderModel, this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class OnGoingOrderWidget extends StatelessWidget {
       child: Container(decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(Dimensions.paddingSizeDefault),
-        boxShadow: [BoxShadow(color: Get.isDarkMode ? Colors.grey[900] :Colors.grey[100], blurRadius: 5, spreadRadius: 1, offset: const Offset(0,2))],
+        boxShadow: [BoxShadow(color: Get.isDarkMode ? Colors.grey[900]! :Colors.grey[100]!, blurRadius: 5, spreadRadius: 1, offset: const Offset(0,2))],
       ),
         padding:  EdgeInsets.symmetric(vertical: Dimensions.paddingSizeDefault),
 
@@ -45,8 +45,8 @@ class OnGoingOrderWidget extends StatelessWidget {
                       GestureDetector(
                           onTap: (){
                             Get.to(OrderDetailsScreen(orderModel: orderModel));
-                            Get.find<OrderController>().selectedOrderLatLng(jsonDecode(orderModel.shippingAddressData)['latitude'],
-                                jsonDecode(orderModel.shippingAddressData)['longitude']);
+                            Get.find<OrderController>().selectedOrderLatLng(jsonDecode(orderModel!.shippingAddressData!)['latitude'],
+                                jsonDecode(orderModel!.shippingAddressData!)['longitude']);
                             },
                           child: Container(
                             color: Theme.of(context).primaryColor.withOpacity(.0),

@@ -8,20 +8,20 @@ import 'package:get/get.dart';
 
 
 class PaymentInfoWidget extends StatelessWidget {
-  final double itemsPrice;
-  final double discount;
-  final double tax;
-  final double subTotal;
-  final double deliveryCharge;
-  final double totalPrice;
+  final double? itemsPrice;
+  final double? discount;
+  final double? tax;
+  final double? subTotal;
+  final double? deliveryCharge;
+  final double? totalPrice;
 
-  const PaymentInfoWidget({Key key, this.itemsPrice, this.discount, this.tax, this.subTotal, this.deliveryCharge, this.totalPrice}) : super(key: key);
+  const PaymentInfoWidget({Key? key, this.itemsPrice, this.discount, this.tax, this.subTotal, this.deliveryCharge, this.totalPrice}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(padding:  EdgeInsets.all(Dimensions.paddingSizeSmall),
         decoration: BoxDecoration(color: Theme.of(context).cardColor,
-            boxShadow: [BoxShadow(color: Colors.grey[Get.find<ThemeController>().darkTheme ? 700 : 100],
+            boxShadow: [BoxShadow(color: Colors.grey[Get.find<ThemeController>().darkTheme ? 700 : 100]!,
               blurRadius: 5, spreadRadius: 1,)],
             borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall)
         ),

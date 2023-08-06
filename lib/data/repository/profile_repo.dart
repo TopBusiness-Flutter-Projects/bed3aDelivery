@@ -8,7 +8,7 @@ class ProfileRepo {
   final ApiClient apiClient;
   final SharedPreferences sharedPreferences;
 
-  ProfileRepo({@required this.apiClient, @required this.sharedPreferences});
+  ProfileRepo({required this.apiClient, required this.sharedPreferences});
 
   Future<Response> getProfileInfo() async {
     return await apiClient.getData(AppConstants.profileUri);
@@ -27,7 +27,7 @@ class ProfileRepo {
     return _response;
   }
 
-  Future<Response> saveReview( int reviewId, int isSaved) async {
+  Future<Response> saveReview( int? reviewId, int isSaved) async {
     Response _response = await apiClient.postData(AppConstants.addToSavedReviewList,
         {
           'review_id': reviewId,
@@ -42,7 +42,7 @@ class ProfileRepo {
   }
 
 
-  Future<Response> forgetPassword(String countryCode ,String phone) async {
+  Future<Response> forgetPassword(String? countryCode ,String? phone) async {
     Response _response = await apiClient.postData(AppConstants.forgetPassword,
         {
           'country_code' : countryCode,
@@ -51,7 +51,7 @@ class ProfileRepo {
     return _response;
   }
 
-  Future<Response> verifyOtp(String countryCode ,String phone) async {
+  Future<Response> verifyOtp(String countryCode ,String? phone) async {
     Response _response = await apiClient.postData(AppConstants.verifyOtp,
         {
           'otp' : countryCode,
@@ -60,7 +60,7 @@ class ProfileRepo {
     return _response;
   }
 
-  Future<Response> resetPassword(String phone, String password ,String confirmPassword) async {
+  Future<Response> resetPassword(String? phone, String password ,String confirmPassword) async {
     Response _response = await apiClient.postData(AppConstants.resetPassword,
         {
           'phone': phone,
@@ -70,7 +70,7 @@ class ProfileRepo {
     return _response;
   }
 
-  Future<Response> updateBankInfo({String bankName, String branch, String accountNumber, String holderName}) async {
+  Future<Response> updateBankInfo({String? bankName, String? branch, String? accountNumber, String? holderName}) async {
     return apiClient.postData(AppConstants.updateBankInfo,{
       "bank_name": bankName,
       "branch": branch,

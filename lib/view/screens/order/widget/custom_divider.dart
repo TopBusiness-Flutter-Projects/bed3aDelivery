@@ -4,7 +4,7 @@ import 'package:bed3aDelivery/utill/dimensions.dart';
 class CustomDivider extends StatelessWidget {
   final double height;
   final Color color;
-  const CustomDivider({Key key, this.height = 1, this.color = Colors.black}) : super(key: key);
+  const CustomDivider({Key? key, this.height = 1, this.color = Colors.black}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -10,14 +10,14 @@ import 'package:bed3aDelivery/view/base/custom_home_app_bar.dart';
 import 'package:bed3aDelivery/view/screens/language/choose_language_screen.dart';
 
 class SettingScreen extends StatefulWidget {
-  const SettingScreen({Key key}) : super(key: key);
+  const SettingScreen({Key? key}) : super(key: key);
 
   @override
   State<SettingScreen> createState() => _SettingScreenState();
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-  Theming _theming;
+  Theming? _theming;
 
   @override
   void initState() {
@@ -49,7 +49,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   child: Text('language'.tr),
                 )
               ],),
-              Text(AppConstants.languages[Get.find<LanguageController>().selectIndex].languageName),
+              Text(AppConstants.languages[Get.find<LanguageController>().selectIndex!].languageName!),
             ],),
           ),
         ),
@@ -76,7 +76,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       activeColor: Theme.of(context).primaryColor,
                       value: Theming.light,
                       groupValue: _theming,
-                      onChanged: (Theming value) {
+                      onChanged: (Theming? value) {
                         theme.toggleTheme();
                         _theming = Theming.light;
                       },
@@ -91,7 +91,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       activeColor: Theme.of(context).primaryColor,
                       value: Theming.dark,
                       groupValue: _theming,
-                      onChanged: (Theming value) {
+                      onChanged: (Theming? value) {
                         theme.toggleTheme();
                         _theming = Theming.dark;
                       },

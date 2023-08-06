@@ -1,34 +1,34 @@
 
 class OrderModel {
-  int id;
-  int customerId;
-  String customerType;
-  String paymentStatus;
-  String orderStatus;
-  String paymentMethod;
-  String transactionRef;
-  double orderAmount;
-  String createdAt;
-  String updatedAt;
-  double discountAmount;
-  String discountType;
-  String couponCode;
-  int shippingMethodId;
-  double shippingCost;
-  String orderGroupId;
-  String verificationCode;
-  int sellerId;
-  String sellerIs;
-  String shippingAddressData;
-  int bed3aDeliveryId;
-  Customer customer;
-  String orderNote;
-  String billingAddress;
-  SellerInfo sellerInfo;
-  String expectedDate;
-  double bed3aDeliveryCharge;
-  String isPause;
-  ShippingAddress shippingAddress;
+  int? id;
+  int? customerId;
+  String? customerType;
+  String? paymentStatus;
+  String? orderStatus;
+  String? paymentMethod;
+  String? transactionRef;
+  double? orderAmount;
+  String? createdAt;
+  String? updatedAt;
+  double? discountAmount;
+  String? discountType;
+  String? couponCode;
+  int? shippingMethodId;
+  double? shippingCost;
+  String? orderGroupId;
+  String? verificationCode;
+  int? sellerId;
+  String? sellerIs;
+  String? shippingAddressData;
+  int? bed3aDeliveryId;
+  Customer? customer;
+  String? orderNote;
+  String? billingAddress;
+  SellerInfo? sellerInfo;
+  String? expectedDate;
+  double? bed3aDeliveryCharge;
+  String? isPause;
+  ShippingAddress? shippingAddress;
 
   OrderModel(
       {this.id,
@@ -138,7 +138,7 @@ class OrderModel {
     data['shipping_address_data'] = shippingAddressData;
     data['delivery_man_id'] = bed3aDeliveryId;
     if (customer != null) {
-      data['customer'] = customer.toJson();
+      data['customer'] = customer!.toJson();
     }
     data['order_note'] = orderNote;
     data['billing_address_data'] = billingAddress;
@@ -146,30 +146,30 @@ class OrderModel {
     data['bed3aDelivery_charge'] = bed3aDeliveryCharge;
     data['is_pause'] = isPause;
     if (sellerInfo != null) {
-      data['seller'] = sellerInfo.toJson();
+      data['seller'] = sellerInfo!.toJson();
     }
     if (shippingAddress != null) {
-      data['shipping_address'] = shippingAddress.toJson();
+      data['shipping_address'] = shippingAddress!.toJson();
     }
     return data;
   }
 }
 
 class ShippingAddress {
-  int id;
-  int customerId;
-  String contactPersonName;
-  String addressType;
-  String address;
-  String city;
-  String zip;
-  String phone;
-  String createdAt;
-  String updatedAt;
-  String state;
-  String country;
-  String latitude;
-  String longitude;
+  int? id;
+  int? customerId;
+  String? contactPersonName;
+  String? addressType;
+  String? address;
+  String? city;
+  String? zip;
+  String? phone;
+  String? createdAt;
+  String? updatedAt;
+  String? state;
+  String? country;
+  String? latitude;
+  String? longitude;
 
 
   ShippingAddress(
@@ -234,32 +234,32 @@ class ShippingAddress {
 }
 
 class Customer {
-  int id;
-  String name;
-  String fName;
-  String lName;
-  String phone;
-  String image;
-  String email;
-  String emailVerifiedAt;
-  String createdAt;
-  String updatedAt;
-  String streetAddress;
-  String country;
-  String city;
-  String zip;
-  String houseNo;
-  String apartmentNo;
-  String cmFirebaseToken;
-  int isActive;
-  String loginMedium;
-  String socialId;
-  int isPhoneVerified;
-  String temporaryToken;
-  String paymentCardLastFour;
-  String paymentCardBrand;
-  String paymentCardFawryToken;
-  int isEmailVerified;
+  int? id;
+  String? name;
+  String? fName;
+  String? lName;
+  String? phone;
+  String? image;
+  String? email;
+  String? emailVerifiedAt;
+  String? createdAt;
+  String? updatedAt;
+  String? streetAddress;
+  String? country;
+  String? city;
+  String? zip;
+  String? houseNo;
+  String? apartmentNo;
+  String? cmFirebaseToken;
+  int? isActive;
+  String? loginMedium;
+  String? socialId;
+  int? isPhoneVerified;
+  String? temporaryToken;
+  String? paymentCardLastFour;
+  String? paymentCardBrand;
+  String? paymentCardFawryToken;
+  int? isEmailVerified;
 
   Customer(
       {this.id,
@@ -354,10 +354,10 @@ class Customer {
 
 
 class SellerInfo {
-  int id;
-  String phone;
-  String email;
-  Shop shop;
+  int? id;
+  String? phone;
+  String? email;
+  Shop? shop;
 
 
   SellerInfo(
@@ -379,18 +379,18 @@ class SellerInfo {
     data['phone'] = phone;
     data['email'] = email;
     if (shop != null) {
-      data['shop'] = shop.toJson();
+      data['shop'] = shop!.toJson();
     }
     return data;
   }
 }
 
 class Shop {
-  int id;
-  int sellerId;
-  String name;
-  String image;
-  String address;
+  int? id;
+  int? sellerId;
+  String? name;
+  String? image;
+  String? address;
 
 
   Shop(

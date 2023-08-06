@@ -5,9 +5,9 @@ import 'package:bed3aDelivery/utill/styles.dart';
 
 class TitleWidget extends StatelessWidget {
   final String title;
-  final Function onTap;
+  final Function? onTap;
 
-  const TitleWidget({Key key, @required this.title, this.onTap}) : super(key: key);
+  const TitleWidget({Key? key, required this.title, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class TitleWidget extends StatelessWidget {
       Text(title, style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge,
           color: Theme.of(context).colorScheme.secondary)),
       onTap != null ? GestureDetector(
-        onTap: onTap,
+        onTap: onTap as void Function()?,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10, 5, 0, 5),
           child: Container(decoration: BoxDecoration(

@@ -11,11 +11,11 @@ import 'package:bed3aDelivery/view/base/custom_text_field.dart';
 
 class OrderStatusUpdateDialog extends StatefulWidget {
   final String icon;
-  final String title;
+  final String? title;
   final Function onYesPressed;
   final bool isReschedule;
   final bool isResume;
-  const OrderStatusUpdateDialog({Key key, @required this.icon, this.title,@required this.onYesPressed, this.isReschedule = false, this.isResume = false}) : super(key: key);
+  const OrderStatusUpdateDialog({Key? key, required this.icon, this.title,required this.onYesPressed, this.isReschedule = false, this.isResume = false}) : super(key: key);
 
   @override
   State<OrderStatusUpdateDialog> createState() => _OrderStatusUpdateDialogState();
@@ -45,12 +45,12 @@ class _OrderStatusUpdateDialogState extends State<OrderStatusUpdateDialog> {
                     borderRadius: BorderRadius.circular(40),
                     border: Border.all(color: Theme.of(context).primaryColor, width: 2)
                   ),
-                    child: Image.asset(widget.icon, width: Get.context.width<= 400? 20 : 50, height:Get.context.width<= 400? 20 : 50)),
+                    child: Image.asset(widget.icon, width: Get.context!.width<= 400? 20 : 50, height:Get.context!.width<= 400? 20 : 50)),
               ),
 
               widget.title != null ? Padding(
                 padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeLarge),
-                child: Text(widget.title, textAlign: TextAlign.center,
+                child: Text(widget.title!, textAlign: TextAlign.center,
                   style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeDefault,color: Theme.of(context).primaryColor),
                 ),
               ) : const SizedBox(),
@@ -66,7 +66,7 @@ class _OrderStatusUpdateDialogState extends State<OrderStatusUpdateDialog> {
                   ),
                   child: CustomDatePicker(
                     text: orderController.startDate != null ?
-                    orderController.dateFormat.format(orderController.startDate).toString() : 'select_date'.tr,
+                    orderController.dateFormat.format(orderController.startDate!).toString() : 'select_date'.tr,
                     image: Images.calenderIcon,
                     requiredField: true,
                     selectDate: () => orderController.selectDate(context),
@@ -86,7 +86,7 @@ class _OrderStatusUpdateDialogState extends State<OrderStatusUpdateDialog> {
                   ),
                   child: DropdownButton<String>(
 
-                    hint: orderController.reasonValue == ''? Text('select_reason'.tr, style: rubikRegular,) : Text(orderController.reasonValue.tr,
+                    hint: orderController.reasonValue == ''? Text('select_reason'.tr, style: rubikRegular,) : Text(orderController.reasonValue!.tr,
                       style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall),),
                     items: orderController.reasonList.map((String value) {
                       return DropdownMenuItem<String>(

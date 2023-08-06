@@ -13,15 +13,15 @@ import 'package:bed3aDelivery/view/base/custom_snackbar.dart';
 
 class ProfileController extends GetxController implements GetxService {
   final ProfileRepo profileRepo;
-  ProfileController({@required this.profileRepo});
+  ProfileController({required this.profileRepo});
 
 
 
-  UserInfoModel _profileModel;
-  UserInfoModel get profileModel => _profileModel;
-  String _profileImage;
-  String get profileImage => _profileImage;
-  File file;
+  UserInfoModel? _profileModel;
+  UserInfoModel? get profileModel => _profileModel;
+  String? _profileImage;
+  String? get profileImage => _profileImage;
+  File? file;
   final picker = ImagePicker();
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -36,8 +36,8 @@ class ProfileController extends GetxController implements GetxService {
    String _selectedReviewType = 'regular';
   String get selectedReviewType=>_selectedReviewType;
 
-  List<ContactList> _emergencyContactList =[];
-  List<ContactList> get emergencyContactList => _emergencyContactList;
+  List<ContactList>? _emergencyContactList =[];
+  List<ContactList>? get emergencyContactList => _emergencyContactList;
 
   bool _isEnableVerificationCode = false;
   bool get isEnableVerificationCode => _isEnableVerificationCode;
@@ -62,10 +62,10 @@ class ProfileController extends GetxController implements GetxService {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController = TextEditingController();
 
-  ReviewModel _reviewModel;
-  ReviewModel get reviewModel => _reviewModel;
-  List<Review> _reviewList = [];
-  List<Review> get reviewList => _reviewList;
+  ReviewModel? _reviewModel;
+  ReviewModel? get reviewModel => _reviewModel;
+  List<Review>? _reviewList = [];
+  List<Review>? get reviewList => _reviewList;
 
 
   set setSelectedReviewType(String type) {
@@ -86,7 +86,7 @@ class ProfileController extends GetxController implements GetxService {
     Response response = await profileRepo.getProfileInfo();
     if (response.statusCode == 200) {
       _profileModel = UserInfoModel.fromJson(response.body);
-      _profileImage = _profileModel.image;
+      _profileImage = _profileModel!.image;
 
     } else {
       ApiChecker.checkApi(response);
@@ -105,9 +105,9 @@ class ProfileController extends GetxController implements GetxService {
         _reviewModel = ReviewModel.fromJson(response.body);
         _reviewList = ReviewModel.fromJson(response.body).review;
       }else{
-        _reviewModel.totalSize = ReviewModel.fromJson(response.body).totalSize;
-        _reviewModel.offset = ReviewModel.fromJson(response.body).offset;
-        _reviewModel.review.addAll(ReviewModel.fromJson(response.body).review);
+        _reviewModel!.totalSize = ReviewModel.fromJson(response.body).totalSize;
+        _reviewModel!.offset = ReviewModel.fromJson(response.body).offset;
+        _reviewModel!.review!.addAll(ReviewModel.fromJson(response.body).review!);
       }
 
     } else {
@@ -140,7 +140,7 @@ class ProfileController extends GetxController implements GetxService {
     update();
   }
 
-  Future <Response> forgetPassword(String countryCode ,String phone) async {
+  Future <Response> forgetPassword(String? countryCode ,String? phone) async {
     _isForget = true;
     update();
     Response _response = await profileRepo.forgetPassword(countryCode, phone);
@@ -154,7 +154,7 @@ class ProfileController extends GetxController implements GetxService {
     return _response;
   }
 
-  Future <Response> verifyOtp (String otp ,String phone) async {
+  Future <Response> verifyOtp (String otp ,String? phone) async {
     _isVerify = true;
     update();
     _isPhoneNumberVerificationButtonLoading = true;
@@ -171,7 +171,7 @@ class ProfileController extends GetxController implements GetxService {
     return _response;
   }
 
-  Future <Response> resetPassword (String phone, String password ,String confirmPassword) async {
+  Future <Response> resetPassword (String? phone, String password ,String confirmPassword) async {
     _isLoading = true;
     update();
     Response _response = await profileRepo.resetPassword(phone, password, confirmPassword);
@@ -204,7 +204,7 @@ class ProfileController extends GetxController implements GetxService {
     if (response.statusCode == 200) {
       Get.find<ProfileController>().getProfile();
       Get.back();
-      String message;
+      String? message;
       message = response.body['message'];
       showCustomSnackBar(message, isError: false);
     } else {
@@ -216,11 +216,11 @@ class ProfileController extends GetxController implements GetxService {
   }
 
 
-  Future<Response> savedReview( int reviewId, int isSaved, int index) async {
+  Future<Response> savedReview( int? reviewId, int isSaved, int? index) async {
     Response response = await profileRepo.saveReview(reviewId, isSaved);
     if (response.statusCode == 200) {
-      _reviewModel.review[index].isSaved = _reviewModel.review[index].isSaved == 1 ? 0 : 1;
-      String message;
+      _reviewModel!.review![index!].isSaved = _reviewModel!.review![index].isSaved == 1 ? 0 : 1;
+      String? message;
       message = response.body['message'];
       showCustomSnackBar(message, isError: false);
     } else {

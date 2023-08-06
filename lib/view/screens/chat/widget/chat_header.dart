@@ -7,7 +7,7 @@ import 'package:bed3aDelivery/view/screens/chat/widget/chat_type_button.dart';
 import 'package:get/get.dart';
 
 class ChatHeader extends StatefulWidget {
-  const ChatHeader({Key key}) : super(key: key);
+  const ChatHeader({Key? key}) : super(key: key);
 
   @override
   State<ChatHeader> createState() => _ChatHeaderState();

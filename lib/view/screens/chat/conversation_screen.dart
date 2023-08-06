@@ -13,7 +13,7 @@ import 'package:bed3aDelivery/view/screens/chat/widget/conversation_item_card_wi
 import 'package:bed3aDelivery/view/screens/profile/widget/profile_info_widget.dart';
 
 class ConversationScreen extends StatefulWidget {
-  const ConversationScreen({Key key}) : super(key: key);
+  const ConversationScreen({Key? key}) : super(key: key);
 
   @override
   State<ConversationScreen> createState() => _ConversationScreenState();
@@ -36,7 +36,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
       appBar: CustomRiderAppBar(title: 'message'.tr),
       body: GetBuilder<ChatController>(builder: (chatController) {
 
-        ChatModel _conversation;
+        ChatModel? _conversation;
         if(chatController.conversationModel != null) {
           _conversation = chatController.conversationModel;
         }else {
@@ -78,17 +78,17 @@ class _ConversationScreenState extends State<ConversationScreen> {
                         child: PaginatedListView(
                           reverse: false,
                           scrollController: _scrollController,
-                          onPaginate: (int offset) => chatController.getConversationList(offset),
-                          totalSize: _conversation.totalSize,
-                          offset: int.parse(_conversation.offset),
+                          onPaginate: (int? offset) => chatController.getConversationList(offset!),
+                          totalSize: _conversation!.totalSize,
+                          offset: int.parse(_conversation.offset!),
                           enabledPagination: chatController.conversationModel == null,
                           itemView: ListView.builder(
-                            itemCount: _conversation.chat.length,
+                            itemCount: _conversation.chat!.length,
                             padding: EdgeInsets.zero,
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
-                              return  ConversationItemCardWidget(chat: _conversation.chat[index]);
+                              return  ConversationItemCardWidget(chat: _conversation!.chat![index]);
                             },
                           ),
                         ),

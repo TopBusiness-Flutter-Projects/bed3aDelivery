@@ -10,9 +10,9 @@ import 'package:bed3aDelivery/view/base/custom_image.dart';
 import 'package:bed3aDelivery/view/screens/order/widget/cal_chat_widget.dart';
 
 class SellerInfoWidget extends StatelessWidget {
-  final OrderModel orderModel;
+  final OrderModel? orderModel;
 
-  const SellerInfoWidget({Key key, this.orderModel}) : super(key: key);
+  const SellerInfoWidget({Key? key, this.orderModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class SellerInfoWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall)),
       child: Column(
         children: [
-          orderModel.sellerInfo != null?
+          orderModel!.sellerInfo != null?
           Row(crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(decoration: BoxDecoration(
@@ -36,7 +36,7 @@ class SellerInfoWidget extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(50),
                   child: CustomImage(
-                    image: '${Get.find<SplashController>().baseUrls.shopImageUrl}/${orderModel.sellerInfo.shop?.image}',
+                    image: '${Get.find<SplashController>().baseUrls!.shopImageUrl}/${orderModel!.sellerInfo!.shop?.image}',
                     height: 50, width: 50, fit: BoxFit.cover,
                   ),
                 ),
@@ -48,10 +48,10 @@ class SellerInfoWidget extends StatelessWidget {
                   padding:  EdgeInsets.fromLTRB(Dimensions.paddingSizeSmall,0,0,0),
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(orderModel.sellerIs == 'admin' ? AppConstants.companyName : orderModel.sellerInfo.shop.name,
+                      Text(orderModel!.sellerIs == 'admin' ? AppConstants.companyName : orderModel!.sellerInfo!.shop!.name!,
                         style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge),),
 
-                      Text(orderModel.sellerIs == 'admin' ? 'admin'.tr :'seller'.tr,
+                      Text(orderModel!.sellerIs == 'admin' ? 'admin'.tr :'seller'.tr,
                           style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeDefault,
                               color: Theme.of(context).primaryColor.withOpacity(.75))),
                     ],
@@ -59,7 +59,7 @@ class SellerInfoWidget extends StatelessWidget {
                 ),
               ),
 
-              CallAndChatWidget(orderModel: orderModel, isSeller: true, isAdmin: orderModel.sellerIs == 'admin',),
+              CallAndChatWidget(orderModel: orderModel, isSeller: true, isAdmin: orderModel!.sellerIs == 'admin',),
             ],
           ):const SizedBox(),
 

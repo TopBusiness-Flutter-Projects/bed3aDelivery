@@ -24,12 +24,12 @@ import 'package:bed3aDelivery/view/screens/setting/setting_screen.dart';
 
 
 class ProfileScreen extends StatelessWidget {
-   const ProfileScreen({Key key}) : super(key: key);
+   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
-    UserInfoModel profile = Get.find<ProfileController>().profileModel;
+    UserInfoModel? profile = Get.find<ProfileController>().profileModel;
     return Scaffold(
       appBar: CustomRiderAppBar(title: 'my_profile'.tr),
 
@@ -47,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
                   child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children:  [
 
                     Expanded(child: ProfileDeliveryInfoItem(icon: Images.totalDelivery, title: 'total_delivery',
-                        countNumber: double.parse(profile.totalDelivery.toString()))),
+                        countNumber: double.parse(profile!.totalDelivery.toString()))),
 
                     Expanded(child: ProfileDeliveryInfoItem(icon: Images.completedDelivery, title: 'completed_delivery',
                         countNumber: double.parse(profile.completedDelivery.toString()))),

@@ -4,10 +4,10 @@ import 'package:bed3aDelivery/utill/images.dart';
 
 class CustomImage extends StatelessWidget {
   final String image;
-  final double height;
-  final double width;
+  final double? height;
+  final double? width;
   final BoxFit fit;
-  const CustomImage({Key key, @required this.image, this.height, this.width, this.fit = BoxFit.cover}) : super(key: key);
+  const CustomImage({Key? key, required this.image, this.height, this.width, this.fit = BoxFit.cover}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -21,7 +21,7 @@ import 'package:bed3aDelivery/view/screens/forget_password/forget_password_scree
 
 
 class LoginScreen extends StatefulWidget {
-   const LoginScreen({Key key}) : super(key: key);
+   const LoginScreen({Key? key}) : super(key: key);
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -30,10 +30,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final FocusNode _emailFocus = FocusNode();
   final FocusNode _passwordFocus = FocusNode();
-  TextEditingController _emailController;
-  TextEditingController _passwordController;
-  GlobalKey<FormState> _formKeyLogin;
-  String _countryDialCode = "+880";
+  TextEditingController? _emailController;
+  TextEditingController? _passwordController;
+  GlobalKey<FormState>? _formKeyLogin;
+  String? _countryDialCode = "+880";
 
   @override
   void initState() {
@@ -41,16 +41,16 @@ class _LoginScreenState extends State<LoginScreen> {
     _formKeyLogin = GlobalKey<FormState>();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
-    _emailController.text = Get.find<AuthController>().getUserEmail();
-    _passwordController.text = Get.find<AuthController>().getUserPassword();
-    _countryDialCode = CountryCode.fromCountryCode(Get.find<SplashController>().configModel.countryCode).dialCode;
+    _emailController!.text = Get.find<AuthController>().getUserEmail();
+    _passwordController!.text = Get.find<AuthController>().getUserPassword();
+    _countryDialCode = CountryCode.fromCountryCode(Get.find<SplashController>().configModel!.countryCode!).dialCode;
   }
 
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
+    _emailController!.dispose();
+    _passwordController!.dispose();
     super.dispose();
   }
 
@@ -147,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                 showFlagMain: true,
                                 flagWidth: 25,
-                                textStyle: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.headline1.color),
+                                textStyle: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.displayLarge!.color),
 
                               ),
                             ),
@@ -243,7 +243,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                                SizedBox(width: Dimensions.paddingSizeSmall),
 
-                              Text('remember_me'.tr, style: Theme.of(context).textTheme.headline2.copyWith(
+                              Text('remember_me'.tr, style: Theme.of(context).textTheme.displayMedium!.copyWith(
                                   fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).highlightColor),),
 
 
@@ -275,7 +275,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       Expanded(
                         child: Text(authController.loginErrorMessage ?? "",
-                          style: Theme.of(context).textTheme.headline2.copyWith(
+                          style: Theme.of(context).textTheme.displayMedium!.copyWith(
                             fontSize: Dimensions.fontSizeSmall, color: Colors.red,
                           ),
                         ),
@@ -291,9 +291,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: CustomButton(
                       btnTxt: 'login'.tr,
                       onTap: () async {
-                        String countryCode =  _countryDialCode.replaceAll('+', '');
-                        String phone = _emailController.text.trim();
-                        String _password = _passwordController.text.trim();
+                        String countryCode =  _countryDialCode!.replaceAll('+', '');
+                        String phone = _emailController!.text.trim();
+                        String _password = _passwordController!.text.trim();
                         if (phone.isEmpty) {
                           showCustomSnackBar('enter_phone_number'.tr);
                         }else if (_password.isEmpty) {
@@ -328,7 +328,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   GestureDetector(
                     onTap: (){
                       Get.to(()=> HtmlViewScreen(title: 'terms_and_conditions'.tr,
-                        url: Get.find<SplashController>().configModel.termsConditions));
+                        url: Get.find<SplashController>().configModel!.termsConditions));
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(top: 100),

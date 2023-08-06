@@ -6,7 +6,7 @@ import 'package:bed3aDelivery/view/base/no_data_screen.dart';
 import 'package:bed3aDelivery/view/screens/wallet/widget/deposited_card_widget.dart';
 
 class DepositedListView extends StatelessWidget {
-  const DepositedListView({Key key}) : super(key: key);
+  const DepositedListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

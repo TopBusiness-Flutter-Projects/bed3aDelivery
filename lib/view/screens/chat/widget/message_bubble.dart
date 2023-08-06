@@ -15,22 +15,22 @@ import 'package:bed3aDelivery/controller/profile_controller.dart';
 class MessageBubble extends StatelessWidget {
   final Message message;
 
-  const MessageBubble({Key key, @required this.message}) : super(key: key);
+  const MessageBubble({Key? key, required this.message}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
     String basUrl =  Get.find<ChatController>().userTypeIndex == 0?
-    Get.find<SplashController>().baseUrls.shopImageUrl??'':
-    Get.find<SplashController>().baseUrls.customerImageUrl??'';
+    Get.find<SplashController>().baseUrls!.shopImageUrl??'':
+    Get.find<SplashController>().baseUrls!.customerImageUrl??'';
 
     String image = Get.find<ChatController>().userTypeIndex == 0?  message.sellerInfo != null ?
-    message.sellerInfo.shops[0].image??'':'' :Get.find<ChatController>().userTypeIndex == 0?
-    message.customer.image?? '':'';
+    message.sellerInfo!.shops![0].image??'':'' :Get.find<ChatController>().userTypeIndex == 0?
+    message.customer!.image?? '':'';
 
-    String name = Get.find<ChatController>().userTypeIndex == 0?   message.sellerInfo != null ?
-    message.sellerInfo.shops[0].name :'Shop not found' :Get.find<ChatController>().userTypeIndex == 0?
-    message.customer.fName + ' ' +message.customer.lName: AppConstants.companyName;
+    String? name = Get.find<ChatController>().userTypeIndex == 0?   message.sellerInfo != null ?
+    message.sellerInfo!.shops![0].name :'Shop not found' :Get.find<ChatController>().userTypeIndex == 0?
+    message.customer!.fName! + ' ' +message.customer!.lName!: AppConstants.companyName;
 
 
     bool _isReply = message.sentByCustomer == 1 || message.sentBySeller == 1;
@@ -41,11 +41,11 @@ class MessageBubble extends StatelessWidget {
       padding:  EdgeInsets.all(Dimensions.paddingSizeDefault),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
 
-        Text(name, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge,
+        Text(name!, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge,
             color: Get.find<ChatController>().userTypeIndex == 0 && message.sellerInfo == null ?
-            Theme.of(context).errorColor :
+            Theme.of(context).colorScheme.error :
             Get.find<ChatController>().userTypeIndex == 1 && message.customer == null ?
-            Theme.of(context).errorColor : null)),
+            Theme.of(context).colorScheme.error : null)),
          SizedBox(height: Dimensions.paddingSizeSmall),
 
         Row(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.start, children: [
@@ -86,7 +86,7 @@ class MessageBubble extends StatelessWidget {
          SizedBox(height: Dimensions.paddingSizeSmall),
 
         Text(
-          DateConverter.localDateToIsoStringAMPM(DateTime.parse(message.createdAt)),
+          DateConverter.localDateToIsoStringAMPM(DateTime.parse(message.createdAt!)),
           style: rubikRegular.copyWith(color: Theme.of(context).hintColor, fontSize: Dimensions.fontSizeSmall),
         ),
       ]),
@@ -96,7 +96,7 @@ class MessageBubble extends StatelessWidget {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall)),
       child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
 
-        Text(Get.find<ProfileController>().profileModel.fName+" "+Get.find<ProfileController>().profileModel.lName, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge)),
+        Text(Get.find<ProfileController>().profileModel!.fName!+" "+Get.find<ProfileController>().profileModel!.lName!, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge)),
          SizedBox(height: Dimensions.paddingSizeSmall),
 
         Row(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.end, children: [
@@ -104,7 +104,7 @@ class MessageBubble extends StatelessWidget {
           Flexible(
             child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.end, children: [
 
-              (message.message != null && message.message.isNotEmpty) ? Flexible(
+              (message.message != null && message.message!.isNotEmpty) ? Flexible(
                 child: Container(
                   decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor.withOpacity(0.5),
@@ -130,14 +130,14 @@ class MessageBubble extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.0),
             child: CustomImage(
               fit: BoxFit.cover, width: 40, height: 40,
-              image: '${Get.find<SplashController>().baseUrls.bed3aDeliveryImageUrl}/${Get.find<ProfileController>().profileModel.image}',
+              image: '${Get.find<SplashController>().baseUrls!.bed3aDeliveryImageUrl}/${Get.find<ProfileController>().profileModel!.image}',
             ),
           ),
         ]),
 
          SizedBox(height: Dimensions.paddingSizeSmall),
 
-        Text(DateConverter.localDateToIsoStringAMPM(DateTime.parse(message.createdAt)),
+        Text(DateConverter.localDateToIsoStringAMPM(DateTime.parse(message.createdAt!)),
           style: rubikRegular.copyWith(color: Theme.of(context).hintColor, fontSize: Dimensions.fontSizeSmall)),
          SizedBox(height: Dimensions.paddingSizeDefault),
 

@@ -11,29 +11,29 @@ import 'package:bed3aDelivery/view/screens/order/widget/slider_button.dart';
 import 'package:get/get.dart';
 
 class OrderStatusChangeCustomButton extends StatelessWidget {
-  final OrderModel orderModel;
-  final int index;
-  final double totalPrice;
-  const OrderStatusChangeCustomButton({Key key, this.orderModel, this.index, this.totalPrice}) : super(key: key);
+  final OrderModel? orderModel;
+  final int? index;
+  final double? totalPrice;
+  const OrderStatusChangeCustomButton({Key? key, this.orderModel, this.index, this.totalPrice}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return (orderModel.orderStatus == 'processing' || orderModel.orderStatus == 'out_for_delivery') && orderModel.isPause == '0' ?
+    return (orderModel!.orderStatus == 'processing' || orderModel!.orderStatus == 'out_for_delivery') && orderModel!.isPause == '0' ?
     Padding(
       padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault,vertical: Dimensions.paddingSizeSmall),
       child: SliderButton(
         action:  ()  {
-          if(orderModel.orderStatus == 'processing'){
-            Get.find<OrderController>().updateOrderStatus(orderId: orderModel.id,
+          if(orderModel!.orderStatus == 'processing'){
+            Get.find<OrderController>().updateOrderStatus(orderId: orderModel!.id,
                 status: 'out_for_delivery',context: context);
             Get.find<OrderController>().getCurrentOrders(context);
-          }else if(orderModel.orderStatus == 'out_for_delivery'){
-            if (orderModel.paymentStatus == 'paid') {
-              Get.find<OrderController>().updateOrderStatus(orderId: orderModel.id,
+          }else if(orderModel!.orderStatus == 'out_for_delivery'){
+            if (orderModel!.paymentStatus == 'paid') {
+              Get.find<OrderController>().updateOrderStatus(orderId: orderModel!.id,
                   status: 'delivered',context: context);
               Get.find<TrackerController>().updateTrackStart(false);
               Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (_) => OrderPlaceScreen(orderID: orderModel.id.toString(), orderModel: orderModel,)));
+                  MaterialPageRoute(builder: (_) => OrderPlaceScreen(orderID: orderModel!.id.toString(), orderModel: orderModel,)));
             } else {
               showDialog(context: context,
                   barrierDismissible: false,
@@ -53,7 +53,7 @@ class OrderStatusChangeCustomButton extends StatelessWidget {
 
         },
 
-        label: Text(orderModel.orderStatus == 'processing'? 'swipe_to_out_for_delivery_order'.tr : 'swip_to_deliver_order'.tr,
+        label: Text(orderModel!.orderStatus == 'processing'? 'swipe_to_out_for_delivery_order'.tr : 'swip_to_deliver_order'.tr,
           style: rubikMedium.copyWith(color: Theme.of(context).primaryColor, fontSize: Dimensions.fontSizeLarge),),
         dismissThresholds: 0.5,
         icon: const RotationTransition(

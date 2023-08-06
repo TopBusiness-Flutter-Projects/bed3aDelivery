@@ -6,8 +6,8 @@ import 'package:bed3aDelivery/utill/dimensions.dart';
 import 'package:bed3aDelivery/view/screens/order/widget/order_info_with_customer_widget.dart';
 
 class RiderBottomSheet extends StatelessWidget {
-  final OrderModel orderModel;
-  const RiderBottomSheet({Key key, this.orderModel}) : super(key: key);
+  final OrderModel? orderModel;
+  const RiderBottomSheet({Key? key, this.orderModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class RiderBottomSheet extends StatelessWidget {
                   color: Theme.of(context).cardColor,
                   borderRadius :  BorderRadius.only(topLeft: Radius.circular(Dimensions.paddingSizeOverLarge),
                       topRight : Radius.circular(Dimensions.paddingSizeOverLarge)),
-                  boxShadow: [BoxShadow(color: Get.isDarkMode ? Colors.grey[900] :Colors.grey[300], blurRadius: 5, spreadRadius: 1, offset: const Offset(0,2))]
+                  boxShadow: [BoxShadow(color: Get.isDarkMode ? Colors.grey[900]! :Colors.grey[300]!, blurRadius: 5, spreadRadius: 1, offset: const Offset(0,2))]
               ),
                 width: MediaQuery.of(context).size.width,
                 child: Padding(

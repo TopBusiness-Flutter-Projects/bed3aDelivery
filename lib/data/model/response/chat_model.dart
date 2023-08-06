@@ -1,10 +1,10 @@
 import 'package:bed3aDelivery/data/model/response/message_model.dart';
 
 class ChatModel {
-  int totalSize;
-  String limit;
-  String offset;
-  List<Chat> chat;
+  int? totalSize;
+  String? limit;
+  String? offset;
+  List<Chat>? chat;
 
   ChatModel({this.totalSize, this.limit, this.offset, this.chat});
 
@@ -15,7 +15,7 @@ class ChatModel {
     if (json['chat'] != null) {
       chat = <Chat>[];
       json['chat'].forEach((v) {
-        chat.add(Chat.fromJson(v));
+        chat!.add(Chat.fromJson(v));
       });
     }
   }
@@ -26,24 +26,24 @@ class ChatModel {
     data['limit'] = limit;
     data['offset'] = offset;
     if (chat != null) {
-      data['chat'] = chat.map((v) => v.toJson()).toList();
+      data['chat'] = chat!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Chat {
-  int id;
-  int userId;
-  int sellerId;
-  String message;
-  int sentByCustomer;
-  int sentBySeller;
-  int sentByAdmin;
-  int seenBybed3aDelivery;
-  String createdAt;
-  Customer customer;
-  SellerInfo sellerInfo;
+  int? id;
+  int? userId;
+  int? sellerId;
+  String? message;
+  int? sentByCustomer;
+  int? sentBySeller;
+  int? sentByAdmin;
+  int? seenBybed3aDelivery;
+  String? createdAt;
+  Customer? customer;
+  SellerInfo? sellerInfo;
 
 
   Chat(
@@ -89,10 +89,10 @@ class Chat {
     data['seen_by_delivery_man'] = seenBybed3aDelivery;
     data['created_at'] = createdAt;
     if (customer != null) {
-      data['customer'] = customer.toJson();
+      data['customer'] = customer!.toJson();
     }
     if (sellerInfo != null) {
-      data['seller_info'] = sellerInfo.toJson();
+      data['seller_info'] = sellerInfo!.toJson();
     }
     return data;
   }

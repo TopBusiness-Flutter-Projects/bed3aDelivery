@@ -8,7 +8,7 @@ import 'package:bed3aDelivery/view/screens/earning_statement/widget/earning_filt
 import 'package:bed3aDelivery/view/screens/earning_statement/widget/earning_statement_list_view.dart';
 
 class EarningStatementScreen extends StatelessWidget {
-  const EarningStatementScreen({Key key}) : super(key: key);
+  const EarningStatementScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class EarningStatementScreen extends StatelessWidget {
         onRefresh: () async{
           Get.find<OrderController>().setEarningFilterIndex(Get.find<OrderController>().orderTypeFilterIndex);
 
-          return true;
+        //  return true;
         },
         child: CustomScrollView(
           slivers: [

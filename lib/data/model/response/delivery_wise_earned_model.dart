@@ -1,10 +1,10 @@
 import 'package:bed3aDelivery/data/model/response/order_model.dart';
 
 class DeliveryWiseEarnedModel {
-  int totalSize;
-  String limit;
-  String offset;
-  List<Orders> orders;
+  int? totalSize;
+  String? limit;
+  String? offset;
+  List<Orders>? orders;
 
   DeliveryWiseEarnedModel(
       {this.totalSize, this.limit, this.offset, this.orders});
@@ -16,7 +16,7 @@ class DeliveryWiseEarnedModel {
     if (json['orders'] != null) {
       orders = <Orders>[];
       json['orders'].forEach((v) {
-        orders.add(Orders.fromJson(v));
+        orders!.add(Orders.fromJson(v));
       });
     }
   }
@@ -27,49 +27,49 @@ class DeliveryWiseEarnedModel {
     data['limit'] = limit;
     data['offset'] = offset;
     if (orders != null) {
-      data['orders'] = orders.map((v) => v.toJson()).toList();
+      data['orders'] = orders!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Orders {
-  int id;
-  int customerId;
-  String customerType;
-  String paymentStatus;
-  String orderStatus;
-  String paymentMethod;
-  String transactionRef;
-  double orderAmount;
-  String isPause;
-  String cause;
-  int shippingAddress;
-  String createdAt;
-  String updatedAt;
-  double discountAmount;
-  String discountType;
-  String couponCode;
-  int shippingMethodId;
-  double shippingCost;
-  String orderGroupId;
-  String verificationCode;
-  int sellerId;
-  String sellerIs;
-  String shippingAddressData;
-  int bed3aDeliveryId;
-  double bed3aDeliveryCharge;
-  String expectedDeliveryDate;
-  String orderNote;
-  int billingAddress;
-  String billingAddressData;
-  String orderType;
-  double extraDiscount;
-  String extraDiscountType;
+  int? id;
+  int? customerId;
+  String? customerType;
+  String? paymentStatus;
+  String? orderStatus;
+  String? paymentMethod;
+  String? transactionRef;
+  double? orderAmount;
+  String? isPause;
+  String? cause;
+  int? shippingAddress;
+  String? createdAt;
+  String? updatedAt;
+  double? discountAmount;
+  String? discountType;
+  String? couponCode;
+  int? shippingMethodId;
+  double? shippingCost;
+  String? orderGroupId;
+  String? verificationCode;
+  int? sellerId;
+  String? sellerIs;
+  String? shippingAddressData;
+  int? bed3aDeliveryId;
+  double? bed3aDeliveryCharge;
+  String? expectedDeliveryDate;
+  String? orderNote;
+  int? billingAddress;
+  String? billingAddressData;
+  String? orderType;
+  double? extraDiscount;
+  String? extraDiscountType;
 
 
-  Seller seller;
-  Customer customer;
+  Seller? seller;
+  Customer? customer;
 
   Orders(
       {this.id,
@@ -209,23 +209,23 @@ class Orders {
     data['extra_discount_type'] = extraDiscountType;
 
     if (seller != null) {
-      data['seller'] = seller.toJson();
+      data['seller'] = seller!.toJson();
     }
     if (customer != null) {
-      data['customer'] = customer.toJson();
+      data['customer'] = customer!.toJson();
     }
     return data;
   }
 }
 
 class Seller {
-  int id;
-  String fName;
-  String lName;
-  String phone;
-  String image;
-  String email;
-  Shop shop;
+  int? id;
+  String? fName;
+  String? lName;
+  String? phone;
+  String? image;
+  String? email;
+  Shop? shop;
 
 
   Seller(
@@ -258,7 +258,7 @@ class Seller {
     data['image'] = image;
     data['email'] = email;
     if (shop != null) {
-      data['shop'] = shop.toJson();
+      data['shop'] = shop!.toJson();
     }
 
     return data;

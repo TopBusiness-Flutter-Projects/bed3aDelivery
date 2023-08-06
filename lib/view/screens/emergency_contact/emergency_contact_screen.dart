@@ -5,7 +5,7 @@ import 'package:bed3aDelivery/view/base/custom_home_app_bar.dart';
 import 'package:bed3aDelivery/view/screens/emergency_contact/widget/emergency_contact_list_view.dart';
 
 class EmergencyContactScreen extends StatelessWidget {
-  const EmergencyContactScreen({Key key}) : super(key: key);
+  const EmergencyContactScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class EmergencyContactScreen extends StatelessWidget {
       body: RefreshIndicator(
         onRefresh: () async{
           Get.find<ProfileController>().getEmergencyContactList();
-          return true;
+        //  return true;
         },
         child: CustomScrollView(
           slivers: [

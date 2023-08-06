@@ -12,10 +12,10 @@ import 'package:bed3aDelivery/view/screens/forget_password/widget/reset_password
 
 
 class VerificationScreen extends StatelessWidget {
-  final String mobileNumber;
-  final String countryCode;
+  final String? mobileNumber;
+  final String? countryCode;
 
-  const VerificationScreen({Key key, this.countryCode, this.mobileNumber}) : super(key: key);
+  const VerificationScreen({Key? key, this.countryCode, this.mobileNumber}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

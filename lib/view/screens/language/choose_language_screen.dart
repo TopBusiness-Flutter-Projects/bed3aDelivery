@@ -14,7 +14,7 @@ import 'package:bed3aDelivery/view/screens/dashboard/dashboard_screen.dart';
 
 class ChooseLanguageScreen extends StatelessWidget {
   final bool fromHomeScreen;
-  const ChooseLanguageScreen({Key key, this.fromHomeScreen = false}) : super(key: key);
+  const ChooseLanguageScreen({Key? key, this.fromHomeScreen = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +58,8 @@ class ChooseLanguageScreen extends StatelessWidget {
                     onTap: () {
                       if(languageController.languages.isNotEmpty && languageController.selectIndex != -1) {
                         Get.find<LocalizationController>().setLanguage(Locale(
-                          AppConstants.languages[languageController.selectIndex].languageCode,
-                          AppConstants.languages[languageController.selectIndex].countryCode,
+                          AppConstants.languages[languageController.selectIndex!].languageCode!,
+                          AppConstants.languages[languageController.selectIndex!].countryCode,
                         ));
                         if (fromHomeScreen) {
                           Navigator.pop(context);
@@ -81,8 +81,8 @@ class ChooseLanguageScreen extends StatelessWidget {
     );
   }
 
-  Widget _languageWidget({BuildContext context, LanguageModel languageModel,
-    LanguageController languageController, int index}) {
+  Widget _languageWidget({required BuildContext context, required LanguageModel languageModel,
+    required LanguageController languageController, int? index}) {
     return InkWell(
       onTap: ()  => languageController.setSelectIndex(index),
 
@@ -108,7 +108,7 @@ class ChooseLanguageScreen extends StatelessWidget {
             border: Border(bottom: BorderSide(width: 1.0,
                     color: languageController.selectIndex == index ?
                     Colors.transparent :
-                    (languageController.selectIndex - 1) == (index - 1) ?
+                    (languageController.selectIndex! - 1) == (index! - 1) ?
                     Colors.transparent :
                     Theme.of(context).dividerColor.withOpacity(.2))),),
 
@@ -119,14 +119,14 @@ class ChooseLanguageScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Image.asset(languageModel.imageUrl, width: Dimensions.flagSize,
+                  Image.asset(languageModel.imageUrl!, width: Dimensions.flagSize,
                       height: Dimensions.flagSize),
                    SizedBox(width: Dimensions.topSpace),
 
 
-                  Text(languageModel.languageName,
+                  Text(languageModel.languageName!,
                     style: rubikRegular.copyWith(
-                        color: Theme.of(context).textTheme.bodyText1.color),
+                        color: Theme.of(context).textTheme.bodyLarge!.color),
                   ),
                 ],
               ),

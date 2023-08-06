@@ -10,16 +10,16 @@ import 'package:get/get.dart';
 import 'package:bed3aDelivery/view/screens/order/widget/ordered_product_list_view.dart';
 
 class OrderInfoWidget extends StatelessWidget {
-  final OrderModel orderModel;
-  final OrderController orderController;
+  final OrderModel? orderModel;
+  final OrderController? orderController;
   final bool fromDetails;
-  const OrderInfoWidget({Key key, this.orderModel, this.orderController, this.fromDetails = false}) : super(key: key);
+  const OrderInfoWidget({Key? key, this.orderModel, this.orderController, this.fromDetails = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(padding:  EdgeInsets.all(Dimensions.paddingSizeSmall),
         decoration: BoxDecoration(color: Theme.of(context).cardColor,
-            boxShadow: [BoxShadow(color: Colors.grey[Get.find<ThemeController>().darkTheme ? 700 : 100],
+            boxShadow: [BoxShadow(color: Colors.grey[Get.find<ThemeController>().darkTheme ? 700 : 100]!,
               blurRadius: 5, spreadRadius: 1,)],
             borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall)
         ),
@@ -36,9 +36,9 @@ class OrderInfoWidget extends StatelessWidget {
           Padding(
             padding:  EdgeInsets.fromLTRB(Dimensions.paddingSizeDefault, 0, Dimensions.paddingSizeDefault, 0),
             child: Column(children: [
-              OrderItemInfoWidget(title: 'order_id',info: orderModel.id.toString()),
-              OrderItemInfoWidget(title: 'order_placed',info: orderModel.updatedAt.toString(),isDate: true,),
-              OrderItemInfoWidget(title: 'payment',info: orderModel.paymentMethod),
+              OrderItemInfoWidget(title: 'order_id',info: orderModel!.id.toString()),
+              OrderItemInfoWidget(title: 'order_placed',info: orderModel!.updatedAt.toString(),isDate: true,),
+              OrderItemInfoWidget(title: 'payment',info: orderModel!.paymentMethod),
               InkWell(
                   onTap: ()=> Get.bottomSheet(
                     OrderedItemProductList(orderController: orderController),
@@ -48,7 +48,7 @@ class OrderInfoWidget extends StatelessWidget {
 
 
                   ),
-                  child: OrderItemInfoWidget(title: 'products',info: orderController.orderDetails.length.toString(), isProduct: true,)),
+                  child: OrderItemInfoWidget(title: 'products',info: orderController!.orderDetails!.length.toString(), isProduct: true,)),
             ],),
           )
 

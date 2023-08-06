@@ -8,7 +8,7 @@ import 'package:bed3aDelivery/utill/styles.dart';
 import 'package:bed3aDelivery/view/screens/withdraw/withdraw_request_screen.dart';
 
 class WalletSendWithdrawCardWidget extends StatelessWidget {
-  const WalletSendWithdrawCardWidget({Key key}) : super(key: key);
+  const WalletSendWithdrawCardWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class WalletSendWithdrawCardWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
-                  boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 900 : 200],
+                  boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 900 : 200]!,
                       spreadRadius: 0.5, blurRadius: 0.3)],
                 ),
 
@@ -58,7 +58,7 @@ class WalletSendWithdrawCardWidget extends StatelessWidget {
                                 style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeDefault,
                                     color: Colors.white)),
                              SizedBox(height: Dimensions.paddingSizeExtraSmall,),
-                            Text(PriceConverter.convertPrice(profileController.profileModel.withdrawableBalance),
+                            Text(PriceConverter.convertPrice(profileController.profileModel!.withdrawableBalance),
                                 style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge,
                                     color:Get.isDarkMode? Theme.of(context).hintColor : Theme.of(context).cardColor)),
                           ],

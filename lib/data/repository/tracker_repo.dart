@@ -9,7 +9,7 @@ import 'package:bed3aDelivery/utill/app_constants.dart';
 class TrackerRepo {
   final ApiClient apiClient;
   final SharedPreferences sharedPreferences;
-  TrackerRepo({@required this.apiClient, @required this.sharedPreferences});
+  TrackerRepo({required this.apiClient, required this.sharedPreferences});
 
   Future<Response> getTrackList(String id, DateTime filterDate) async {
     String startDate = '${DateFormat('yyyy-MM-dd').format(filterDate)}T00:00:00.000Z';

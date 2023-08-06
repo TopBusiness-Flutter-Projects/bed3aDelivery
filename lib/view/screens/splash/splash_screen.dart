@@ -10,13 +10,12 @@ import 'package:bed3aDelivery/controller/splash_controller.dart';
 import 'package:bed3aDelivery/utill/app_constants.dart';
 import 'package:bed3aDelivery/utill/dimensions.dart';
 import 'package:bed3aDelivery/utill/images.dart';
-import 'package:bed3aDelivery/utill/styles.dart';
 import 'package:bed3aDelivery/view/screens/auth/login_screen.dart';
 import 'package:bed3aDelivery/view/screens/dashboard/dashboard_screen.dart';
 import 'package:bed3aDelivery/view/screens/onboard/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key key}) : super(key: key);
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -24,7 +23,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   final GlobalKey<ScaffoldState> _globalKey = GlobalKey();
-  StreamSubscription<ConnectivityResult> _onConnectivityChanged;
+  late StreamSubscription<ConnectivityResult> _onConnectivityChanged;
 
   @override
   void initState() {
@@ -72,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Navigator.of(context).pushReplacement(MaterialPageRoute(
                 builder: (_) => const DashboardScreen(pageIndex: 0)));
           } else {
-            if (Get.find<SplashController>().showIntro()) {
+            if (Get.find<SplashController>().showIntro()!) {
               Get.offAll(const OnBoardingScreen());
             } else {
               Get.offAll(const LoginScreen());

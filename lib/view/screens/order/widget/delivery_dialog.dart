@@ -14,11 +14,11 @@ import '../order_place_screen.dart';
 
 class DeliveryDialog extends StatelessWidget {
   final Function onTap;
-  final OrderModel orderModel;
-  final int index;
-  final double totalPrice;
+  final OrderModel? orderModel;
+  final int? index;
+  final double? totalPrice;
 
-  const DeliveryDialog({Key key, @required this.onTap, this.totalPrice, this.orderModel, @required this.index}) : super(key: key);
+  const DeliveryDialog({Key? key, required this.onTap, this.totalPrice, this.orderModel, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class DeliveryDialog extends StatelessWidget {
 
                 Center(
                     child: Text(PriceConverter.convertPrice(totalPrice),
-                      style: Theme.of(context).textTheme.headline3.copyWith(
+                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
                           color: Theme.of(context).focusColor,fontSize: Dimensions.fontSizeHeadingLarge),)),
                  SizedBox(height: Dimensions.paddingSizeLarge),
 
@@ -75,12 +75,12 @@ class DeliveryDialog extends StatelessWidget {
                               onTap: () {
                                 Get.find<TrackerController>().updateTrackStart(false);
                                 Get.find<OrderController>().updateOrderStatus(
-                                orderId: orderModel.id,context: context,
+                                orderId: orderModel!.id,context: context,
                                 status: 'delivered').then((value) {
                                   if (value) {
-                                    orderController.updatePaymentStatus(orderId: orderModel.id, status: 'paid');
+                                    orderController.updatePaymentStatus(orderId: orderModel!.id, status: 'paid');
                                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                    builder: (_) => OrderPlaceScreen(orderID: orderModel.id.toString(), orderModel: orderModel,)));
+                                    builder: (_) => OrderPlaceScreen(orderID: orderModel!.id.toString(), orderModel: orderModel,)));
                                   }
                                 });
                                 },

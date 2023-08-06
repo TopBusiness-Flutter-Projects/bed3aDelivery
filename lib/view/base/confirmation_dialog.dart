@@ -6,12 +6,12 @@ import 'package:bed3aDelivery/view/base/custom_button.dart';
 
 class ConfirmationDialog extends StatelessWidget {
   final String icon;
-  final String title;
+  final String? title;
   final String description;
   final Function onYesPressed;
   final bool isLogOut;
   final bool hasCancel;
-   const ConfirmationDialog({Key key, @required this.icon, this.title, @required this.description, @required this.onYesPressed, this.isLogOut = false, this.hasCancel = true}) : super(key: key);
+   const ConfirmationDialog({Key? key, required this.icon, this.title, required this.description, required this.onYesPressed, this.isLogOut = false, this.hasCancel = true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class ConfirmationDialog extends StatelessWidget {
           title != null ? Padding(
             padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeLarge),
             child: Text(
-              title, textAlign: TextAlign.center,
+              title!, textAlign: TextAlign.center,
               style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge, color: Colors.red),
             ),
           ) :  const SizedBox(),
@@ -50,7 +50,7 @@ class ConfirmationDialog extends StatelessWidget {
               ),
               child: Text(
                 isLogOut ? 'yes'.tr : 'no'.tr, textAlign: TextAlign.center,
-                style: rubikRegular.copyWith(color: Theme.of(context).textTheme.bodyText1.color),
+                style: rubikRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color),
               ),
             )) :  const SizedBox(),
             SizedBox(width: hasCancel ? Dimensions.paddingSizeLarge : 0),

@@ -5,8 +5,8 @@ import 'package:bed3aDelivery/utill/styles.dart';
 import 'package:get/get.dart';
 
 class OrderStatusWidget extends StatelessWidget {
-  final OrderModel orderModel;
-  const OrderStatusWidget({Key key, this.orderModel}) : super(key: key);
+  final OrderModel? orderModel;
+  const OrderStatusWidget({Key? key, this.orderModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class OrderStatusWidget extends StatelessWidget {
         vertical: Dimensions.paddingSizeSmall),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
         Text('${'order_status'.tr} : ',style: rubikRegular.copyWith(color: Get.isDarkMode? Theme.of(context).hintColor : Theme.of(context).primaryColor.withOpacity(.75))),
-        Text(orderModel.orderStatus.tr,style: rubikMedium.copyWith(color: Get.isDarkMode? Theme.of(context).hintColor : Theme.of(context).primaryColor),)
+        Text(orderModel!.orderStatus!.tr,style: rubikMedium.copyWith(color: Get.isDarkMode? Theme.of(context).hintColor : Theme.of(context).primaryColor),)
       ],),
     );
   }

@@ -1,8 +1,8 @@
 class NotificationModel {
-  int totalSize;
-  String limit;
-  String offset;
-  List<Notifications> notifications;
+  int? totalSize;
+  String? limit;
+  String? offset;
+  List<Notifications>? notifications;
 
   NotificationModel(
       {this.totalSize, this.limit, this.offset, this.notifications});
@@ -14,7 +14,7 @@ class NotificationModel {
     if (json['notifications'] != null) {
       notifications = <Notifications>[];
       json['notifications'].forEach((v) {
-        notifications.add(Notifications.fromJson(v));
+        notifications!.add(Notifications.fromJson(v));
       });
     }
   }
@@ -26,19 +26,19 @@ class NotificationModel {
     data['offset'] = offset;
     if (notifications != null) {
       data['notifications'] =
-          notifications.map((v) => v.toJson()).toList();
+          notifications!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Notifications {
-  int id;
-  int bed3aDeliveryId;
-  int orderId;
-  String description;
-  String createdAt;
-  String updatedAt;
+  int? id;
+  int? bed3aDeliveryId;
+  int? orderId;
+  String? description;
+  String? createdAt;
+  String? updatedAt;
   Notifications(
       {this.id,
         this.bed3aDeliveryId,

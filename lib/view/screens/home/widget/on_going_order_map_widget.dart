@@ -10,8 +10,8 @@ import 'package:bed3aDelivery/view/screens/order_tracking/order_tracking_screen.
 
 
 class OngoingMap extends StatelessWidget {
-  final OrderModel orderModel;
-  const OngoingMap({Key key, this.orderModel}) : super(key: key);
+  final OrderModel? orderModel;
+  const OngoingMap({Key? key, this.orderModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

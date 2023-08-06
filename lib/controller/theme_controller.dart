@@ -5,7 +5,7 @@ import 'package:bed3aDelivery/utill/app_constants.dart';
 
 class ThemeController extends GetxController implements GetxService {
   final SharedPreferences sharedPreferences;
-  ThemeController({@required this.sharedPreferences}) {
+  ThemeController({required this.sharedPreferences}) {
     _loadCurrentTheme();
   }
 

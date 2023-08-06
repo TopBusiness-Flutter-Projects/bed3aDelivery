@@ -11,7 +11,7 @@ import 'package:bed3aDelivery/view/base/custom_snackbar.dart';
 
 class WalletController extends GetxController implements GetxService {
   final WalletRepo walletRepo;
-  WalletController({@required this.walletRepo});
+  WalletController({required this.walletRepo});
 
   List<Orders> _deliveryWiseEarned = [];
   List<Withdraws> _withdrawList = [];
@@ -62,7 +62,7 @@ class WalletController extends GetxController implements GetxService {
     if (response.body != null && response.statusCode == 200) {
 
       _deliveryWiseEarned = [];
-      _deliveryWiseEarned.addAll(DeliveryWiseEarnedModel.fromJson(response.body).orders);
+      _deliveryWiseEarned.addAll(DeliveryWiseEarnedModel.fromJson(response.body).orders!);
     } else {
       ApiChecker.checkApi(response);
     }
@@ -79,7 +79,7 @@ class WalletController extends GetxController implements GetxService {
     update();
     Response response = await walletRepo.getWithdrawList(startDate: startDate,endDate: endDate, offset: offset,type: type);
     if (response.body != null && response.statusCode == 200) {
-      _withdrawList.addAll(WithdrawModel.fromJson(response.body).withdraws);
+      _withdrawList.addAll(WithdrawModel.fromJson(response.body).withdraws!);
     } else {
       ApiChecker.checkApi(response);
     }
@@ -96,7 +96,7 @@ class WalletController extends GetxController implements GetxService {
     update();
     Response response = await walletRepo.getDepositedList(startDate: startDate,endDate: endDate, offset: offset,type: type);
     if (response.body != null && response.statusCode == 200) {
-      _depositedList.addAll(DepositedModel.fromJson(response.body).deposit);
+      _depositedList.addAll(DepositedModel.fromJson(response.body).deposit!);
     } else {
       ApiChecker.checkApi(response);
     }
@@ -113,7 +113,7 @@ class WalletController extends GetxController implements GetxService {
     if (response.statusCode == 200) {
       Get.find<ProfileController>().getProfile();
       Get.back();
-      String message;
+      String? message;
       message = response.body['message'];
       showCustomSnackBar(message, isError: false);
     } else {

@@ -8,8 +8,8 @@ import 'package:bed3aDelivery/utill/styles.dart';
 import 'package:get/get.dart';
 
 class OrderedItemProductList extends StatelessWidget {
-  final OrderController orderController;
-  const OrderedItemProductList({Key key, this.orderController}) : super(key: key);
+  final OrderController? orderController;
+  const OrderedItemProductList({Key? key, this.orderController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class OrderedItemProductList extends StatelessWidget {
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: orderController.orderDetails.length,
+            itemCount: orderController!.orderDetails!.length,
             itemBuilder: (context, index) {
               return Column(crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -43,8 +43,8 @@ class OrderedItemProductList extends StatelessWidget {
                         child: FadeInImage.assetNetwork(
                           imageErrorBuilder: (c,o,s) => Image.asset(Images.placeholder),
                           placeholder: Images.placeholder,
-                          image: '${Get.find<SplashController>().baseUrls.productThumbnailUrl}'
-                              '/${orderController.orderDetails[index].productDetails.thumbnail}',
+                          image: '${Get.find<SplashController>().baseUrls!.productThumbnailUrl}'
+                              '/${orderController!.orderDetails![index].productDetails!.thumbnail}',
                           height: Dimensions.productImageSizeOrderDetails,
                           width: Dimensions.productImageSizeOrderDetails, fit: BoxFit.cover,),),),
                      SizedBox(width: Dimensions.paddingSizeSmall),
@@ -54,7 +54,7 @@ class OrderedItemProductList extends StatelessWidget {
                       child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                           children: [Row(children: [
                             Expanded(child: Text(
-                              orderController.orderDetails[index].productDetails.name,
+                              orderController!.orderDetails![index].productDetails!.name!,
                               style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeDefault,
                                   color: Theme.of(context).highlightColor),
                               maxLines: 2, overflow: TextOverflow.ellipsis,),),
@@ -67,23 +67,23 @@ class OrderedItemProductList extends StatelessWidget {
                                   Text('${'quantity'.tr} : ',
                                       style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
 
-                                  Text(' ${orderController.orderDetails[index].qty}',
+                                  Text(' ${orderController!.orderDetails![index].qty}',
                                       style: rubikMedium.copyWith(color: Theme.of(context).primaryColor)),],),
                                 ]),
 
 
-                            orderController.orderDetails[index].variant != ''?
+                            orderController!.orderDetails![index].variant != ''?
                             Row(
                               children: [
                                 Text('${'variation'.tr} : ',
                                     style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
-                                Text(' ${orderController.orderDetails[index].variant}', style: rubikMedium.copyWith()),
+                                Text(' ${orderController!.orderDetails![index].variant}', style: rubikMedium.copyWith()),
                               ],
                             ): const SizedBox(),
 
                             Row(children: [
                               Text('${'price'.tr} (${'per_unit'.tr}) : ', style: rubikRegular.copyWith(color: Theme.of(context).highlightColor)),
-                              Text(PriceConverter.convertPrice(orderController.orderDetails[index].price),
+                              Text(PriceConverter.convertPrice(orderController!.orderDetails![index].price),
                                   style: rubikMedium.copyWith(color: Theme.of(context).primaryColor))]),
 
 

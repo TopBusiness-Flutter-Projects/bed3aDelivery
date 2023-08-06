@@ -11,10 +11,10 @@ import 'package:bed3aDelivery/utill/styles.dart';
 import 'package:bed3aDelivery/view/screens/order/widget/customer_info_widget.dart';
 
 class OngoingOrderHeader extends StatelessWidget {
-  final OrderModel orderModel;
-  final int index;
+  final OrderModel? orderModel;
+  final int? index;
   final bool isExpanded;
-  const OngoingOrderHeader({Key key, this.orderModel, this.index, this.isExpanded = false}) : super(key: key);
+  const OngoingOrderHeader({Key? key, this.orderModel, this.index, this.isExpanded = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +27,13 @@ class OngoingOrderHeader extends StatelessWidget {
               alignment: Get.find<LocalizationController>().isLtr? Alignment.topRight: Alignment.topLeft,
               child: Padding(
                 padding: const EdgeInsets.only(top: 8.0),
-                child: SizedBox(width:Get.find<LocalizationController>().isLtr? Get.context.width<= 400? 160 : 165 :Get.context.width<= 400? 130 : 140,
+                child: SizedBox(width:Get.find<LocalizationController>().isLtr? Get.context!.width<= 400? 160 : 165 :Get.context!.width<= 400? 130 : 140,
                   child: Column(children: [
                     Row(children: [
                       Row(
                         children: [
                           Text('${'assigned'.tr} : ',style: rubikRegular.copyWith(color: Theme.of(context).hintColor, fontSize: Dimensions.fontSizeSmall),),
-                          Text(DateConverter.isoStringToLocalDateOnly(orderModel.createdAt), style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall)),
+                          Text(DateConverter.isoStringToLocalDateOnly(orderModel!.createdAt!), style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall)),
                         ],
                       ),
                        SizedBox(width: Dimensions.paddingSizeSmall),
@@ -41,14 +41,14 @@ class OngoingOrderHeader extends StatelessWidget {
                           color:Get.isDarkMode? Theme.of(context).hintColor.withOpacity(.25) : Theme.of(context).primaryColor.withOpacity(.5)))
                     ],),
 
-                    orderModel.expectedDate != null?
+                    orderModel!.expectedDate != null?
                     Padding(
                       padding:  EdgeInsets.only(top: Dimensions.paddingSizeExtraSmall),
                       child: Row(
                         children: [
                           Text('${'expected_date'.tr} : ',
                             style: rubikRegular.copyWith(color: Theme.of(context).hintColor, fontSize: Dimensions.fontSizeSmall),),
-                          Text(orderModel.expectedDate??'', style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall)),
+                          Text(orderModel!.expectedDate??'', style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall)),
                         ],
                       ),
                     ):const SizedBox(),
@@ -61,7 +61,7 @@ class OngoingOrderHeader extends StatelessWidget {
           ),
           Column(children: [
             Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Expanded(child: Text('${'order'.tr} # ${orderModel.id}',
+              Expanded(child: Text('${'order'.tr} # ${orderModel!.id}',
                 style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeDefault),)),
 
             ],),
@@ -128,15 +128,15 @@ class OngoingOrderHeader extends StatelessWidget {
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Row(children: [
                         SizedBox(width: Dimensions.paddingSizeDefault),
-                      Text(orderModel.sellerIs == 'admin'? AppConstants.companyName: orderModel.sellerInfo?.shop?.name?.trim()??'Shop not found',
+                      Text(orderModel!.sellerIs == 'admin'? AppConstants.companyName: orderModel!.sellerInfo?.shop?.name?.trim()??'Shop not found',
                           style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeDefault))
                     ],),
 
 
                     Row(children: [
-                       SizedBox(width:Get.context.width<=400? 15 : Dimensions.paddingSizeLarge),
+                       SizedBox(width:Get.context!.width<=400? 15 : Dimensions.paddingSizeLarge),
                       Expanded(
-                        child: Text(orderModel.sellerInfo?.shop?.address??'',
+                        child: Text(orderModel!.sellerInfo?.shop?.address??'',
                             maxLines: 2,
                             style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall,
                                 color: Theme.of(context).hintColor)),

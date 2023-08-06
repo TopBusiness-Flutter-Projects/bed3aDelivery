@@ -7,7 +7,7 @@ import 'package:bed3aDelivery/utill/styles.dart';
 class EarningFilterTypeButton extends StatelessWidget {
   final String text;
   final int index;
-  const EarningFilterTypeButton({Key key, @required this.text, @required this.index}) : super(key: key);
+  const EarningFilterTypeButton({Key? key, required this.text, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class EarningFilterTypeButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
             ),
             child: Text(text, style: order.orderTypeFilterIndex == index ? rubikMedium.copyWith(color: order.orderTypeFilterIndex == index
-                ? Colors.white : Theme.of(context).textTheme.bodyText1):
+                ? Colors.white : Theme.of(context).textTheme.bodyLarge as Color?):
             rubikRegular.copyWith(color: order.orderTypeFilterIndex == index
                 ? Theme.of(context).cardColor :Get.isDarkMode? Theme.of(context).hintColor.withOpacity(.5) : Theme.of(context).primaryColor.withOpacity(.75), fontWeight: FontWeight.w500)),
           ),

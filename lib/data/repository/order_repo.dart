@@ -8,13 +8,13 @@ class OrderRepo {
   final ApiClient apiClient;
   final SharedPreferences sharedPreferences;
 
-  OrderRepo({@required this.apiClient, @required this.sharedPreferences});
+  OrderRepo({required this.apiClient, required this.sharedPreferences});
 
   Future<Response> getCurrentOrders() async {
     return apiClient.getData(AppConstants.currentOrderUri);
   }
 
-  Future<Response> getOrderDetails({String orderID}) async {
+  Future<Response> getOrderDetails({String? orderID}) async {
     return apiClient.getData('${AppConstants.orderDetailsUri}$orderID');
   }
 
@@ -24,7 +24,7 @@ class OrderRepo {
 
   }
 
-  Future<Response> updateOrderStatus({int orderId, String status}) async {
+  Future<Response> updateOrderStatus({int? orderId, String? status}) async {
     Response response = await apiClient.postData(
         AppConstants.updateOrderStatusUri,
         {"order_id": orderId, "status": status, "_method": 'put'});
@@ -32,7 +32,7 @@ class OrderRepo {
 
   }
 
-  Future<Response> rescheduleOrder({int orderId, String deliveryDate, String cause}) async {
+  Future<Response> rescheduleOrder({int? orderId, String? deliveryDate, String? cause}) async {
     Response response = await apiClient.postData(
         AppConstants.rescheduleOrderStatusUri,
         {"order_id": orderId, "expected_delivery_date": deliveryDate, "_method": 'put', 'cause' : cause});
@@ -40,7 +40,7 @@ class OrderRepo {
 
   }
 
-  Future<Response> pauseAndResumeOrder({int orderId, int isPos, String cause}) async {
+  Future<Response> pauseAndResumeOrder({int? orderId, int? isPos, String? cause}) async {
     Response response = await apiClient.postData(
         AppConstants.pauseAndResumeOrderStatusUri,
         {"order_id": orderId, "is_pause": isPos, "_method": 'put', 'cause' : cause});
@@ -48,7 +48,7 @@ class OrderRepo {
 
   }
 
-  Future<Response> cancelOrderStatus({int orderId, String cause}) async {
+  Future<Response> cancelOrderStatus({int? orderId, String? cause}) async {
     Response response = await apiClient.postData(
         AppConstants.updateOrderStatusUri,
         {"order_id": orderId, "status": 'canceled', "_method": 'put', 'cause': cause});
@@ -56,7 +56,7 @@ class OrderRepo {
 
   }
 
-  Future<Response> updatePaymentStatus({int orderId, String status}) async {
+  Future<Response> updatePaymentStatus({int? orderId, String? status}) async {
     Response response = await apiClient.postData(AppConstants.updatePaymentStatusUri,
         {"order_id": orderId, "payment_status": status, "_method": 'put'});
       return response;

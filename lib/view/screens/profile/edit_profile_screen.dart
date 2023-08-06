@@ -15,7 +15,7 @@ import 'package:bed3aDelivery/view/screens/profile/widget/profile_header.dart';
 
 
 class ProfileEditScreen extends StatefulWidget {
-  const ProfileEditScreen({Key key}) : super(key: key);
+  const ProfileEditScreen({Key? key}) : super(key: key);
 
   @override
   _ProfileEditScreenState createState() => _ProfileEditScreenState();
@@ -32,15 +32,15 @@ class _ProfileEditScreenState extends State<ProfileEditScreen>  with TickerProvi
     String _password = Get.find<ProfileController>().passwordController.text.trim();
     String _confirmPassword = Get.find<ProfileController>().confirmPasswordController.text.trim();
 
-    if(Get.find<ProfileController>().profileModel.fName ==  Get.find<ProfileController>().firstNameController.text
-        && Get.find<ProfileController>().profileModel.lName ==  Get.find<ProfileController>().lastNameController.text
-        && Get.find<ProfileController>().profileModel.address ==  Get.find<ProfileController>().addressController.text &&
+    if(Get.find<ProfileController>().profileModel!.fName ==  Get.find<ProfileController>().firstNameController.text
+        && Get.find<ProfileController>().profileModel!.lName ==  Get.find<ProfileController>().lastNameController.text
+        && Get.find<ProfileController>().profileModel!.address ==  Get.find<ProfileController>().addressController.text &&
         Get.find<AuthController>().file == null
         &&  Get.find<ProfileController>().passwordController.text.isEmpty &&  Get.find<ProfileController>().confirmPasswordController.text.isEmpty) {
       showCustomSnackBar('change_something_to_update'.tr);
     }
     else {
-      UserInfoModel updateUserInfoModel = Get.find<ProfileController>().profileModel;
+      UserInfoModel updateUserInfoModel = Get.find<ProfileController>().profileModel!;
       updateUserInfoModel.fName =  Get.find<ProfileController>().firstNameController.text ?? "";
       updateUserInfoModel.lName =  Get.find<ProfileController>().lastNameController.text ?? "";
       updateUserInfoModel.address =  Get.find<ProfileController>().addressController.text ?? "";
@@ -50,7 +50,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen>  with TickerProvi
     }
   }
 
-  TabController _tabController;
+  TabController? _tabController;
   int selectedIndex = 0;
 
   @override
@@ -59,7 +59,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen>  with TickerProvi
     _tabController = TabController(length: 2, initialIndex: 0, vsync: this);
 
     _tabController?.addListener((){
-      switch (_tabController.index){
+      switch (_tabController!.index){
         case 0:
           Get.find<AuthController>().setIndexForTabBar(1, isNotify: true);
           break;
@@ -81,9 +81,9 @@ class _ProfileEditScreenState extends State<ProfileEditScreen>  with TickerProvi
         builder: (profile) {
 
           if(profile.firstNameController.text.isEmpty ||  profile.lastNameController.text.isEmpty) {
-            profile.firstNameController.text = profile.profileModel.fName;
-            profile.lastNameController.text = profile.profileModel.lName;
-            profile.addressController.text = profile.profileModel.address;
+            profile.firstNameController.text = profile.profileModel!.fName!;
+            profile.lastNameController.text = profile.profileModel!.lName!;
+            profile.addressController.text = profile.profileModel!.address!;
           }
           return Column(
             children: [

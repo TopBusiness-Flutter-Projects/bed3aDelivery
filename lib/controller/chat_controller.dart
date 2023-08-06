@@ -10,10 +10,10 @@ import 'package:bed3aDelivery/data/repository/chat_repo.dart';
 class ChatController extends GetxController implements GetxService{
 
   final ChatRepo chatRepo;
-  ChatController({@required this.chatRepo});
+  ChatController({required this.chatRepo});
 
-  List<bool> _showDate;
-  List<XFile> _imageFiles;
+  List<bool>? _showDate;
+  List<XFile>? _imageFiles;
   bool _isSendButtonActive = false;
   final bool _isSeen = false;
   final bool _isSend = true;
@@ -21,26 +21,26 @@ class ChatController extends GetxController implements GetxService{
   bool _isLoading= false;
   bool _isSending= false;
   bool get isSending=> _isSending;
-  List <XFile>_chatImage = [];
-  int _pageSize;
-  int _offset;
+  List <XFile>?_chatImage = [];
+  int? _pageSize;
+  int? _offset;
   List<Chat> _chats  = [];
-  ChatModel _conversationModel;
-  MessageModel _messageModel;
+  ChatModel? _conversationModel;
+  MessageModel? _messageModel;
 
   bool get isLoading => _isLoading;
-  List<bool> get showDate => _showDate;
-  List<XFile> get imageFiles => _imageFiles;
+  List<bool>? get showDate => _showDate;
+  List<XFile>? get imageFiles => _imageFiles;
   bool get isSendButtonActive => _isSendButtonActive;
   bool get isSeen => _isSeen;
   bool get isSend => _isSend;
   bool get isMe => _isMe;
-  int get pageSize => _pageSize;
-  int get offset => _offset;
-  List<XFile> get chatImage => _chatImage;
+  int? get pageSize => _pageSize;
+  int? get offset => _offset;
+  List<XFile>? get chatImage => _chatImage;
   List<Chat> get chats => _chats;
-  ChatModel get conversationModel => _conversationModel;
-  MessageModel get messageModel => _messageModel;
+  ChatModel? get conversationModel => _conversationModel;
+  MessageModel? get messageModel => _messageModel;
 
 
   int _userTypeIndex = 0;
@@ -58,11 +58,11 @@ class ChatController extends GetxController implements GetxService{
     if(response.statusCode == 200) {
       if(offset == 1) {
         _conversationModel = ChatModel.fromJson(response.body);
-        _chats.addAll(ChatModel.fromJson(response.body).chat);
+        _chats.addAll(ChatModel.fromJson(response.body).chat!);
       }else {
-        _conversationModel.totalSize = ChatModel.fromJson(response.body).totalSize;
-        _conversationModel.offset = ChatModel.fromJson(response.body).offset;
-        _conversationModel.chat.addAll(ChatModel.fromJson(response.body).chat);
+        _conversationModel!.totalSize = ChatModel.fromJson(response.body).totalSize;
+        _conversationModel!.offset = ChatModel.fromJson(response.body).offset;
+        _conversationModel!.chat!.addAll(ChatModel.fromJson(response.body).chat!);
       }
     }else {
       ApiChecker.checkApi(response);
@@ -80,7 +80,7 @@ class ChatController extends GetxController implements GetxService{
     if(response.statusCode == 200) {
       _conversationModel = ChatModel(totalSize: 1, limit: '1', offset: '1', chat: []);
       response.body.forEach((chat) {
-        _conversationModel.chat.add(Chat.fromJson(chat));
+        _conversationModel!.chat!.add(Chat.fromJson(chat));
       });
     }else {
       ApiChecker.checkApi(response);
@@ -96,7 +96,7 @@ class ChatController extends GetxController implements GetxService{
 
   }
 
-  Future<void> getMessages(int offset, int userId, {bool firstLoad = true}) async {
+  Future<void> getMessages(int offset, int? userId, {bool firstLoad = true}) async {
     String userType = 'admin';
     if(userId == 0){
       userType = 'admin';
@@ -110,9 +110,9 @@ class ChatController extends GetxController implements GetxService{
       if(offset == 1 ){
         _messageModel = MessageModel.fromJson(_response.body);
       }else{
-        _messageModel.totalSize =  MessageModel.fromJson(_response.body).totalSize;
-        _messageModel.offset =  MessageModel.fromJson(_response.body).offset;
-        _messageModel.message.addAll(MessageModel.fromJson(_response.body).message)  ;
+        _messageModel!.totalSize =  MessageModel.fromJson(_response.body).totalSize;
+        _messageModel!.offset =  MessageModel.fromJson(_response.body).offset;
+        _messageModel!.message!.addAll(MessageModel.fromJson(_response.body).message!)  ;
       }
 
     } else {
@@ -140,7 +140,7 @@ class ChatController extends GetxController implements GetxService{
     update();
   }
   void removeImage(int index){
-    chatImage.removeAt(index);
+    chatImage!.removeAt(index);
     update();
   }
 
@@ -151,7 +151,7 @@ class ChatController extends GetxController implements GetxService{
 
 
 
-  Future<Response> sendMessage(String message, int userId) async {
+  Future<Response> sendMessage(String message, int? userId) async {
     String userType = 'admin';
     if(userId == 0){
       userType = 'admin';

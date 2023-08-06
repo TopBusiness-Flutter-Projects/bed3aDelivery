@@ -12,9 +12,9 @@ class FlutterCustomSwitch extends StatefulWidget {
   ///
 
   const FlutterCustomSwitch({
-    Key key,
-    @required this.value,
-    @required this.onToggle,
+    Key? key,
+    required this.value,
+    required this.onToggle,
     this.activeColor = Colors.blue,
     this.inactiveColor = Colors.grey,
     this.activeTextColor = Colors.white70,
@@ -98,7 +98,7 @@ class FlutterCustomSwitch extends StatefulWidget {
   ///
   /// [activeTextColor] - The color to use on the text value when the switch is on.
   /// [activeTextFontWeight] - The font weight to use on the text value when the switch is on.
-  final String activeText;
+  final String? activeText;
 
   /// The text to display when the switch is off.
   /// This parameter is only necessary when [showOnOff] property is true.
@@ -109,7 +109,7 @@ class FlutterCustomSwitch extends StatefulWidget {
   ///
   /// [inactiveTextColor] - The color to use on the text value when the switch is off.
   /// [inactiveTextFontWeight] - The font weight to use on the text value when the switch is off.
-  final String inactiveText;
+  final String? inactiveText;
 
   /// The color to use on the switch when the switch is on.
   ///
@@ -137,13 +137,13 @@ class FlutterCustomSwitch extends StatefulWidget {
   /// This parameter is only necessary when [showOnOff] property is true.
   ///
   /// Defaults to [FontWeight.w900].
-  final FontWeight activeTextFontWeight;
+  final FontWeight? activeTextFontWeight;
 
   /// The font weight to use on the text value when the switch is off.
   /// This parameter is only necessary when [showOnOff] property is true.
   ///
   /// Defaults to [FontWeight.w900].
-  final FontWeight inactiveTextFontWeight;
+  final FontWeight? inactiveTextFontWeight;
 
   /// The color to use on the toggle of the switch.
   ///
@@ -156,13 +156,13 @@ class FlutterCustomSwitch extends StatefulWidget {
   ///
   /// If [inactiveToggleColor] is used and this property is null. the value of
   /// [Colors.white] will be used.
-  final Color activeToggleColor;
+  final Color? activeToggleColor;
 
   /// The color to use on the toggle of the switch when the given value is false.
   ///
   /// If [activeToggleColor] is used and this property is null. the value of
   /// [Colors.white] will be used.
-  final Color inactiveToggleColor;
+  final Color? inactiveToggleColor;
 
   /// The given width of the switch.
   ///
@@ -200,46 +200,46 @@ class FlutterCustomSwitch extends StatefulWidget {
   /// This property will give a uniform border to both states of the toggle
   ///
   /// If the [activeSwitchBorder] or [inactiveSwitchBorder] is used, this property must be null.
-  final BoxBorder switchBorder;
+  final BoxBorder? switchBorder;
 
   /// The border of the switch when the given value is true.
   ///
   /// This property is optional.
-  final BoxBorder activeSwitchBorder;
+  final BoxBorder? activeSwitchBorder;
 
   /// The border of the switch when the given value is false.
   ///
   /// This property is optional.
-  final BoxBorder inactiveSwitchBorder;
+  final BoxBorder? inactiveSwitchBorder;
 
   /// The border of the toggle.
   ///
   /// This property will give a uniform border to both states of the toggle
   ///
   /// If the [activeToggleBorder] or [inactiveToggleBorder] is used, this property must be null.
-  final BoxBorder toggleBorder;
+  final BoxBorder? toggleBorder;
 
   /// The border of the toggle when the given value is true.
   ///
   /// This property is optional.
-  final BoxBorder activeToggleBorder;
+  final BoxBorder? activeToggleBorder;
 
   /// The border of the toggle when the given value is false.
   ///
   /// This property is optional.
-  final BoxBorder inactiveToggleBorder;
+  final BoxBorder? inactiveToggleBorder;
 
   /// The icon inside the toggle when the given value is true.
   /// activeIcon can be an Icon Widget, an Image or Fontawesome Icons.
   ///
   /// This property is optional.
-  final Widget activeIcon;
+  final Widget? activeIcon;
 
   /// The icon inside the toggle when the given value is false.
   /// inactiveIcon can be an Icon Widget, an Image or Fontawesome Icons.
   ///
   /// This property is optional.
-  final Widget inactiveIcon;
+  final Widget? inactiveIcon;
 
   /// The duration in milliseconds to change the state of the switch
   ///
@@ -257,8 +257,8 @@ class FlutterCustomSwitch extends StatefulWidget {
 
 class _FlutterCustomSwitchState extends State<FlutterCustomSwitch>
     with SingleTickerProviderStateMixin {
-  Animation _toggleAnimation;
-  AnimationController _animationController;
+  late Animation _toggleAnimation;
+  late AnimationController _animationController;
 
   @override
   void initState() {
@@ -302,23 +302,23 @@ class _FlutterCustomSwitchState extends State<FlutterCustomSwitch>
   Widget build(BuildContext context) {
     Color _toggleColor = Colors.white;
     Color _switchColor = Colors.white;
-    Border _switchBorder;
-    Border _toggleBorder;
+    Border? _switchBorder;
+    Border? _toggleBorder;
 
     if (widget.value) {
       _toggleColor = widget.activeToggleColor ?? widget.toggleColor;
       _switchColor = widget.activeColor;
-      _switchBorder = widget.activeSwitchBorder as Border ??
-          widget.switchBorder as Border;
-      _toggleBorder = widget.activeToggleBorder as Border ??
-          widget.toggleBorder as Border;
+      _switchBorder = widget.activeSwitchBorder as Border? ??
+          widget.switchBorder as Border?;
+      _toggleBorder = widget.activeToggleBorder as Border? ??
+          widget.toggleBorder as Border?;
     } else {
       _toggleColor = widget.inactiveToggleColor ?? widget.toggleColor;
       _switchColor = widget.inactiveColor;
-      _switchBorder = widget.inactiveSwitchBorder as Border ??
-          widget.switchBorder as Border;
-      _toggleBorder = widget.inactiveToggleBorder as Border ??
-          widget.toggleBorder as Border;
+      _switchBorder = widget.inactiveSwitchBorder as Border? ??
+          widget.switchBorder as Border?;
+      _toggleBorder = widget.inactiveToggleBorder as Border? ??
+          widget.toggleBorder as Border?;
     }
 
     double _textSpace = widget.width - widget.toggleSize;

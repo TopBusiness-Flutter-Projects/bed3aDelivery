@@ -10,8 +10,8 @@ import 'package:bed3aDelivery/utill/styles.dart';
 import 'package:bed3aDelivery/view/screens/order/widget/custom_divider.dart';
 
 class WithdrawCardWidget extends StatelessWidget {
-  final Withdraws withdraws;
-  const WithdrawCardWidget({Key key, this.withdraws}) : super(key: key);
+  final Withdraws? withdraws;
+  const WithdrawCardWidget({Key? key, this.withdraws}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class WithdrawCardWidget extends StatelessWidget {
             child: SizedBox(width:Dimensions.iconSizeDefault,
                 child: Image.asset(Get.find<WalletController>().selectedItem == 1?Images.withdrawn : Images.pendingWithdraw)),
           ),
-          Expanded(child: Text(DateConverter.isoStringToDateTimeString(withdraws.updatedAt).toString(),
+          Expanded(child: Text(DateConverter.isoStringToDateTimeString(withdraws!.updatedAt!).toString(),
             style: rubikRegular.copyWith(color: Theme.of(context).hintColor,
                 fontSize: Dimensions.fontSizeSmall),)),
           Container(decoration: BoxDecoration(
@@ -32,7 +32,7 @@ class WithdrawCardWidget extends StatelessWidget {
 
           ),
             padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault,vertical: Dimensions.paddingSizeExtraSmall),
-            child: Text(' ${PriceConverter.convertPrice(withdraws.amount)}',
+            child: Text(' ${PriceConverter.convertPrice(withdraws!.amount)}',
                 style: rubikMedium.copyWith(color: Get.isDarkMode? Theme.of(context).hintColor.withOpacity(.5) : Theme.of(context).colorScheme.onTertiaryContainer)),),
 
         ],),

@@ -11,7 +11,7 @@ import 'package:bed3aDelivery/view/screens/dashboard/dashboard_screen.dart';
 
 class TripStatusWidget extends StatelessWidget {
   final Function(int index) onTap;
-  const TripStatusWidget({Key key, @required this.onTap}) : super(key: key);
+  const TripStatusWidget({Key? key, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class TripStatusWidget extends StatelessWidget {
               onTap: ()=> Get.to(()=> const DashboardScreen(pageIndex: 1)),
               child: TripItem(color: Theme.of(context).colorScheme.tertiaryContainer,icon: Images.assigned,
                   title: 'assigned', totalCount: profileController.profileModel != null?
-                profileController.profileModel.totalDelivery??0 : 0,
+                profileController.profileModel!.totalDelivery??0 : 0,
                 onTap: (){
                 Get.find<BottomMenuController>().selectOrderHistoryScreen(fromHome: true);
                 Get.find<OrderController>().setOrderTypeIndex(0);
@@ -38,7 +38,7 @@ class TripStatusWidget extends StatelessWidget {
             ),
 
             TripItem(color: Theme.of(context).colorScheme.surface, icon: Images.pending,
-                title: 'paused',totalCount: profileController.profileModel.pendingDelivery,
+                title: 'paused',totalCount: profileController.profileModel!.pendingDelivery,
               onTap: ()
                 {
                  Get.find<BottomMenuController>().selectOrderHistoryScreen(fromHome: true);
@@ -48,7 +48,7 @@ class TripStatusWidget extends StatelessWidget {
             ),
 
             TripItem(color: Theme.of(context).colorScheme.primaryContainer,icon: Images.completed,
-                title: 'delivered', totalCount: profileController.profileModel.completedDelivery,
+                title: 'delivered', totalCount: profileController.profileModel!.completedDelivery,
               onTap: (){
                 Get.find<BottomMenuController>().selectOrderHistoryScreen(fromHome: true);
                 onTap(1);
@@ -64,37 +64,37 @@ class TripStatusWidget extends StatelessWidget {
 }
 
 class TripItem extends StatelessWidget {
-  final Color color;
-  final String icon;
-  final String title;
-  final int totalCount;
-  final Function onTap;
-  const TripItem({Key key, this.icon, this.title, this.totalCount, this.color, this.onTap}) : super(key: key);
+  final Color? color;
+  final String? icon;
+  final String? title;
+  final int? totalCount;
+  final Function? onTap;
+  const TripItem({Key? key, this.icon, this.title, this.totalCount, this.color, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap as void Function()?,
       child: Padding(
         padding:  EdgeInsets.only(top: Dimensions.paddingSizeExtraSmall),
         child: Container(decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
-          color: color.withOpacity(.55)),
+          color: color!.withOpacity(.55)),
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
              Container(padding:  EdgeInsets.symmetric(horizontal : Dimensions.paddingSizeSmall, vertical: Dimensions.paddingSizeSmall),
                child: Row(children: [
                 Padding(
               padding:  EdgeInsets.all(Dimensions.paddingSizeSmall),
-              child: SizedBox(width: 30,child: Image.asset(icon)),
+              child: SizedBox(width: 30,child: Image.asset(icon!)),
             ),
-                Text(title.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, fontWeight: FontWeight.w400),),
+                Text(title!.tr, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge, fontWeight: FontWeight.w400),),
                ],),),
               Padding(
             padding:  EdgeInsets.symmetric(horizontal : Dimensions.paddingSizeSmall),
             child: Container(padding:  EdgeInsets.symmetric(vertical : Dimensions.paddingSizeDefault, horizontal: Dimensions.paddingSizeLarge),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
-              color: color.withOpacity(.75)
+              color: color!.withOpacity(.75)
             ),child: Text(NumberFormat.compact().format(totalCount),style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge),),),
           )
         ],)),

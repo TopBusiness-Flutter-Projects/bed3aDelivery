@@ -9,7 +9,7 @@ import 'package:bed3aDelivery/view/screens/order/widget/custom_divider.dart';
 
 class DepositedCardWidget extends StatelessWidget {
   final Deposit deposit;
-  const DepositedCardWidget({Key key, @required this.deposit}) : super(key: key);
+  const DepositedCardWidget({Key? key, required this.deposit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class DepositedCardWidget extends StatelessWidget {
             padding:  EdgeInsets.only(right: Dimensions.paddingSizeDefault),
             child: SizedBox(width:Dimensions.iconSizeDefault,child: Image.asset(Images.depositedIcon)),
           ),
-          Expanded(child: Text(DateConverter.isoStringToDateTimeString(deposit.updatedAt).toString(),
+          Expanded(child: Text(DateConverter.isoStringToDateTimeString(deposit.updatedAt!).toString(),
             style: rubikRegular.copyWith(color: Theme.of(context).hintColor,fontSize: Dimensions.fontSizeSmall),)),
           Container(decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 
 class EarningFilterButtonWidget extends StatefulWidget {
-  const EarningFilterButtonWidget({Key key}) : super(key: key);
+  const EarningFilterButtonWidget({Key? key}) : super(key: key);
 
   @override
   State<EarningFilterButtonWidget> createState() => _EarningFilterButtonWidgetState();

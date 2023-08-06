@@ -13,7 +13,7 @@ import 'package:bed3aDelivery/view/base/custom_snackbar.dart';
 
 class OrderController extends GetxController implements GetxService {
   final OrderRepo orderRepo;
-  OrderController({@required this.orderRepo});
+  OrderController({required this.orderRepo});
 
 
   List<OrderModel> _currentOrders = [];
@@ -26,15 +26,15 @@ class OrderController extends GetxController implements GetxService {
   int get orderTypeFilterIndex => _orderTypeFilterIndex;
   final OrderDetailsModel _orderDetailsModel = OrderDetailsModel();
   OrderDetailsModel get orderDetailsModel => _orderDetailsModel;
-  List<OrderDetailsModel> _orderDetails;
-  List<OrderDetailsModel> get orderDetails => _orderDetails;
+  List<OrderDetailsModel>? _orderDetails;
+  List<OrderDetailsModel>? get orderDetails => _orderDetails;
   List<OrderModel> _allOrderHistory = [];
   List<OrderModel> get allOrderHistory => _allOrderHistory;
-  String _feedbackMessage;
-  String get feedbackMessage => _feedbackMessage;
+  String? _feedbackMessage;
+  String? get feedbackMessage => _feedbackMessage;
 
-  String selectedOrderLat = '23.83721';
-  String selectedOrderLng = '90.363715';
+  String? selectedOrderLat = '23.83721';
+  String? selectedOrderLng = '90.363715';
 
   void setSelectedOrderLatLng(LatLng latLng){
     selectedOrderLat = latLng.latitude.toString();
@@ -51,13 +51,13 @@ class OrderController extends GetxController implements GetxService {
   ];
 
 
-  String _reasonValue = '';
-  String get reasonValue => _reasonValue;
+  String? _reasonValue = '';
+  String? get reasonValue => _reasonValue;
 
-  List<OrderModel> _orderList;
-  List<OrderModel> get orderList => _orderList != null ? _orderList.reversed.toList() : _orderList;
+  List<OrderModel>? _orderList;
+  List<OrderModel>? get orderList => _orderList != null ? _orderList!.reversed.toList() : _orderList;
 
-  void setReason(String value, {bool reload = true}){
+  void setReason(String? value, {bool reload = true}){
     _reasonValue = value;
     if(reload){
       update();
@@ -67,7 +67,7 @@ class OrderController extends GetxController implements GetxService {
 
 
 
-  Future<void> getCurrentOrders(BuildContext context) async {
+  Future<void> getCurrentOrders(BuildContext? context) async {
     _isLoading = true;
     update();
     Response response = await orderRepo.getCurrentOrders();
@@ -86,13 +86,13 @@ class OrderController extends GetxController implements GetxService {
 
 
 
-  Future<List<OrderDetailsModel>> getOrderDetails(String orderID, BuildContext context) async {
+  Future<List<OrderDetailsModel>?> getOrderDetails(String orderID, BuildContext context) async {
     _orderDetails = null;
     _isLoading = true;
     Response response = await orderRepo.getOrderDetails(orderID: orderID);
     if (response.body != null && response.statusCode == 200) {
       _orderDetails = [];
-      response.body.forEach((orderDetail) => _orderDetails.add(OrderDetailsModel.fromJson(orderDetail)));
+      response.body.forEach((orderDetail) => _orderDetails!.add(OrderDetailsModel.fromJson(orderDetail)));
       _isLoading = false;
     } else {
       ApiChecker.checkApi( response);
@@ -118,7 +118,7 @@ class OrderController extends GetxController implements GetxService {
     update();
   }
 
-  void selectedOrderLatLng(String lat, String lng){
+  void selectedOrderLatLng(String? lat, String? lng){
     selectedOrderLat = lat;
     selectedOrderLng = lng;
     update();
@@ -126,7 +126,7 @@ class OrderController extends GetxController implements GetxService {
 
 
 
-  Future<bool> updateOrderStatus({int orderId, String status,BuildContext context}) async {
+  Future<bool> updateOrderStatus({int? orderId, String? status,BuildContext? context}) async {
     _isLoading = true;
     update();
     Response response = await orderRepo.updateOrderStatus(orderId: orderId, status: status);
@@ -148,7 +148,7 @@ class OrderController extends GetxController implements GetxService {
 
 
 
-  Future<bool> cancelOrderStatus({int orderId, String cause,BuildContext context}) async {
+  Future<bool> cancelOrderStatus({int? orderId, String? cause,BuildContext? context}) async {
     _isLoading = true;
     update();
     Response response = await orderRepo.cancelOrderStatus(orderId: orderId,  cause: cause);
@@ -168,7 +168,7 @@ class OrderController extends GetxController implements GetxService {
     return _isSuccess;
   }
 
-  Future<bool> rescheduleOrderStatus({int orderId, String deliveryDate, String cause, BuildContext context}) async {
+  Future<bool> rescheduleOrderStatus({int? orderId, String? deliveryDate, String? cause, BuildContext? context}) async {
     _isLoading = true;
     update();
     Response response = await orderRepo.rescheduleOrder(orderId: orderId, deliveryDate: deliveryDate, cause: cause);
@@ -188,7 +188,7 @@ class OrderController extends GetxController implements GetxService {
     return _isSuccess;
   }
 
-  Future<bool> pauseAndResumeOrder({int orderId, int isPos, String cause, BuildContext context}) async {
+  Future<bool> pauseAndResumeOrder({int? orderId, int? isPos, String? cause, BuildContext? context}) async {
     _isLoading = true;
     update();
     Response response = await orderRepo.pauseAndResumeOrder(orderId: orderId, isPos: isPos, cause: cause);
@@ -208,7 +208,7 @@ class OrderController extends GetxController implements GetxService {
     return _isSuccess;
   }
 
-  Future updatePaymentStatus({int orderId, String status}) async {
+  Future updatePaymentStatus({int? orderId, String? status}) async {
     Response apiResponse = await orderRepo.updatePaymentStatus(orderId: orderId, status: status);
 
     if (apiResponse.statusCode == 200) {
@@ -260,9 +260,9 @@ class OrderController extends GetxController implements GetxService {
 
   }
 
-  DateTime _startDate;
+  DateTime? _startDate;
   final DateFormat _dateFormat = DateFormat('yyyy-MM-d');
-  DateTime get startDate => _startDate;
+  DateTime? get startDate => _startDate;
   DateFormat get dateFormat => _dateFormat;
 
   void selectDate(BuildContext context){

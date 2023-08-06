@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SliverDelegate extends SliverPersistentHeaderDelegate {
   Widget child;
   double containerHeight;
-  SliverDelegate({@required this.child, @required this.containerHeight});
+  SliverDelegate({required this.child, required this.containerHeight});
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {

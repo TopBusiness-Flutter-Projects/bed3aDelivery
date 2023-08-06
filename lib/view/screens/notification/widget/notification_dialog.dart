@@ -8,7 +8,7 @@ import 'package:bed3aDelivery/utill/styles.dart';
 
 class NotificationDialog extends StatelessWidget {
   final Notifications notificationModel;
-  const NotificationDialog({Key key, @required this.notificationModel}) : super(key: key);
+  const NotificationDialog({Key? key, required this.notificationModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class NotificationDialog extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
               child: Text(
-                notificationModel.description,
+                notificationModel.description!,
                 textAlign: TextAlign.center,
                 style: rubikRegular.copyWith(color: Theme.of(context).disabledColor),
               ),

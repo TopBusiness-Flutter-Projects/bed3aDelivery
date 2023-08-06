@@ -9,8 +9,8 @@ import 'package:bed3aDelivery/view/base/custom_image.dart';
 
 class ProfileInfoWidget extends StatelessWidget {
   final bool isChat;
-  final UserInfoModel profileModel;
-  const ProfileInfoWidget({Key key, this.profileModel, this.isChat = false}) : super(key: key);
+  final UserInfoModel? profileModel;
+  const ProfileInfoWidget({Key? key, this.profileModel, this.isChat = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class ProfileInfoWidget extends StatelessWidget {
 
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(40),
-                    child: CustomImage(image: '${Get.find<SplashController>().baseUrls.reviewImageUrl}''/delivery-man/${profileModel.image}',width: 30,height: 30,)),
+                    child: CustomImage(image: '${Get.find<SplashController>().baseUrls!.reviewImageUrl}''/delivery-man/${profileModel!.image}',width: 30,height: 30,)),
               ),
               SizedBox(width: Get.find<LocalizationController>().isLtr? 0: Dimensions.paddingSizeSmall),
               Expanded(
@@ -36,11 +36,11 @@ class ProfileInfoWidget extends StatelessWidget {
                   padding:  EdgeInsets.only(left: Dimensions.paddingSizeDefault),
                   child: Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(profileModel.fName != null ? '${profileModel.fName ?? ''} ${profileModel.lName ?? ''}' : "",maxLines: 1,overflow: TextOverflow.ellipsis,
+                      Text(profileModel!.fName != null ? '${profileModel!.fName ?? ''} ${profileModel!.lName ?? ''}' : "",maxLines: 1,overflow: TextOverflow.ellipsis,
                           style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeLarge,
                               color: Colors.white)),
                        SizedBox(height: Dimensions.paddingSizeExtraSmall,),
-                      Text(profileModel.phone != null ? profileModel.phone ?? '' : "",
+                      Text(profileModel!.phone != null ? profileModel!.phone ?? '' : "",
                           style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeDefault,
                               color: Colors.white)),
                     ],

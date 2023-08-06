@@ -7,7 +7,7 @@ import 'package:bed3aDelivery/controller/chat_controller.dart';
 
 class MessageBubbleShimmer extends StatelessWidget {
   final bool isMe;
-  const MessageBubbleShimmer({Key key, @required this.isMe}) : super(key: key);
+  const MessageBubbleShimmer({Key? key, required this.isMe}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +20,7 @@ class MessageBubbleShimmer extends StatelessWidget {
           Flexible(
             child: Shimmer(
               enabled: Get.find<ChatController>().messageModel == null,
+              
               gradient: null,
               child: Container(
                 height: 30, width: MediaQuery.of(context).size.width,

@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 
 class OrderHistoryHeaderWidget extends StatefulWidget {
-  const OrderHistoryHeaderWidget({Key key}) : super(key: key);
+  const OrderHistoryHeaderWidget({Key? key}) : super(key: key);
 
   @override
   State<OrderHistoryHeaderWidget> createState() => _OrderHistoryHeaderWidgetState();

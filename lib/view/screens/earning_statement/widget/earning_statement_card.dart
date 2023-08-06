@@ -11,8 +11,8 @@ import 'package:bed3aDelivery/view/base/custom_action_button.dart';
 import 'package:bed3aDelivery/view/screens/order/order_details_screen.dart';
 
 class EarningStatementCard extends StatelessWidget {
-  final Orders ordersWiseEarned;
-  const EarningStatementCard({Key key, this.ordersWiseEarned}) : super(key: key);
+  final Orders? ordersWiseEarned;
+  const EarningStatementCard({Key? key, this.ordersWiseEarned}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +21,11 @@ class EarningStatementCard extends StatelessWidget {
       child: Container(decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(Dimensions.paddingSizeExtraSmall),
         color: Theme.of(context).cardColor,
-        boxShadow: [BoxShadow(color: Get.isDarkMode ? Colors.grey[900] :Colors.grey[300], blurRadius: 5, spreadRadius: 1, offset: const Offset(0,2))],),
+        boxShadow: [BoxShadow(color: Get.isDarkMode ? Colors.grey[900]! :Colors.grey[300]!, blurRadius: 5, spreadRadius: 1, offset: const Offset(0,2))],),
         padding:  EdgeInsets.all(Dimensions.paddingSizeSmall),
         child: Column(crossAxisAlignment: CrossAxisAlignment.end,
           children: [Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Text('${'order'.tr}# ${ordersWiseEarned.id}',
+            Text('${'order'.tr}# ${ordersWiseEarned!.id}',
               style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeDefault),),
             Row(children: [Padding(padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall),
               child: SizedBox(width: 20, child: Image.asset(Images.cash))),
@@ -37,35 +37,35 @@ class EarningStatementCard extends StatelessWidget {
               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 Row(children: [SizedBox(width: 20, child: Image.asset(Images.calenderIcon)),
                    Padding(padding:  EdgeInsets.only(left: Dimensions.paddingSizeDefault),
-                    child: Text(DateConverter.isoStringToLocalDateOnly(ordersWiseEarned.createdAt))
+                    child: Text(DateConverter.isoStringToLocalDateOnly(ordersWiseEarned!.createdAt!))
                   )
                 ],),
-                 Text(PriceConverter.convertPrice(ordersWiseEarned.bed3aDeliveryCharge))
+                 Text(PriceConverter.convertPrice(ordersWiseEarned!.bed3aDeliveryCharge))
               ],),
             ),
 
              CustomActionButton(title: 'view_details',
                onTap: (){
                order.SellerInfo sellerInfo = order.SellerInfo(
-                 id: ordersWiseEarned.seller.id,
-                 email: ordersWiseEarned.seller.email,
-                 phone: ordersWiseEarned.seller.phone,
-                 shop: ordersWiseEarned.seller.shop
+                 id: ordersWiseEarned!.seller!.id,
+                 email: ordersWiseEarned!.seller!.email,
+                 phone: ordersWiseEarned!.seller!.phone,
+                 shop: ordersWiseEarned!.seller!.shop
 
                );
 
                order.OrderModel orderModel = order.OrderModel(
-                 id: ordersWiseEarned.id,
-                 orderStatus: ordersWiseEarned.orderStatus,
-                 shippingAddressData: ordersWiseEarned.shippingAddressData,
-                 bed3aDeliveryCharge: ordersWiseEarned.bed3aDeliveryCharge,
-                 discountAmount: ordersWiseEarned.discountAmount,
-                 shippingCost: ordersWiseEarned.shippingCost,
-                 updatedAt: ordersWiseEarned.updatedAt,
-                 paymentMethod: ordersWiseEarned.paymentMethod,
+                 id: ordersWiseEarned!.id,
+                 orderStatus: ordersWiseEarned!.orderStatus,
+                 shippingAddressData: ordersWiseEarned!.shippingAddressData,
+                 bed3aDeliveryCharge: ordersWiseEarned!.bed3aDeliveryCharge,
+                 discountAmount: ordersWiseEarned!.discountAmount,
+                 shippingCost: ordersWiseEarned!.shippingCost,
+                 updatedAt: ordersWiseEarned!.updatedAt,
+                 paymentMethod: ordersWiseEarned!.paymentMethod,
 
                  sellerInfo: sellerInfo,
-                 customer: ordersWiseEarned.customer,
+                 customer: ordersWiseEarned!.customer,
                );
                  Get.to(()=> OrderDetailsScreen(orderModel: orderModel));
                },),

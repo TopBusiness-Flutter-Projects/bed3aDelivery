@@ -9,8 +9,8 @@ import 'package:bed3aDelivery/view/screens/review/widget/filter_button.dart';
 import 'package:bed3aDelivery/view/screens/review/widget/review_list.dart';
 
 class ReviewScreen extends StatefulWidget {
-  final OrderModel orderModel;
-  const ReviewScreen({Key key, this.orderModel}) : super(key: key);
+  final OrderModel? orderModel;
+  const ReviewScreen({Key? key, this.orderModel}) : super(key: key);
 
   @override
   State<ReviewScreen> createState() => _ReviewScreenState();
@@ -18,7 +18,7 @@ class ReviewScreen extends StatefulWidget {
 
 class _ReviewScreenState extends State<ReviewScreen> {
   final ScrollController _scrollController = ScrollController();
-   String type;
+   String? type;
 
   @override
   void initState() {
@@ -50,7 +50,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
           },),
 
           !profileController.isLoading && profileController.reviewModel != null?
-          (profileController.reviewModel.review != null && profileController.reviewModel.review.isNotEmpty) ?
+          (profileController.reviewModel!.review != null && profileController.reviewModel!.review!.isNotEmpty) ?
           Expanded(child: ReviewListView(profileController: profileController, scrollController: _scrollController)) :
           const NoDataScreen(): Expanded(child: CustomLoader(height: Get.height-300,)),
         ]),

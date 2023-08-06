@@ -7,7 +7,7 @@ import 'package:bed3aDelivery/utill/styles.dart';
 import 'package:bed3aDelivery/view/base/custom_text_field.dart';
 
 class AccountInfo extends StatelessWidget {
-  const AccountInfo({Key key}) : super(key: key);
+  const AccountInfo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class AccountInfo extends StatelessWidget {
                       noBg: true,
                       isShowBorder: true,
                       fillColor: Theme.of(context).hintColor.withOpacity(.125),
-                      hintText: profileController.profileModel.phone ?? "",
+                      hintText: profileController.profileModel!.phone ?? "",
 
                     ),
                   ],

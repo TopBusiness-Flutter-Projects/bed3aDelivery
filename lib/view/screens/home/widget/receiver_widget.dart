@@ -8,9 +8,9 @@ import 'package:bed3aDelivery/view/base/custom_image.dart';
 import 'package:bed3aDelivery/view/screens/order/widget/cal_chat_widget.dart';
 
 class ReceiverWidget extends StatelessWidget {
-  final OrderModel orderModel;
+  final OrderModel? orderModel;
   final bool fromReviewPage;
-  const ReceiverWidget({Key key, this.orderModel, this.fromReviewPage = false}) : super(key: key);
+  const ReceiverWidget({Key? key, this.orderModel, this.fromReviewPage = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class ReceiverWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          orderModel.customer != null?
+          orderModel!.customer != null?
           Row(crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(decoration: BoxDecoration(
@@ -32,7 +32,7 @@ class ReceiverWidget extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(50),
                   child: CustomImage(
-                    image: '${Get.find<SplashController>().baseUrls.customerImageUrl}/${orderModel.customer.image}',
+                    image: '${Get.find<SplashController>().baseUrls!.customerImageUrl}/${orderModel!.customer!.image}',
                     height: 50, width: 50, fit: BoxFit.cover,
                   ),
                 ),
@@ -43,7 +43,7 @@ class ReceiverWidget extends StatelessWidget {
                   padding:  EdgeInsets.fromLTRB(Dimensions.paddingSizeSmall,0,0,0),
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('${orderModel.customer.fName} ${orderModel.customer.lName}',
+                      Text('${orderModel!.customer!.fName} ${orderModel!.customer!.lName}',
                         style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge),),
 
                       Text('customer'.tr,

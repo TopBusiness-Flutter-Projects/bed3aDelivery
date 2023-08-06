@@ -10,8 +10,8 @@ import 'package:bed3aDelivery/view/screens/profile/widget/profile_info_widget.da
 
 
 class ProfileHeaderWidget extends StatelessWidget {
-  final UserInfoModel profileModel;
-  const ProfileHeaderWidget({Key key, this.profileModel}) : super(key: key);
+  final UserInfoModel? profileModel;
+  const ProfileHeaderWidget({Key? key, this.profileModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class ProfileHeaderWidget extends StatelessWidget {
             decoration: BoxDecoration(
               color: Get.isDarkMode? Theme.of(context).cardColor: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
-              boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 900 : 200],
+              boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 900 : 200]!,
                   spreadRadius: 0.5, blurRadius: 0.3)]),
 
           ),

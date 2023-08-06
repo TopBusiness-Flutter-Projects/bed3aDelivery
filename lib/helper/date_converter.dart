@@ -64,8 +64,8 @@ class DateConverter {
     return DateFormat('HH:mm').parse(time);
   }
 
-  static bool isAvailable(String start, String end, {DateTime time}) {
-    DateTime _currentTime;
+  static bool isAvailable(String start, String end, {DateTime? time}) {
+    late DateTime _currentTime;
     if(time != null) {
       _currentTime = time;
     }else {

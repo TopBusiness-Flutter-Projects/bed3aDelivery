@@ -11,9 +11,9 @@ import 'package:bed3aDelivery/utill/styles.dart';
 import 'package:bed3aDelivery/view/base/custom_image.dart';
 
 class ReviewCard extends StatelessWidget {
-  final int index;
-  final Review review;
-  const ReviewCard({Key key, this.review, this.index}) : super(key: key);
+  final int? index;
+  final Review? review;
+  const ReviewCard({Key? key, this.review, this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +30,22 @@ class ReviewCard extends StatelessWidget {
             child: Column(mainAxisSize: MainAxisSize.min,children: [
 
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                Text('${'order'.tr} # ${review.orderId}', style: rubikMedium,),
+                Text('${'order'.tr} # ${review!.orderId}', style: rubikMedium,),
                 Padding(padding:  EdgeInsets.symmetric(vertical: Dimensions.paddingSizeDefault),
                   child: Row(
                     children: [
                       Padding(padding:  EdgeInsets.only(right: Dimensions.paddingSizeSmall),
                         child: Image.asset(Images.calenderIcon, scale: 2.5,),
                       ),
-                      Text(DateConverter.localToIsoString(DateTime.parse(review.updatedAt)),
-                        style: rubikRegular.copyWith(color: Theme.of(context).textTheme.bodyText1.color, fontSize: Dimensions.fontSizeSmall),
+                      Text(DateConverter.localToIsoString(DateTime.parse(review!.updatedAt!)),
+                        style: rubikRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color, fontSize: Dimensions.fontSizeSmall),
                       ),
                     ],
                   ),
                 ),
               ],),
 
-              review.customer != null?
+              review!.customer != null?
                Padding(
                  padding:  EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
                  child: Row(children: [
@@ -56,13 +56,13 @@ class ReviewCard extends StatelessWidget {
                      ),
                      child: ClipRRect(
                        borderRadius: BorderRadius.circular(Dimensions.paddingSizeExtraSmall),
-                       child: CustomImage(image: '${Get.find<SplashController>().baseUrls.customerImageUrl}/${review.customer.image}',
+                       child: CustomImage(image: '${Get.find<SplashController>().baseUrls!.customerImageUrl}/${review!.customer!.image}',
                          height: 30,width: 30,),
                      ),
                    ),
                    Padding(
                      padding:  EdgeInsets.only(left: Dimensions.paddingSizeSmall),
-                     child: Text('${review.customer.fName} ${review.customer.lName}',style: rubikMedium,),
+                     child: Text('${review!.customer!.fName} ${review!.customer!.lName}',style: rubikMedium,),
                    ),
                  ],),
                ): const SizedBox(),
@@ -71,7 +71,7 @@ class ReviewCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 30),
                 child: ReadMoreText(
-                  review.comment,
+                  review!.comment!,
                   trimLines: 4,
                   colorClickableText: Theme.of(context).primaryColor,
                   trimMode: TrimMode.Line,
@@ -88,17 +88,17 @@ class ReviewCard extends StatelessWidget {
                   children: [
                     Text('${'rate_your_service'.tr} : '),
                     Icon(Icons.star_rate_rounded, color:Get.isDarkMode? Theme.of(context).hintColor.withOpacity(.5) : Theme.of(context).primaryColor,),
-                    Text(review.rating.toString(), style: rubikMedium.copyWith(),),
+                    Text(review!.rating.toString(), style: rubikMedium.copyWith(),),
 
                     const Spacer(),
                     GetBuilder<ProfileController>(
                       builder: (profileController) {
                         return GestureDetector(
                           onTap: (){
-                            profileController.savedReview(review.id, review.isSaved == 1 ? 0 : 1, index);
+                            profileController.savedReview(review!.id, review!.isSaved == 1 ? 0 : 1, index);
                           },
-                          child: Icon(review.isSaved == 1? Icons.bookmark : Icons.bookmark_border,
-                            color: review.isSaved == 1? Get.isDarkMode? Theme.of(context).hintColor.withOpacity(.5) :Theme.of(context).primaryColor : Theme.of(context).hintColor),
+                          child: Icon(review!.isSaved == 1? Icons.bookmark : Icons.bookmark_border,
+                            color: review!.isSaved == 1? Get.isDarkMode? Theme.of(context).hintColor.withOpacity(.5) :Theme.of(context).primaryColor : Theme.of(context).hintColor),
                         );
                       }
                     ),

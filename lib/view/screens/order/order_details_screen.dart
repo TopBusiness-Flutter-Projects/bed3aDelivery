@@ -19,14 +19,14 @@ import 'package:bed3aDelivery/view/screens/order/widget/seller_info_widget.dart'
 
 
 class OrderDetailsScreen extends StatelessWidget {
-  final OrderModel orderModel;
-  const OrderDetailsScreen({Key key, this.orderModel}) : super(key: key);
+  final OrderModel? orderModel;
+  const OrderDetailsScreen({Key? key, this.orderModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.find<OrderController>().getOrderDetails(orderModel.id.toString(), context);
-    double deliveryCharge = 0;
-    deliveryCharge = orderModel.shippingCost;
+    Get.find<OrderController>().getOrderDetails(orderModel!.id.toString(), context);
+    double? deliveryCharge = 0;
+    deliveryCharge = orderModel!.shippingCost;
     return Scaffold(
       appBar: CustomRiderAppBar(title: 'order_information'.tr, isBack: true),
 
@@ -36,16 +36,16 @@ class OrderDetailsScreen extends StatelessWidget {
           double _discount = 0;
           double _tax = 0;
           if (orderController.orderDetails != null) {
-            for (var orderDetails in orderController.orderDetails) {
-              _itemsPrice = _itemsPrice + (orderDetails.price * orderDetails.qty);
-              _discount = _discount + orderDetails.discount;
-              _tax = _tax + orderDetails.tax;
+            for (var orderDetails in orderController.orderDetails!) {
+              _itemsPrice = _itemsPrice + (orderDetails.price! * orderDetails.qty!);
+              _discount = _discount + orderDetails.discount!;
+              _tax = _tax + orderDetails.tax!;
             }
           }
 
 
           double _subTotal = _itemsPrice + _tax - _discount;
-          double totalPrice = _subTotal  + deliveryCharge - orderModel.discountAmount;
+          double totalPrice = _subTotal  + deliveryCharge! - orderModel!.discountAmount!;
 
 
           return orderController.orderDetails != null ?
@@ -58,10 +58,10 @@ class OrderDetailsScreen extends StatelessWidget {
                 Padding(padding:  EdgeInsets.only(bottom: Dimensions.paddingSizeDefault),
                   child: OrderStatusWidget(orderModel : orderModel)),
 
-                orderModel.orderStatus == 'processing' || orderModel.orderStatus == 'out_for_delivery'?
+                orderModel!.orderStatus == 'processing' || orderModel!.orderStatus == 'out_for_delivery'?
                 OrderInfoWithCustomerWidget(orderModel: orderModel): const SizedBox(),
 
-                orderModel.sellerInfo != null?
+                orderModel!.sellerInfo != null?
                 SellerInfoWidget(orderModel: orderModel): const SizedBox(),
                  SizedBox(height: Dimensions.paddingSizeSmall,),
 
@@ -75,7 +75,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   padding:  EdgeInsets.only(top: Dimensions.paddingSizeSmall),
                   child: Container(decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Dimensions.paddingSizeExtraSmall),
-                    boxShadow: [BoxShadow(color: Colors.grey[Get.find<ThemeController>().darkTheme ? 700 : 100],
+                    boxShadow: [BoxShadow(color: Colors.grey[Get.find<ThemeController>().darkTheme ? 700 : 100]!,
                       blurRadius: 5, spreadRadius: 1,)],
                     color: Theme.of(context).cardColor),
                     padding:  EdgeInsets.all(Dimensions.paddingSizeDefault),
@@ -89,7 +89,7 @@ class OrderDetailsScreen extends StatelessWidget {
                           color: Theme.of(context).primaryColor.withOpacity(.05),
                           padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraSmall),
                           child: Row( children: [
-                            Text(PriceConverter.convertPrice(orderModel.bed3aDeliveryCharge),style: rubikMedium),
+                            Text(PriceConverter.convertPrice(orderModel!.bed3aDeliveryCharge),style: rubikMedium),
                           ],),),),
 
                     ],),

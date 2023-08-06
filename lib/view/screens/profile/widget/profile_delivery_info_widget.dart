@@ -7,11 +7,11 @@ import 'package:bed3aDelivery/utill/styles.dart';
 
 
 class ProfileDeliveryInfoItem extends StatelessWidget {
-  final String icon;
-  final double countNumber;
-  final String title;
+  final String? icon;
+  final double? countNumber;
+  final String? title;
   final bool isAmount;
-  const ProfileDeliveryInfoItem({Key key, this.icon, this.countNumber, this.title, this.isAmount = false}) : super(key: key);
+  const ProfileDeliveryInfoItem({Key? key, this.icon, this.countNumber, this.title, this.isAmount = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +30,12 @@ class ProfileDeliveryInfoItem extends StatelessWidget {
             decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
           color: Get.isDarkMode? Theme.of(context).cardColor : Theme.of(context).primaryColor.withOpacity(.75)
-        ),width: 40,child: Image.asset(icon))),
+        ),width: 40,child: Image.asset(icon!))),
         Padding(
           padding:  EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
           child: Row(mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              isAmount? Text(Get.find<SplashController>().myCurrency.symbol,
+              isAmount? Text(Get.find<SplashController>().myCurrency!.symbol!,
                 style: rubikMedium.copyWith(color: Theme.of(context).colorScheme.primary, fontSize: Dimensions.fontSizeLarge),):const SizedBox(),
 
               Text(NumberFormat.compact().format(countNumber),
@@ -43,7 +43,7 @@ class ProfileDeliveryInfoItem extends StatelessWidget {
             ],
           ),
         ),
-        Text(title.tr,textAlign: TextAlign.center,style: rubikRegular.copyWith(color: Theme.of(context).colorScheme.primary),),
+        Text(title!.tr,textAlign: TextAlign.center,style: rubikRegular.copyWith(color: Theme.of(context).colorScheme.primary),),
       ],),),
     );
   }

@@ -9,22 +9,22 @@ import 'package:bed3aDelivery/view/screens/chat/chat_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CallAndChatWidget extends StatelessWidget {
-  final OrderModel orderModel;
+  final OrderModel? orderModel;
   final bool isSeller;
   final bool isAdmin;
-  const CallAndChatWidget({Key key, this.orderModel, this.isSeller = false, this.isAdmin = false}) : super(key: key);
+  const CallAndChatWidget({Key? key, this.orderModel, this.isSeller = false, this.isAdmin = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String phone = isSeller? orderModel.sellerInfo.phone : orderModel.customer.phone;
-    int id = 0;
-    String name = '';
+    String? phone = isSeller? orderModel!.sellerInfo!.phone : orderModel!.customer!.phone;
+    int? id = 0;
+    String? name = '';
     if(isAdmin){
       id = 0;
       name = 'admin';
     }else{
-      id =   isSeller ? orderModel.sellerInfo.id : orderModel.customer.id;
-      name = isSeller ? orderModel.sellerInfo.shop.name : '${orderModel.customer.fName} ${orderModel.customer.lName}';
+      id =   isSeller ? orderModel!.sellerInfo!.id! : orderModel!.customer!.id!;
+      name = isSeller ? orderModel!.sellerInfo!.shop!.name! : '${orderModel!.customer!.fName} ${orderModel!.customer!.lName}';
     }
 
     return Row(children: [

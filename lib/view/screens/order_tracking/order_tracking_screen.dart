@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:custom_map_markers/custom_map_markers.dart';
 import 'package:expandable_bottom_sheet/expandable_bottom_sheet.dart';
@@ -13,17 +12,17 @@ import 'package:bed3aDelivery/utill/styles.dart';
 import 'package:bed3aDelivery/view/screens/order_tracking/widget/expendale_bottom_sheet.dart';
 
 class OrderTrackingScreen extends StatefulWidget {
-  final OrderModel orderModel;
-  const OrderTrackingScreen({Key key, this.orderModel}) : super(key: key);
+  final OrderModel? orderModel;
+  const OrderTrackingScreen({Key? key, this.orderModel}) : super(key: key);
 
   @override
   State<OrderTrackingScreen> createState() => _OrderTrackingScreenState();
 }
 
 class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
-  GoogleMapController  _controller;
+  GoogleMapController?  _controller;
   final TextEditingController _locationController = TextEditingController();
-  CameraPosition _cameraPosition;
+  CameraPosition? _cameraPosition;
 
   @override
   void initState() {
@@ -39,8 +38,8 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
   @override
   Widget build(BuildContext context) {
 
-    Get.find<OrderController>().setSelectedOrderLatLng(LatLng(double.parse(widget.orderModel.shippingAddress.latitude)??0,
-        double.parse(widget.orderModel.shippingAddress.longitude)??0));
+    Get.find<OrderController>().setSelectedOrderLatLng(LatLng(double.parse(widget.orderModel!.shippingAddress!.latitude!)??0,
+        double.parse(widget.orderModel!.shippingAddress!.longitude!)??0));
     return Scaffold(
       body: GetBuilder<RiderController>(
           builder: (riderController) {
@@ -63,9 +62,9 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
                           onMapCreated: (GoogleMapController controller){
                             riderController.mapController = controller;
 
-                            LatLng destination = widget.orderModel.shippingAddress != null?
-                            LatLng(double.parse(widget.orderModel.shippingAddress.latitude),
-                                double.parse(widget.orderModel.shippingAddress.longitude))  : riderController.initialPosition;
+                            LatLng destination = widget.orderModel!.shippingAddress != null?
+                            LatLng(double.parse(widget.orderModel!.shippingAddress!.latitude!),
+                                double.parse(widget.orderModel!.shippingAddress!.longitude!))  : riderController.initialPosition;
 
                            riderController.getPolyline(from: riderController.initialPosition, to: destination);
 
@@ -113,7 +112,7 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
                 padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault, vertical: Dimensions.paddingSizeExtraSmall),
                 margin:  EdgeInsets.only(bottom: Dimensions.paddingSizeExtraSmall),
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.paddingSizeDefault), color: Theme.of(context).primaryColor),
-                child: Text('${riderController.distance != null? riderController.distance.toStringAsFixed(2) : 0} km', style: rubikRegular.copyWith(color: Theme.of(context).cardColor)),
+                child: Text('${riderController.distance != null? riderController.distance!.toStringAsFixed(2) : 0} km', style: rubikRegular.copyWith(color: Theme.of(context).cardColor)),
               ),
               persistentContentHeight: riderController.persistentContentHeight,
               expandableContent: RiderBottomSheet(orderModel: widget.orderModel),

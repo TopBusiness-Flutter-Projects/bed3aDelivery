@@ -3,15 +3,15 @@ import 'package:bed3aDelivery/utill/dimensions.dart';
 import 'package:get/get.dart';
 
 class OrderActionItem extends StatelessWidget {
-  final String icon;
-  final String title;
-  final Function onTap;
-  const OrderActionItem({Key key, this.icon, this.title, this.onTap}) : super(key: key);
+  final String? icon;
+  final String? title;
+  final Function? onTap;
+  const OrderActionItem({Key? key, this.icon, this.title, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()=> onTap(),
+      onTap: ()=> onTap!(),
       child: Padding(
         padding:  EdgeInsets.symmetric(vertical: Dimensions.paddingSizeDefault),
         child: Center(
@@ -22,9 +22,9 @@ class OrderActionItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
                   boxShadow: [BoxShadow(color: Theme.of(context).primaryColor.withOpacity(.125),
                       blurRadius: 5, spreadRadius: 1)],
-                ),child: SizedBox(width: 20, child: Image.asset(icon))),
+                ),child: SizedBox(width: 20, child: Image.asset(icon!))),
              SizedBox(height: Dimensions.paddingSizeSmall),
-            Text(title.tr),
+            Text(title!.tr),
 
           ],),
         ),

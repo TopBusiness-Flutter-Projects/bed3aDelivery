@@ -14,9 +14,9 @@ import 'package:bed3aDelivery/view/screens/order_tracking/order_tracking_screen.
 
 
 class OrderInfoWithCustomerWidget extends StatelessWidget {
-  final OrderModel orderModel;
+  final OrderModel? orderModel;
   final bool fromMap;
-  const OrderInfoWithCustomerWidget({Key key, this.orderModel, this.fromMap = false}) : super(key: key);
+  const OrderInfoWithCustomerWidget({Key? key, this.orderModel, this.fromMap = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +33,13 @@ class OrderInfoWithCustomerWidget extends StatelessWidget {
             child: Column(children: [
               Padding(
                 padding:  EdgeInsets.symmetric(vertical: Dimensions.paddingSizeDefault),
-                child: Text('${'order'.tr} # ${orderModel.id}',style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge,
+                child: Text('${'order'.tr} # ${orderModel!.id}',style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge,
                     color: Theme.of(context).colorScheme.secondary)),
               ),
               Divider(height: .75,color: Theme.of(context).primaryColor.withOpacity(.725)),
               Padding(
                 padding:  EdgeInsets.symmetric(vertical: Dimensions.paddingSizeDefault),
-                child: TrackingStepperWidget(status: orderModel.orderStatus),
+                child: TrackingStepperWidget(status: orderModel!.orderStatus),
               ),
               fromMap? const SizedBox():
               GestureDetector(
@@ -64,8 +64,8 @@ class OrderInfoWithCustomerWidget extends StatelessWidget {
                    onYesPressed: (){
                      Get.back();
                      orderController.cancelOrderStatus(
-                         orderId: orderModel.id,
-                         cause: orderController.reasonValue.tr,
+                         orderId: orderModel!.id,
+                         cause: orderController.reasonValue!.tr,
                          context: context);
                   },),isFlip: true),)),
                  Expanded(child: OrderActionItem(icon: Images.reachedIcon,title: 'reached',
@@ -76,24 +76,24 @@ class OrderInfoWithCustomerWidget extends StatelessWidget {
                     onYesPressed: (){
                       Get.back();
                       orderController.rescheduleOrderStatus(
-                          orderId: orderModel.id,
-                          deliveryDate: orderController.dateFormat.format(orderController.startDate).toString(),
-                          cause: orderController.reasonValue.tr,
+                          orderId: orderModel!.id,
+                          deliveryDate: orderController.dateFormat.format(orderController.startDate!).toString(),
+                          cause: orderController.reasonValue!.tr,
                           context: context);
 
                     },),isFlip: true),)),
-                 Expanded(child: OrderActionItem(icon: orderModel.isPause == '0'? Images.pauseIcon : Images.resume,
-                   title: orderModel.isPause == '0'? 'pause' : 'resume',
+                 Expanded(child: OrderActionItem(icon: orderModel!.isPause == '0'? Images.pauseIcon : Images.resume,
+                   title: orderModel!.isPause == '0'? 'pause' : 'resume',
                   onTap: () => showAnimatedDialog(context,  OrderStatusUpdateDialog(
-                    isResume: orderModel.isPause == '1'? true : false,
-                    icon: orderModel.isPause == '0'? Images.pauseIcon : Images.resume,
-                    title: orderModel.isPause == '0'? 'why_you_want_to_pause_this_delivery'.tr  : 'do_you_want_to_resume_the_delivery'.tr,
+                    isResume: orderModel!.isPause == '1'? true : false,
+                    icon: orderModel!.isPause == '0'? Images.pauseIcon : Images.resume,
+                    title: orderModel!.isPause == '0'? 'why_you_want_to_pause_this_delivery'.tr  : 'do_you_want_to_resume_the_delivery'.tr,
                     onYesPressed: (){
                       Get.back();
                       orderController.pauseAndResumeOrder(
-                          orderId: orderModel.id,
-                          isPos: orderModel.isPause == '0'? 1: 0,
-                          cause: orderController.reasonValue.tr,
+                          orderId: orderModel!.id,
+                          isPos: orderModel!.isPause == '0'? 1: 0,
+                          cause: orderController.reasonValue!.tr,
                           context: context);
                     },),isFlip: true),)),
               ],)

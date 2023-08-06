@@ -1,8 +1,8 @@
 class DepositedModel {
-  int totalSize;
-  String limit;
-  String offset;
-  List<Deposit> deposit;
+  int? totalSize;
+  String? limit;
+  String? offset;
+  List<Deposit>? deposit;
 
   DepositedModel({this.totalSize, this.limit, this.offset, this.deposit});
 
@@ -13,7 +13,7 @@ class DepositedModel {
     if (json['deposit'] != null) {
       deposit = <Deposit>[];
       json['deposit'].forEach((v) {
-        deposit.add(Deposit.fromJson(v));
+        deposit!.add(Deposit.fromJson(v));
       });
     }
   }
@@ -24,21 +24,21 @@ class DepositedModel {
     data['limit'] = limit;
     data['offset'] = offset;
     if (deposit != null) {
-      data['deposit'] = deposit.map((v) => v.toJson()).toList();
+      data['deposit'] = deposit!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Deposit {
-  int id;
-  int bed3aDeliveryId;
-  int userId;
-  String userType;
-  double credit;
-  String transactionType;
-  String createdAt;
-  String updatedAt;
+  int? id;
+  int? bed3aDeliveryId;
+  int? userId;
+  String? userType;
+  double? credit;
+  String? transactionType;
+  String? createdAt;
+  String? updatedAt;
 
   Deposit(
       {this.id,

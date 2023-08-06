@@ -1,5 +1,5 @@
 class EmergencyContactModel {
-  List<ContactList> contactList;
+  List<ContactList>? contactList;
 
   EmergencyContactModel({this.contactList});
 
@@ -7,7 +7,7 @@ class EmergencyContactModel {
     if (json['contact_list'] != null) {
       contactList = <ContactList>[];
       json['contact_list'].forEach((v) {
-        contactList.add(ContactList.fromJson(v));
+        contactList!.add(ContactList.fromJson(v));
       });
     }
   }
@@ -15,20 +15,20 @@ class EmergencyContactModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (contactList != null) {
-      data['contact_list'] = contactList.map((v) => v.toJson()).toList();
+      data['contact_list'] = contactList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class ContactList {
-  int id;
-  int userId;
-  String name;
-  String phone;
-  int status;
-  String createdAt;
-  String updatedAt;
+  int? id;
+  int? userId;
+  String? name;
+  String? phone;
+  int? status;
+  String? createdAt;
+  String? updatedAt;
 
   ContactList(
       {this.id,

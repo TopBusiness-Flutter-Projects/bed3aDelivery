@@ -10,7 +10,7 @@ import 'package:bed3aDelivery/view/base/custom_image.dart';
 import 'package:bed3aDelivery/view/screens/wallet/wallet_screen.dart';
 
 class EarnStatementWidget extends StatelessWidget {
-  const EarnStatementWidget({Key key}) : super(key: key);
+  const EarnStatementWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class EarnStatementWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(50)),
 
                             child: ClipRRect(borderRadius: BorderRadius.circular(50),
-                              child: CustomImage(image: '${Get.find<SplashController>().baseUrls.reviewImageUrl}/delivery-man/${Get.find<ProfileController>().profileImage}',
+                              child: CustomImage(image: '${Get.find<SplashController>().baseUrls!.reviewImageUrl}/delivery-man/${Get.find<ProfileController>().profileImage}',
                                 height: 40, width: 40, fit: BoxFit.cover))),
 
 
@@ -56,7 +56,7 @@ class EarnStatementWidget extends StatelessWidget {
                                 children: [
                                   const Text(''),
                                   Get.find<ProfileController>().profileModel !=null?
-                                  Text('${'hi'.tr}, ${Get.find<ProfileController>().profileModel.fName??''} ${Get.find<ProfileController>().profileModel.lName}',
+                                  Text('${'hi'.tr}, ${Get.find<ProfileController>().profileModel!.fName??''} ${Get.find<ProfileController>().profileModel!.lName}',
                                     overflow: TextOverflow.ellipsis, maxLines: 1,
                                     style: rubikRegular.copyWith(color: Colors.white,fontSize: Dimensions.fontSizeDefault),):const SizedBox(),
                                 ],
@@ -67,7 +67,7 @@ class EarnStatementWidget extends StatelessWidget {
                             children: [
                               const Text(''),
                               Padding(padding:  EdgeInsets.fromLTRB(Dimensions.paddingSizeSmall,0,0,Dimensions.paddingSizeSmall),
-                                  child: Text(' ${PriceConverter.convertPrice(Get.find<ProfileController>().profileModel.currentBalance)}',
+                                  child: Text(' ${PriceConverter.convertPrice(Get.find<ProfileController>().profileModel!.currentBalance)}',
                                     style: rubikMedium.copyWith(color: Colors.white, fontSize: Dimensions.fontSizeExtraLarge),)),
                               Padding(padding:  EdgeInsets.fromLTRB(Dimensions.paddingSizeSmall,0,0,Dimensions.paddingSizeDefault),
                                   child: Text('current_balance'.tr,
@@ -90,13 +90,13 @@ class EarnStatementWidget extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           children: [
                           CalculationWidget(title: 'cash_in_hand'.tr,
-                              amount: profileController.profileModel.cashInHand, isTotalAmount: true),
+                              amount: profileController.profileModel!.cashInHand, isTotalAmount: true),
                           CalculationWidget(title: 'pending_withdraw'.tr,
-                            amount: profileController.profileModel.pendingWithdraw,),
+                            amount: profileController.profileModel!.pendingWithdraw,),
                           CalculationWidget(title: 'withdrawn'.tr,
-                              amount: profileController.profileModel.totalWithdraw),
+                              amount: profileController.profileModel!.totalWithdraw),
                           CalculationWidget(title: 'withdrawable_balance'.tr,
-                              amount: profileController.profileModel.withdrawableBalance, isWithdrawable: true,
+                              amount: profileController.profileModel!.withdrawableBalance, isWithdrawable: true,
                             onTap: () => Get.to(const WalletScreen()),
 
                           ),

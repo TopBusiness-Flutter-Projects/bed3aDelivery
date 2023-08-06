@@ -6,7 +6,7 @@ import 'package:bed3aDelivery/view/base/no_data_screen.dart';
 import 'package:bed3aDelivery/view/screens/withdraw/widget/withdraw_card_widget.dart';
 
 class WithdrawListView extends StatelessWidget {
-  const WithdrawListView({Key key}) : super(key: key);
+  const WithdrawListView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GetBuilder<WalletController>(

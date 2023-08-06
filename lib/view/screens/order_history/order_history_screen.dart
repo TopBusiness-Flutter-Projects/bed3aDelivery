@@ -12,7 +12,7 @@ import 'package:bed3aDelivery/view/screens/order_history/widget/order_history_it
 
 class OrderHistoryScreen extends StatefulWidget {
   final bool fromMenu;
-  const OrderHistoryScreen({Key key, this.fromMenu = false}) : super(key: key);
+  const OrderHistoryScreen({Key? key, this.fromMenu = false}) : super(key: key);
 
   @override
   State<OrderHistoryScreen> createState() => _OrderHistoryScreenState();
@@ -38,7 +38,7 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
               startDate: Get.find<WalletController>().startDate == "dd-mm-yyyy"? "" :Get.find<WalletController>().startDate,
               endDate:  Get.find<WalletController>().endDate =="dd-mm-yyyy"? "" :Get.find<WalletController>().endDate);
 
-          return true;
+        //  return true;
         },
         child: CustomScrollView(
           slivers: [

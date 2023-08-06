@@ -3,19 +3,19 @@ import 'package:bed3aDelivery/controller/splash_controller.dart';
 
 class PriceConverter {
 
-  static String convertPrice(double price, {double discount, String discountType,
+  static String convertPrice(double? price, {double? discount, String? discountType,
     int asFixed = 2}) {
     if(discount != null && discountType != null){
       if(discountType == 'amount') {
-        price = price - discount;
+        price = price! - discount;
       }else if(discountType == 'percent') {
-        price = price - ((discount / 100) * price);
+        price = price! - ((discount / 100) * price);
       }
     }
-    final bool _singleCurrency = Get.find<SplashController>().configModel.currencyModel == 'single_currency';
-    return '${Get.find<SplashController>().myCurrency.symbol} '
-        '${(_singleCurrency ? price: price * Get.find<SplashController>().myCurrency.exchangeRate
-        * (1/Get.find<SplashController>().usdCurrency.exchangeRate)).toStringAsFixed(Get.find<SplashController>().configModel.decimalPointSetting??1).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}';
+    final bool _singleCurrency = Get.find<SplashController>().configModel!.currencyModel == 'single_currency';
+    return '${Get.find<SplashController>().myCurrency!.symbol} '
+        '${(_singleCurrency ? price: price! * Get.find<SplashController>().myCurrency!.exchangeRate!
+        * (1/Get.find<SplashController>().usdCurrency!.exchangeRate!))!.toStringAsFixed(Get.find<SplashController>().configModel!.decimalPointSetting??1).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}';
   }
 
   static double convertWithDiscount(double price, double discount, String discountType) {
@@ -38,6 +38,6 @@ class PriceConverter {
   }
 
   static String percentageCalculation(String price, String discount, String discountType) {
-    return '$discount${discountType == 'percent' ? '%' : Get.find<SplashController>().myCurrency.symbol} OFF';
+    return '$discount${discountType == 'percent' ? '%' : Get.find<SplashController>().myCurrency!.symbol} OFF';
   }
 }

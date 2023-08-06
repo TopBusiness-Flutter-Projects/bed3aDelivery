@@ -8,14 +8,14 @@ import 'package:get/get.dart';
 
 class HtmlViewerScreen extends StatelessWidget {
   final bool isPrivacyPolicy;
-  const HtmlViewerScreen({Key key, @required this.isPrivacyPolicy}) : super(key: key);
+  const HtmlViewerScreen({Key? key, required this.isPrivacyPolicy}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
     String _data = isPrivacyPolicy ?
-    Get.find<SplashController>().configModel.privacyPolicy :
-    Get.find<SplashController>().configModel.termsConditions;
+    Get.find<SplashController>().configModel!.privacyPolicy! :
+    Get.find<SplashController>().configModel!.termsConditions!;
 
     return Scaffold(
       appBar: CustomRiderAppBar(title: isPrivacyPolicy ? 'privacy_policy'.tr : 'terms_and_condition'.tr, isBack: true,),
@@ -29,10 +29,12 @@ class HtmlViewerScreen extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           child: HtmlWidget(_data,
             key: Key(isPrivacyPolicy ? 'privacy_policy' : 'terms_and_condition'),
-            onTapUrl: (String url) {
-              launchUrl(Uri.parse(url));
+            onTapUrl: (p0) {
+
+              launchUrl(Uri.parse(p0));
               return;
-            },
+            } as Future<bool> Function(String)?
+            ,
           ),
         ),
       ),

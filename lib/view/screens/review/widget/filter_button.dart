@@ -6,14 +6,14 @@ import 'package:bed3aDelivery/utill/dimensions.dart';
 import 'package:bed3aDelivery/utill/styles.dart';
 
 class FilterButtonWidget extends StatelessWidget {
-  final String type;
+  final String? type;
   final List<String> items;
   final bool isBorder;
   final bool isSmall;
   final Function(String value) onSelected;
 
-  const FilterButtonWidget({Key key,
-    @required this.type, @required this.onSelected, @required this.items,  this.isBorder = false, this.isSmall = false,
+  const FilterButtonWidget({Key? key,
+    required this.type, required this.onSelected, required this.items,  this.isBorder = false, this.isSmall = false,
   }) : super(key: key);
 
   @override

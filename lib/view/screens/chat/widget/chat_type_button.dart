@@ -7,7 +7,7 @@ import 'package:bed3aDelivery/utill/styles.dart';
 class ChatTypeButton extends StatelessWidget {
   final String text;
   final int index;
-  const ChatTypeButton({Key key, @required this.text, @required this.index}) : super(key: key);
+  const ChatTypeButton({Key? key, required this.text, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class ChatTypeButton extends StatelessWidget {
             ),
             child: Text(text, style: chat.userTypeIndex == index ?
             rubikMedium.copyWith(color: chat.userTypeIndex == index ?
-            Get.isDarkMode ? Colors.white:Theme.of(context).primaryColor : Theme.of(context).textTheme.bodyText1):
+            Get.isDarkMode ? Colors.white:Theme.of(context).primaryColor : Theme.of(context).textTheme.bodyLarge as Color?):
             rubikRegular.copyWith(color: chat.userTypeIndex == index ?
             Theme.of(context).cardColor : Theme.of(context).cardColor.withOpacity(.8),
             fontSize: chat.userTypeIndex == index ? Dimensions.fontSizeDefault : Dimensions.fontSizeSmall)),

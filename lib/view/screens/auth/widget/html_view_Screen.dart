@@ -6,8 +6,8 @@ import 'package:bed3aDelivery/view/base/custom_app_bar.dart';
 
 class HtmlViewScreen extends StatelessWidget {
   final String title;
-  final String url;
-  const HtmlViewScreen({Key key, @required this.url, @required this.title}) : super(key: key);
+  final String? url;
+  const HtmlViewScreen({Key? key, required this.url, required this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -8,14 +8,14 @@ import 'package:bed3aDelivery/utill/dimensions.dart';
 import 'package:bed3aDelivery/utill/styles.dart';
 
 class OrderItemInfoWidget extends StatelessWidget {
-  final String title;
-  final String info;
+  final String? title;
+  final String? info;
   final bool isProduct;
   final bool isDate;
   final bool isDeliveryCost;
   final bool isPrice;
   final bool isCount;
-  const OrderItemInfoWidget({Key key, this.title, this.info, this.isProduct = false,
+  const OrderItemInfoWidget({Key? key, this.title, this.info, this.isProduct = false,
     this.isDate = false, this.isDeliveryCost = false, this.isPrice = false,
     this.isCount = false}) : super(key: key);
 
@@ -25,12 +25,12 @@ class OrderItemInfoWidget extends StatelessWidget {
       padding:  EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,children: [
-          isCount? Text(title.tr + ' (*${Get.find<OrderController>().orderDetails.length})',
+          isCount? Text(title!.tr + ' (*${Get.find<OrderController>().orderDetails!.length})',
               style: rubikMedium.copyWith(color: Theme.of(context).hintColor)):
           isDeliveryCost?
-        Text(title.tr,
-            style: rubikMedium.copyWith(color: Theme.of(context).textTheme.bodyText1.color)):
-          Text(title.tr,
+        Text(title!.tr,
+            style: rubikMedium.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color)):
+          Text(title!.tr,
             style: rubikMedium.copyWith(color: Theme.of(context).hintColor)),
          SizedBox(width: Dimensions.paddingSizeDefault),
 
@@ -61,16 +61,16 @@ class OrderItemInfoWidget extends StatelessWidget {
             color: Theme.of(context).primaryColor.withOpacity(.05),
             padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraSmall),
             child: Row( children: [
-              Text(PriceConverter.convertPrice(double.parse(info)),style: rubikMedium),
+              Text(PriceConverter.convertPrice(double.parse(info!)),style: rubikMedium),
             ],),),):
         isDate?
 
         Directionality(
           textDirection: TextDirection.ltr,
-            child: Text(DateConverter.isoStringToDateTimeString(info),style: rubikRegular.copyWith())):
+            child: Text(DateConverter.isoStringToDateTimeString(info!),style: rubikRegular.copyWith())):
         isPrice?
-        Text(PriceConverter.convertPrice(double.parse(info)),style: rubikMedium.copyWith()):
-        Flexible(child: Text(info.tr,textAlign: TextAlign.right,maxLines: 2,overflow: TextOverflow.clip,style: rubikRegular.copyWith())),
+        Text(PriceConverter.convertPrice(double.parse(info!)),style: rubikMedium.copyWith()):
+        Flexible(child: Text(info!.tr,textAlign: TextAlign.right,maxLines: 2,overflow: TextOverflow.clip,style: rubikRegular.copyWith())),
 
       ],),
     );

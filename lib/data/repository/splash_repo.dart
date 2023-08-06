@@ -7,7 +7,7 @@ import 'package:bed3aDelivery/utill/app_constants.dart';
 class SplashRepo {
   ApiClient apiClient;
   final SharedPreferences sharedPreferences;
-  SplashRepo({@required this.sharedPreferences, @required this.apiClient});
+  SplashRepo({required this.sharedPreferences, required this.apiClient});
 
   Future<Response> getConfigData() async {
     Response _response = await apiClient.getData(AppConstants.configUri);
@@ -19,10 +19,10 @@ class SplashRepo {
       return sharedPreferences.setBool(AppConstants.theme, false);
     }
     if(!sharedPreferences.containsKey(AppConstants.countryCode)) {
-      return sharedPreferences.setString(AppConstants.countryCode, AppConstants.languages[0].countryCode);
+      return sharedPreferences.setString(AppConstants.countryCode, AppConstants.languages[0].countryCode!);
     }
     if(!sharedPreferences.containsKey(AppConstants.languageCode)) {
-      return sharedPreferences.setString(AppConstants.languageCode, AppConstants.languages[0].languageCode);
+      return sharedPreferences.setString(AppConstants.languageCode, AppConstants.languages[0].languageCode!);
     }
     if(!sharedPreferences.containsKey(AppConstants.intro)) {
       sharedPreferences.setBool(AppConstants.intro, true);
@@ -48,12 +48,12 @@ class SplashRepo {
     sharedPreferences.setBool(AppConstants.intro, false);
   }
 
-  bool showIntro() {
+  bool? showIntro() {
     if(AppConstants.intro != null){
       if(!sharedPreferences.containsKey(AppConstants.intro)) {
         sharedPreferences.setBool(AppConstants.intro, true);
       }
-      return sharedPreferences.getBool(AppConstants.intro?? true);
+      return sharedPreferences.getBool(AppConstants.intro?? true as String);
     }
     return false;
 
@@ -66,12 +66,12 @@ class SplashRepo {
     sharedPreferences.setBool(AppConstants.notificationSound, true);
   }
 
-  bool notificationSound() {
+  bool? notificationSound() {
     if(AppConstants.notificationSound != null){
       if(!sharedPreferences.containsKey(AppConstants.notificationSound)) {
         sharedPreferences.setBool(AppConstants.notificationSound, true);
       }
-      return sharedPreferences.getBool(AppConstants.notificationSound?? true);
+      return sharedPreferences.getBool(AppConstants.notificationSound?? true as String);
     }
     return false;
 

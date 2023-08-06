@@ -8,7 +8,7 @@ import 'package:bed3aDelivery/utill/app_constants.dart';
 class NotificationRepo {
   final ApiClient apiClient;
   final SharedPreferences sharedPreferences;
-  NotificationRepo({@required this.apiClient, @required this.sharedPreferences});
+  NotificationRepo({required this.apiClient, required this.sharedPreferences});
 
   Future<Response> getNotificationList(int offset) async {
     return await apiClient.getData('${AppConstants.notificationUri}?limit=20&offset=$offset');
@@ -20,7 +20,7 @@ class NotificationRepo {
     sharedPreferences.setInt(AppConstants.notificationCount, count);
   }
 
-  int getSeenNotificationCount() {
+  int? getSeenNotificationCount() {
     return sharedPreferences.getInt(AppConstants.notificationCount);
   }
 }

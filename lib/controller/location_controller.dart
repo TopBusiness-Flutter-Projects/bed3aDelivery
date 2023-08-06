@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LocationController extends GetxController implements GetxService{
 
   final SharedPreferences sharedPreferences;
-  LocationController({@required this.sharedPreferences});
+  LocationController({required this.sharedPreferences});
   Placemark _address = Placemark();
 
   Placemark get address => _address;

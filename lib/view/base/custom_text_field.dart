@@ -4,13 +4,13 @@ import 'package:bed3aDelivery/utill/color_resources.dart';
 import 'package:bed3aDelivery/utill/dimensions.dart';
 
 class CustomTextField extends StatefulWidget {
-  final String hintText;
-  final TextEditingController controller;
-  final FocusNode focusNode;
-  final FocusNode nextFocus;
+  final String? hintText;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final FocusNode? nextFocus;
   final TextInputType inputType;
   final TextInputAction inputAction;
-  final Color fillColor;
+  final Color? fillColor;
   final int maxLines;
   final bool isPassword;
   final bool isCountryPicker;
@@ -19,16 +19,16 @@ class CustomTextField extends StatefulWidget {
   final bool isShowSuffixIcon;
   final bool isShowPrefixIcon;
   final bool noBg;
-  final Function onTap;
-  final String suffixIconUrl;
-  final String prefixIconUrl;
+  final Function? onTap;
+  final String? suffixIconUrl;
+  final String? prefixIconUrl;
   final bool isSearch;
   final bool isDisable;
   final bool noPadding;
 
 
   const CustomTextField(
-      {Key key, this.hintText = 'Write something...',
+      {Key? key, this.hintText = 'Write something...',
       this.controller,
       this.focusNode,
       this.nextFocus,
@@ -71,7 +71,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             maxLines: widget.maxLines,
             controller: widget.controller,
             focusNode: widget.focusNode,
-            style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).highlightColor, fontSize: Dimensions.fontSizeDefault),
+            style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Theme.of(context).highlightColor, fontSize: Dimensions.fontSizeDefault),
             textInputAction: widget.inputAction,
             keyboardType: widget.inputType,
             cursorColor: Theme.of(context).primaryColor,
@@ -79,7 +79,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             //onChanged: widget.isSearch ? widget.languageProvider.searchLanguage : null,
             obscureText: widget.isPassword ? _obscureText : false,
             decoration: InputDecoration(
-              contentPadding:  EdgeInsets.symmetric(vertical: Get.context.width <= 400? 14 : 16, horizontal: 22),
+              contentPadding:  EdgeInsets.symmetric(vertical: Get.context!.width <= 400? 14 : 16, horizontal: 22),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(Dimensions.topSpace),
                 borderSide: const BorderSide(style: BorderStyle.none, width: 0),
@@ -87,16 +87,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
               isDense: true,
               hintText: widget.hintText,
               fillColor: widget.fillColor ?? Theme.of(context).canvasColor,
-              hintStyle: Theme.of(context).textTheme.headline2.copyWith(fontSize: Dimensions.fontSizeDefault,
+              hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: Dimensions.fontSizeDefault,
                   color:Get.isDarkMode? Theme.of(context).hintColor.withOpacity(.5): ColorResources.colorGreyChateau),
               filled: true,
               prefixIcon: widget.isShowPrefixIcon
                   ? Padding(
                       padding:  EdgeInsets.only(left: Dimensions.paddingSizeLarge, right: Dimensions.paddingSizeSmall),
-                      child: Image.asset(widget.prefixIconUrl),
+                      child: Image.asset(widget.prefixIconUrl!),
                     )
-                  : widget.noBg ? Image.asset(widget.prefixIconUrl,color: widget.isDisable? Theme.of(context).primaryColor: Theme.of(context).hintColor) : const SizedBox.shrink(),
-              prefixIconConstraints:  BoxConstraints(minWidth:  widget.noPadding ? 5 : 50, maxHeight: Get.context.width <= 400? 10: 20),
+                  : widget.noBg ? Image.asset(widget.prefixIconUrl!,color: widget.isDisable? Theme.of(context).primaryColor: Theme.of(context).hintColor) : const SizedBox.shrink(),
+              prefixIconConstraints:  BoxConstraints(minWidth:  widget.noPadding ? 5 : 50, maxHeight: Get.context!.width <= 400? 10: 20),
               suffixIcon: widget.isShowSuffixIcon
                   ? widget.isPassword
                       ? IconButton(
@@ -106,7 +106,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                           ? Padding(
                               padding:  EdgeInsets.only(left: Dimensions.paddingSizeLarge, right: Dimensions.paddingSizeSmall),
                               child: Image.asset(
-                                widget.suffixIconUrl,
+                                widget.suffixIconUrl!,
                                 width: 15,
                                 height: 15,
                               ),
@@ -114,7 +114,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                           : null
                   : null,
             ),
-            onTap: widget.onTap,
+            onTap: widget.onTap as void Function()?,
             onSubmitted: (text) => widget.nextFocus != null ? FocusScope.of(context).requestFocus(widget.nextFocus) : null,
           ),
         ),

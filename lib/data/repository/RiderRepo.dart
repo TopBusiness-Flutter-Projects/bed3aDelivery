@@ -7,7 +7,7 @@ import 'package:bed3aDelivery/utill/app_constants.dart';
 class RiderRepo {
   final ApiClient apiClient;
 
-  RiderRepo({@required this.apiClient});
+  RiderRepo({required this.apiClient});
 
   Future<Response> getDistanceInMeter(LatLng from, LatLng to) async {
     return await apiClient.postData(AppConstants.distanceApi, {

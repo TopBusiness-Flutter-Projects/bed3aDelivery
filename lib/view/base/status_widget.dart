@@ -6,14 +6,14 @@ import 'package:bed3aDelivery/utill/dimensions.dart';
 
 class StatusWidget extends StatefulWidget {
 
-  const StatusWidget({Key key}) : super(key: key);
+  const StatusWidget({Key? key}) : super(key: key);
 
   @override
   State<StatusWidget> createState() => _StatusWidgetState();
 }
 
 class _StatusWidgetState extends State<StatusWidget> {
-  ThemeController themeController;
+  late ThemeController themeController;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class _StatusWidgetState extends State<StatusWidget> {
             Expanded(
                 child: Text('dark'.tr,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline2.copyWith(
+                  style: Theme.of(context).textTheme.displayMedium!.copyWith(
                     color: ColorResources.colorWhite,
                     fontSize: Dimensions.fontSizeSmall,
                   ),
@@ -67,7 +67,7 @@ class _StatusWidgetState extends State<StatusWidget> {
                 child: Text(
                   'light'.tr,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline2.copyWith(
+                  style: Theme.of(context).textTheme.displayMedium!.copyWith(
                     color: ColorResources.colorWhite,
                     fontSize: Dimensions.fontSizeSmall,
                   ),

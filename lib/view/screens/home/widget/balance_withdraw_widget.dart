@@ -9,8 +9,8 @@ import 'package:bed3aDelivery/view/screens/wallet/wallet_screen.dart';
 
 
 class BalanceWithdrawWidget extends StatelessWidget {
-  final ProfileController profileController;
-  const BalanceWithdrawWidget({Key key, this.profileController}) : super(key: key);
+  final ProfileController? profileController;
+  const BalanceWithdrawWidget({Key? key, this.profileController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class BalanceWithdrawWidget extends StatelessWidget {
         Expanded(
           child: Column(mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,children: [
 
-            Text(PriceConverter.convertPrice(profileController.profileModel.withdrawableBalance),
+            Text(PriceConverter.convertPrice(profileController!.profileModel!.withdrawableBalance),
                 style: rubikMedium.copyWith(color: Theme.of(context).primaryColorLight, fontSize: Dimensions.fontSizeExtraLarge)),
              SizedBox(height: Dimensions.paddingSizeDefault),
 

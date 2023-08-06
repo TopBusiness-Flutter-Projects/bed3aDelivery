@@ -7,12 +7,12 @@ import 'package:bed3aDelivery/utill/styles.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool isBackButtonExist;
-  const CustomAppBar({Key key, @required this.title, this.isBackButtonExist = true}) : super(key: key);
+  const CustomAppBar({Key? key, required this.title, this.isBackButtonExist = true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title, style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).textTheme.bodyText1.color)),
+      title: Text(title, style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).textTheme.bodyLarge!.color)),
       centerTitle: true,
       leading: isBackButtonExist ?
       GestureDetector(onTap: ()=> Get.back(),

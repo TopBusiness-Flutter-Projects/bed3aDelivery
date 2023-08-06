@@ -13,7 +13,7 @@ import 'package:http/http.dart' as http;
 class AuthRepo {
   final ApiClient apiClient;
   final SharedPreferences sharedPreferences;
-  AuthRepo({@required this.apiClient, @required this.sharedPreferences});
+  AuthRepo({required this.apiClient, required this.sharedPreferences});
 
   Future<Response> login(String countryCode, String phone, String password) async {
     return await apiClient.postData(AppConstants.loginUri,
@@ -22,7 +22,7 @@ class AuthRepo {
 
 
 
-  Future<http.StreamedResponse> updateProfile(UserInfoModel userInfoModel, String password, File file, String token) async {
+  Future<http.StreamedResponse> updateProfile(UserInfoModel userInfoModel, String password, File? file, String token) async {
     http.MultipartRequest request = http.MultipartRequest('POST', Uri.parse('${AppConstants.baseUri}${AppConstants.profileUpdateUri}'));
     request.headers.addAll(<String,String>{'Authorization': 'Bearer $token'});
     if(file != null){
@@ -31,15 +31,15 @@ class AuthRepo {
     Map<String, String> _fields = {};
 
       _fields.addAll(<String, String>{
-        '_method': 'put', 'f_name': userInfoModel.fName,
-        'l_name': userInfoModel.lName,
-        'address': userInfoModel.address,
+        '_method': 'put', 'f_name': userInfoModel.fName!,
+        'l_name': userInfoModel.lName!,
+        'address': userInfoModel.address!,
         'password': password,
         'confirm_password' : password,
       });
 
     request.fields.addAll(_fields);
-    print('========>${file}/${_fields.toString()}');
+    print('========>$file/${_fields.toString()}');
     http.StreamedResponse response = await request.send();
     return response;
   }
@@ -58,7 +58,7 @@ class AuthRepo {
 
 
   Future<Response> updateToken() async {
-    String _deviceToken;
+    String? _deviceToken;
     if (GetPlatform.isIOS) {
       NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
         alert: true, announcement: false, badge: true, carPlay: false,
@@ -86,10 +86,10 @@ class AuthRepo {
   }
 
 
-  Future<String> _saveDeviceToken() async {
-    String _deviceToken = '';
+  Future<String?> _saveDeviceToken() async {
+    String? _deviceToken = '';
     if(!GetPlatform.isWeb) {
-      _deviceToken = await FirebaseMessaging.instance.getToken();
+      _deviceToken = (await FirebaseMessaging.instance.getToken())!;
     }
     if (_deviceToken != null) {
     }

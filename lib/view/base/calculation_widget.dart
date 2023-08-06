@@ -8,17 +8,17 @@ import 'package:bed3aDelivery/utill/dimensions.dart';
 import 'package:bed3aDelivery/utill/styles.dart';
 
 class CalculationWidget extends StatelessWidget {
-  final String title;
-  final double amount;
+  final String? title;
+  final double? amount;
   final bool isTotalAmount;
   final bool isWithdrawable;
-  final Function onTap;
-  const CalculationWidget({Key key, this.title, this.amount, this.isTotalAmount = false, this.isWithdrawable = false, this.onTap}) : super(key: key);
+  final Function? onTap;
+  const CalculationWidget({Key? key, this.title, this.amount, this.isTotalAmount = false, this.isWithdrawable = false, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: onTap as void Function()?,
       child: Padding(
         padding:  EdgeInsets.only(left : Dimensions.paddingSizeExtraSmall),
         child: Row(
@@ -33,12 +33,12 @@ class CalculationWidget extends StatelessWidget {
               child: Center(
                 child: Column(mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center, children: [
-                    Text('${Get.find<SplashController>().myCurrency.symbol} ${NumberFormat.compact().format(amount)}',style:
+                    Text('${Get.find<SplashController>().myCurrency!.symbol} ${NumberFormat.compact().format(amount)}',style:
                     rubikBold.copyWith(color: Colors.white,
                         fontSize: Dimensions.fontSizeLarge)),
                      SizedBox(height: Dimensions.paddingSizeSmall),
 
-                    Text(title,maxLines : 2,textAlign: TextAlign.center,
+                    Text(title!,maxLines : 2,textAlign: TextAlign.center,
                       style: rubikRegular.copyWith(color: Colors.white,
                           fontSize: Dimensions.fontSizeSmall),),
 

@@ -11,7 +11,7 @@ import 'package:bed3aDelivery/view/base/flutter_custom_switch.dart';
 
 class OnlineOfflineButton extends StatelessWidget {
   final bool showProfileImage;
-  const OnlineOfflineButton({Key key, this.showProfileImage = true}) : super(key: key);
+  const OnlineOfflineButton({Key? key, this.showProfileImage = true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,22 +31,22 @@ class OnlineOfflineButton extends StatelessWidget {
           activeIcon: showProfileImage ? ClipRRect(
             borderRadius: BorderRadius.circular(50),
             child: CustomImage(
-              image: '${Get.find<SplashController>().baseUrls.reviewImageUrl}/delivery-man/${Get.find<ProfileController>().profileModel.image}',
+              image: '${Get.find<SplashController>().baseUrls!.reviewImageUrl}/delivery-man/${Get.find<ProfileController>().profileModel!.image}',
               height: 30, width: 30, fit: BoxFit.cover,
             ),
           ): const SizedBox(),
           inactiveIcon: ClipRRect(
             borderRadius: BorderRadius.circular(50),
             child: CustomImage(
-              image: '${Get.find<SplashController>().baseUrls.reviewImageUrl}/delivery-man/${Get.find<ProfileController>().profileModel.image}',
+              image: '${Get.find<SplashController>().baseUrls!.reviewImageUrl}/delivery-man/${Get.find<ProfileController>().profileModel!.image}',
               height: 30, width: 30, fit: BoxFit.cover,
             ),
           ),
-          value: profileController.profileModel.isActive == 1? true : false,
+          value: profileController.profileModel!.isActive == 1? true : false,
           onToggle: (bool isActive) async {
               Get.dialog(ConfirmationDialog(
                 icon: Images.logo,
-                description:profileController.profileModel.isActive == 1?
+                description:profileController.profileModel!.isActive == 1?
                 'are_you_sure_to_offline'.tr : 'are_you_sure_to_online'.tr,
                 onYesPressed: () {
                   if(isActive){

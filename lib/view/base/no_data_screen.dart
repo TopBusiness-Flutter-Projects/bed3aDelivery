@@ -6,7 +6,7 @@ import 'package:bed3aDelivery/utill/styles.dart';
 
 
 class NoDataScreen extends StatelessWidget {
-  const NoDataScreen({Key key}) : super(key: key);
+  const NoDataScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

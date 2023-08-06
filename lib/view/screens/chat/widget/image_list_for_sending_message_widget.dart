@@ -5,7 +5,7 @@ import 'package:bed3aDelivery/controller/chat_controller.dart';
 import 'package:bed3aDelivery/utill/dimensions.dart';
 
 class ImageSectionFoeSendingMessage extends StatelessWidget {
-  const ImageSectionFoeSendingMessage({Key key}) : super(key: key);
+  const ImageSectionFoeSendingMessage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,9 @@ class ImageSectionFoeSendingMessage extends StatelessWidget {
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
-              itemCount: chatController.chatImage.length,
+              itemCount: chatController.chatImage!.length,
               itemBuilder: (BuildContext context, index){
-                return  chatController.chatImage.isNotEmpty ?
+                return  chatController.chatImage!.isNotEmpty ?
                 Padding(padding: const EdgeInsets.all(8.0),
                   child: Stack(children: [
 
@@ -25,7 +25,7 @@ class ImageSectionFoeSendingMessage extends StatelessWidget {
                       decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(20))),
                       child: ClipRRect(
                         borderRadius:  BorderRadius.all(Radius.circular(Dimensions.paddingSizeDefault)),
-                        child:  Image.file(File(chatController.chatImage[index].path), width: 100, height: 100, fit: BoxFit.cover))),
+                        child:  Image.file(File(chatController.chatImage![index].path), width: 100, height: 100, fit: BoxFit.cover))),
 
 
 

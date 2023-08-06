@@ -10,7 +10,7 @@ import 'package:bed3aDelivery/view/screens/order/widget/custom_divider.dart';
 
 class TransactionCardWidget extends StatelessWidget {
   final Orders orders;
-  const TransactionCardWidget({Key key, @required this.orders}) : super(key: key);
+  const TransactionCardWidget({Key? key, required this.orders}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class TransactionCardWidget extends StatelessWidget {
       Padding(
         padding:  EdgeInsets.fromLTRB(Dimensions.paddingSizeOverLarge,0,0,0,),
         child: Row(children: [
-          Expanded(child: Text(DateConverter.isoStringToDateTimeString(orders.updatedAt).toString(),
+          Expanded(child: Text(DateConverter.isoStringToDateTimeString(orders.updatedAt!).toString(),
             style: rubikRegular.copyWith(color: Theme.of(context).hintColor,fontSize: Dimensions.fontSizeSmall),)),
           Container(decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),

@@ -7,12 +7,12 @@ enum NotificationType{
 }
 
 class NotificationBody {
-  NotificationType notificationType;
-  int orderId;
-  int customerId;
-  int vendorId;
-  String type;
-  int conversationId;
+  NotificationType? notificationType;
+  int? orderId;
+  int? customerId;
+  int? vendorId;
+  String? type;
+  int? conversationId;
 
   NotificationBody({
     this.notificationType,
@@ -43,7 +43,7 @@ class NotificationBody {
     return data;
   }
 
-  NotificationType convertToEnum(String enumString) {
+  NotificationType convertToEnum(String? enumString) {
     if(enumString == NotificationType.general.toString()) {
       return NotificationType.general;
     }else if(enumString == NotificationType.order.toString()) {

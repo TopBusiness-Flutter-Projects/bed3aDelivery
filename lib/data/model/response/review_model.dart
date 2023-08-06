@@ -1,8 +1,8 @@
 class ReviewModel {
-  int totalSize;
-  String limit;
-  String offset;
-  List<Review> review;
+  int? totalSize;
+  String? limit;
+  String? offset;
+  List<Review>? review;
 
   ReviewModel({this.totalSize, this.limit, this.offset, this.review});
 
@@ -13,7 +13,7 @@ class ReviewModel {
     if (json['review'] != null) {
       review = <Review>[];
       json['review'].forEach((v) {
-        review.add(Review.fromJson(v));
+        review!.add(Review.fromJson(v));
       });
     }
   }
@@ -24,25 +24,25 @@ class ReviewModel {
     data['limit'] = limit;
     data['offset'] = offset;
     if (review != null) {
-      data['review'] = review.map((v) => v.toJson()).toList();
+      data['review'] = review!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Review {
-  int id;
-  int productId;
-  int customerId;
-  int bed3aDeliveryId;
-  int orderId;
-  String comment;
-  int rating;
-  int status;
-  String createdAt;
-  String updatedAt;
-  Customer customer;
-  int isSaved;
+  int? id;
+  int? productId;
+  int? customerId;
+  int? bed3aDeliveryId;
+  int? orderId;
+  String? comment;
+  int? rating;
+  int? status;
+  String? createdAt;
+  String? updatedAt;
+  Customer? customer;
+  int? isSaved;
 
   Review(
       {this.id,
@@ -94,7 +94,7 @@ class Review {
     data['updated_at'] = updatedAt;
     data['is_saved'] = isSaved;
     if (customer != null) {
-      data['customer'] = customer.toJson();
+      data['customer'] = customer!.toJson();
     }
 
     return data;
@@ -102,10 +102,10 @@ class Review {
 }
 
 class Customer {
-  int id;
-  String fName;
-  String lName;
-  String image;
+  int? id;
+  String? fName;
+  String? lName;
+  String? image;
 
   Customer(
       {this.id,

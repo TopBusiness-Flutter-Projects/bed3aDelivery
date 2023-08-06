@@ -14,7 +14,7 @@ import 'package:bed3aDelivery/view/base/custom_text_field.dart';
 import 'package:bed3aDelivery/view/screens/wallet/widget/bank_info_view.dart';
 
 class BalanceWithdrawScreen extends StatefulWidget {
-  const BalanceWithdrawScreen({Key key}) : super(key: key);
+  const BalanceWithdrawScreen({Key? key}) : super(key: key);
 
   @override
   State<BalanceWithdrawScreen> createState() => _BalanceWithdrawScreenState();
@@ -52,7 +52,7 @@ class _BalanceWithdrawScreenState extends State<BalanceWithdrawScreen> {
                               style: rubikMedium.copyWith(color:Get.isDarkMode? Theme.of(context).hintColor.withOpacity(.5) : Theme.of(context).primaryColor,fontSize: Dimensions.fontSizeDefault)),
                         ),
                       ],),
-                      Text(PriceConverter.convertPrice(profileController.profileModel.withdrawableBalance),
+                      Text(PriceConverter.convertPrice(profileController.profileModel!.withdrawableBalance),
                           style: rubikBold.copyWith(color: Get.isDarkMode? Colors.white :
                           Theme.of(context).primaryColor, fontSize: Dimensions.fontSizeLarge))
                     ],
@@ -64,7 +64,7 @@ class _BalanceWithdrawScreenState extends State<BalanceWithdrawScreen> {
                   child: GetBuilder<ProfileController>(
                     builder: (profileController) {
 
-                      String accountNumber = profileController.profileModel.accountNo;
+                      String? accountNumber = profileController.profileModel!.accountNo;
                       String firstPart = '';
                       String lastPart = '';
                       if(accountNumber != null){
@@ -79,7 +79,7 @@ class _BalanceWithdrawScreenState extends State<BalanceWithdrawScreen> {
                           decoration: BoxDecoration(
                         color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(Dimensions.paddingSizeExtraSmall),
-                        boxShadow: [BoxShadow(color: Get.isDarkMode ? Colors.grey[900] :Colors.grey[300], blurRadius: 5, spreadRadius: 1, offset: const Offset(0,2))],
+                        boxShadow: [BoxShadow(color: Get.isDarkMode ? Colors.grey[900]! :Colors.grey[300]!, blurRadius: 5, spreadRadius: 1, offset: const Offset(0,2))],
                       ),
                           padding:  EdgeInsets.all(Dimensions.paddingSizeDefault),
                           child: Row(children: [
@@ -87,7 +87,7 @@ class _BalanceWithdrawScreenState extends State<BalanceWithdrawScreen> {
                              SizedBox(width: Dimensions.paddingSizeDefault,),
                             Expanded(
                               child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
-                                Text(profileController.profileModel.bankName?? 'add_a_bank_account'.tr),
+                                Text(profileController.profileModel!.bankName?? 'add_a_bank_account'.tr),
                                 Text('AC $acNumber',style: rubikRegular.copyWith(color: Theme.of(context).hintColor),),
                               ],),
                             ),
@@ -107,7 +107,7 @@ class _BalanceWithdrawScreenState extends State<BalanceWithdrawScreen> {
                   decoration: BoxDecoration(
                   color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(Dimensions.paddingSizeExtraSmall),
-                  boxShadow: [BoxShadow(color: Get.isDarkMode ? Colors.grey[900] :Colors.grey[300], blurRadius: 5, spreadRadius: 1, offset: const Offset(0,2))],
+                  boxShadow: [BoxShadow(color: Get.isDarkMode ? Colors.grey[900]! :Colors.grey[300]!, blurRadius: 5, spreadRadius: 1, offset: const Offset(0,2))],
                 ),
                     padding:  EdgeInsets.all(Dimensions.paddingSizeDefault),
                     child: Column(crossAxisAlignment: CrossAxisAlignment.center,children: [
@@ -129,7 +129,7 @@ class _BalanceWithdrawScreenState extends State<BalanceWithdrawScreen> {
                            ),
                            Container(
                              transform: Matrix4.translationValues(30.0, 12.0, 0.0),
-                             child: Text(Get.find<SplashController>().myCurrency.symbol,
+                             child: Text(Get.find<SplashController>().myCurrency!.symbol!,
                                  style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge,
                                      color: Theme.of(context).primaryColor)),
                            ),

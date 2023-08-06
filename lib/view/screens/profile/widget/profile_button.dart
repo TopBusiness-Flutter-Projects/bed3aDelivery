@@ -7,14 +7,14 @@ class ProfileButton extends StatelessWidget {
   final String icon;
   final String title;
   final Function onTap;
-  const ProfileButton({Key key, @required this.icon, @required this.title, @required this.onTap}) : super(key: key);
+  const ProfileButton({Key? key, required this.icon, required this.title, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding:  EdgeInsets.only(bottom: Dimensions.paddingSizeSmall),
       child: GestureDetector(
-        onTap: onTap,
+        onTap: onTap as void Function()?,
         child: Container(width: MediaQuery.of(context).size.width,
           color: Theme.of(context).canvasColor,
           child: Column(

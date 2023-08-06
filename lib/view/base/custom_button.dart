@@ -4,19 +4,19 @@ import 'package:bed3aDelivery/utill/color_resources.dart';
 import 'package:bed3aDelivery/utill/dimensions.dart';
 
 class CustomButton extends StatelessWidget {
-  final Function onTap;
+  final Function? onTap;
   final String btnTxt;
   final bool isShowBorder;
   final bool transparent;
   final bool withIcon;
-  final IconData icon;
+  final IconData? icon;
 
-  const CustomButton({Key key, this.onTap, @required this.btnTxt, this.isShowBorder = false, this.transparent = false, this.withIcon = false, this.icon}) : super(key: key);
+  const CustomButton({Key? key, this.onTap, required this.btnTxt, this.isShowBorder = false, this.transparent = false, this.withIcon = false, this.icon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap as void Function()?,
       child: Container(
         height: 50,
         width: MediaQuery.of(context).size.width,
@@ -31,11 +31,11 @@ class CustomButton extends StatelessWidget {
             withIcon?
             Icon(icon,color: Get.isDarkMode? Theme.of(context).hintColor.withOpacity(.5) : Theme.of(context).cardColor) : const SizedBox(),
             TextButton(
-              onPressed: onTap,
+              onPressed: onTap as void Function()?,
               style: TextButton.styleFrom(padding: const EdgeInsets.all(0)),
               child: Text(btnTxt ?? "",
-                  style: Theme.of(context).textTheme.headline3.copyWith(
-                      color:Get.isDarkMode? Theme.of(context).hintColor.withOpacity(.5) : isShowBorder ? Theme.of(context).textTheme.bodyText1.color :
+                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                      color:Get.isDarkMode? Theme.of(context).hintColor.withOpacity(.5) : isShowBorder ? Theme.of(context).textTheme.bodyLarge!.color :
                       Theme.of(context).primaryColorDark, fontSize: Dimensions.fontSizeLarge)),
             ),
           ],

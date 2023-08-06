@@ -12,8 +12,8 @@ import 'package:bed3aDelivery/view/screens/order/widget/customer_info_widget.dar
 
 
 class OrderHistoryItemWidget extends StatelessWidget {
-  final OrderModel orderModel;
-  const OrderHistoryItemWidget({Key key, this.orderModel}) : super(key: key);
+  final OrderModel? orderModel;
+  const OrderHistoryItemWidget({Key? key, this.orderModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,27 +36,27 @@ class OrderHistoryItemWidget extends StatelessWidget {
                   alignment: Get.find<LocalizationController>().isLtr? Alignment.topRight: Alignment.topLeft,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8.0),
-                    child: SizedBox(width: Get.find<LocalizationController>().isLtr? Get.context.width<= 400? 160 : 170 :Get.context.width<= 400? 140 : 150,
+                    child: SizedBox(width: Get.find<LocalizationController>().isLtr? Get.context!.width<= 400? 160 : 170 :Get.context!.width<= 400? 140 : 150,
                       child: Column(children: [
                         Row(children: [
                           Row(
                             children: [
                               Text('${'assigned'.tr} : ',style: rubikRegular.copyWith(color: Theme.of(context).hintColor, fontSize: Dimensions.fontSizeSmall),),
-                              Text(DateConverter.isoStringToLocalDateOnly(orderModel.createdAt), style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall),),
+                              Text(DateConverter.isoStringToLocalDateOnly(orderModel!.createdAt!), style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall),),
                             ],
                           ),
                            SizedBox(width: Dimensions.paddingSizeSmall),
                           SizedBox(width: Dimensions.iconSizeDefault, child: Image.asset(Images.calenderIcon,
                               color: Theme.of(context).primaryColor.withOpacity(.5)))
                         ],),
-                        orderModel.expectedDate != null?
+                        orderModel!.expectedDate != null?
                         Padding(
                           padding:  EdgeInsets.only(top: Dimensions.paddingSizeExtraSmall),
                           child: Row(
                             children: [
                               Text('${'expected_date'.tr} : ',
                                 style: rubikRegular.copyWith(color: Theme.of(context).hintColor, fontSize: Dimensions.fontSizeSmall),),
-                              Text(orderModel.expectedDate, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall),),
+                              Text(orderModel!.expectedDate!, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall),),
                             ],
                           ),
                         ): const SizedBox(),
@@ -73,7 +73,7 @@ class OrderHistoryItemWidget extends StatelessWidget {
                       padding:  EdgeInsets.only(left: 7,top: Dimensions.paddingSizeSmall),
                       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                         Expanded(
-                          child: Text('${'order'.tr} #${orderModel.id}',
+                          child: Text('${'order'.tr} #${orderModel!.id}',
                               style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge,
                                   color: Theme.of(context).colorScheme.secondary)),
                         ),

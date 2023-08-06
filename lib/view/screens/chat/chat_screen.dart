@@ -9,9 +9,9 @@ import 'package:bed3aDelivery/view/screens/chat/widget/message_sendig_section_wi
 
 
 class ChatScreen extends StatefulWidget {
-  final int userId;
-  final String name;
-  const ChatScreen({Key key, @required this.userId, this.name = 'chat'}) : super(key: key);
+  final int? userId;
+  final String? name;
+  const ChatScreen({Key? key, required this.userId, this.name = 'chat'}) : super(key: key);
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -41,7 +41,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
               !chatController.isLoading?
                Expanded(
-                  child: (chatController.messageModel.message != null && chatController.messageModel.message.isNotEmpty) ?
+                  child: (chatController.messageModel!.message != null && chatController.messageModel!.message!.isNotEmpty) ?
                   MessageListView(chatController: chatController, scrollController: _scrollController, userId: widget.userId) :
                   const SizedBox()): Expanded(child: CustomLoader(height: Get.height-300,)),
               Container(

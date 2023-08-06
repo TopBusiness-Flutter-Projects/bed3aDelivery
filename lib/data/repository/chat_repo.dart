@@ -7,7 +7,7 @@ import 'package:bed3aDelivery/utill/app_constants.dart';
 class ChatRepo {
   final ApiClient apiClient;
   final SharedPreferences sharedPreferences;
-  ChatRepo({@required this.apiClient, @required this.sharedPreferences});
+  ChatRepo({required this.apiClient, required this.sharedPreferences});
 
 
   Future<Response> getConversationList(int offset, String userType) async {
@@ -18,7 +18,7 @@ class ChatRepo {
     return apiClient.getData(AppConstants.searchConversationListUri + '?name=$name&limit=20&offset=1');
   }
 
-  Future<Response> getMessagesList(int offset, String userType, int id) async {
+  Future<Response> getMessagesList(int offset, String userType, int? id) async {
     return await apiClient.getData('${AppConstants.messageListUri}$userType/$id?offset=$offset&limit=10');
   }
 
@@ -26,7 +26,7 @@ class ChatRepo {
     return await apiClient.getData('${AppConstants.chatSearch}$userType?search=$search');
   }
 
-  Future<Response> sendMessage(String message, int userId, String userType) async {
+  Future<Response> sendMessage(String message, int? userId, String userType) async {
     return apiClient.postData('${AppConstants.sendMessageUri}$userType',
       {'message': message, 'id': userId });
   }

@@ -11,9 +11,9 @@ import 'package:bed3aDelivery/view/screens/order/widget/order_item_info_widget.d
 
 
 class CustomerWidget extends StatelessWidget {
-  final OrderModel orderModel;
-  final int index;
-  const CustomerWidget({Key key, this.orderModel, this.index}) : super(key: key);
+  final OrderModel? orderModel;
+  final int? index;
+  const CustomerWidget({Key? key, this.orderModel, this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class CustomerWidget extends StatelessWidget {
       padding:  EdgeInsets.all(Dimensions.paddingSizeSmall),
       decoration: BoxDecoration(color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [BoxShadow(color: Colors.grey[Get.find<ThemeController>().darkTheme ? 700 : 100],
+        boxShadow: [BoxShadow(color: Colors.grey[Get.find<ThemeController>().darkTheme ? 700 : 100]!,
           blurRadius: 5, spreadRadius: 1)]),
 
 
@@ -40,12 +40,12 @@ class CustomerWidget extends StatelessWidget {
         Padding(
           padding:  EdgeInsets.fromLTRB(Dimensions.paddingSizeDefault, 0, Dimensions.paddingSizeDefault, 0),
           child: Column(children: [
-            OrderItemInfoWidget(title: 'name',info: '${orderModel.customer?.fName?? ''} ${orderModel.customer?.lName??''}'),
-            OrderItemInfoWidget(title: 'contact',info: orderModel.customer?.phone??''),
-            OrderItemInfoWidget(title: 'location', info: orderModel.shippingAddressData != null ?
-            '${jsonDecode(orderModel.shippingAddressData)['address']}, '
-                '${jsonDecode(orderModel.shippingAddressData)['city']}, '
-                '${jsonDecode(orderModel.shippingAddressData)['zip']}' :  ''),
+            OrderItemInfoWidget(title: 'name',info: '${orderModel!.customer?.fName?? ''} ${orderModel!.customer?.lName??''}'),
+            OrderItemInfoWidget(title: 'contact',info: orderModel!.customer?.phone??''),
+            OrderItemInfoWidget(title: 'location', info: orderModel!.shippingAddressData != null ?
+            '${jsonDecode(orderModel!.shippingAddressData!)['address']}, '
+                '${jsonDecode(orderModel!.shippingAddressData!)['city']}, '
+                '${jsonDecode(orderModel!.shippingAddressData!)['zip']}' :  ''),
           ]),
         ),
          SizedBox(height: Dimensions.paddingSizeDefault),

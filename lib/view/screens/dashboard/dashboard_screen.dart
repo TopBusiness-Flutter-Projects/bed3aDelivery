@@ -19,14 +19,14 @@ import 'package:bed3aDelivery/view/base/custom_botom_navy_bar.dart';
 
 class DashboardScreen extends StatefulWidget {
   final int pageIndex;
-   const DashboardScreen({Key key, @required this.pageIndex}) : super(key: key);
+   const DashboardScreen({Key? key, required this.pageIndex}) : super(key: key);
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
 
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
   final PageStorageBucket bucket = PageStorageBucket();
 
   @override
@@ -37,7 +37,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     var iOSInitialize = const IOSInitializationSettings();
     var initializationsSettings = InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    flutterLocalNotificationsPlugin.initialize(initializationsSettings);
+    flutterLocalNotificationsPlugin!.initialize(initializationsSettings);
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       debugPrint("onMessage: ${message.data}");
@@ -71,7 +71,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         return Scaffold(
           resizeToAvoidBottomInset: false,
 
-          body: PageStorage(bucket: bucket, child: menuController.currentScreen),
+          body: PageStorage(bucket: bucket, child: menuController.currentScreen!),
 
           bottomNavigationBar: BottomNavyBar(
             selectedIndex: menuController.currentTab,

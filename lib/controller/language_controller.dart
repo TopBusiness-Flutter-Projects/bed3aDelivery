@@ -6,13 +6,13 @@ import 'package:bed3aDelivery/data/model/response/language_model.dart';
 import 'package:bed3aDelivery/utill/app_constants.dart';
 
 class LanguageController extends GetxController implements GetxService {
-  final SharedPreferences sharedPreferences;
+  final SharedPreferences? sharedPreferences;
   LanguageController({this.sharedPreferences});
 
-  int _selectIndex = 0;
-  int get selectIndex => _selectIndex;
+  int? _selectIndex = 0;
+  int? get selectIndex => _selectIndex;
 
-  void setSelectIndex(int index) {
+  void setSelectIndex(int? index) {
     _selectIndex = index;
     update();
   }
@@ -30,7 +30,7 @@ class LanguageController extends GetxController implements GetxService {
       _languages = [];
       // ignore: avoid_function_literals_in_foreach_calls
       AppConstants.languages.forEach((product) async {
-        if (product.languageName.toLowerCase().contains(query.toLowerCase())) {
+        if (product.languageName!.toLowerCase().contains(query.toLowerCase())) {
           _languages.add(product);
         }
       });

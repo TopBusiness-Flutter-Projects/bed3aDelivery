@@ -15,7 +15,6 @@ import 'controller/localization_controller.dart';
 import 'controller/splash_controller.dart';
 import 'controller/theme_controller.dart';
 import 'helper/get_di.dart' as di;
-import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 // ...
@@ -49,7 +48,7 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   final Map<String, Map<String, String>> languages;
-  const MyApp({Key key, @required this.languages}) : super(key: key);
+  const MyApp({Key? key, required this.languages}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ThemeController>(builder: (themeController) {
@@ -62,7 +61,7 @@ class MyApp extends StatelessWidget {
             theme: themeController.darkTheme ? dark : light,
             locale: localizeController.locale,
             translations: Messages(languages: languages),
-            fallbackLocale: Locale(AppConstants.languages[0].languageCode, AppConstants.languages[0].countryCode),
+            fallbackLocale: Locale(AppConstants.languages[0].languageCode!, AppConstants.languages[0].countryCode),
             // ignore: prefer_const_constructors
             home: SplashScreen(),
             defaultTransition: Transition.topLevel,
@@ -91,7 +90,7 @@ Future<void> _deleteAppDir() async {
 }
 class MyHttpOverrides extends HttpOverrides {
   @override
-  HttpClient createHttpClient(SecurityContext context) {
+  HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
   }
 }

@@ -11,7 +11,7 @@ import 'package:bed3aDelivery/view/screens/wallet/widget/bank_info_edit_screen.d
 
 
 class BankInfoView extends StatelessWidget {
-  const BankInfoView({Key key}) : super(key: key);
+  const BankInfoView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,10 @@ class BankInfoView extends StatelessWidget {
         body: GetBuilder<ProfileController>(
 
           builder: (profileController) {
-            String name = profileController.profileModel.holderName?? '';
-            String bank = profileController.profileModel.bankName?? '';
-            String branch = profileController.profileModel.bankName?? '';
-            String accountNo = profileController.profileModel.accountNo?? '';
+            String name = profileController.profileModel!.holderName?? '';
+            String bank = profileController.profileModel!.bankName?? '';
+            String branch = profileController.profileModel!.bankName?? '';
+            String accountNo = profileController.profileModel!.accountNo?? '';
             return Column(
               children: [
                 GestureDetector(
@@ -100,9 +100,9 @@ class BankInfoView extends StatelessWidget {
 }
 
 class CardItem extends StatelessWidget {
-  final String title;
-  final String value;
-  const CardItem({Key key, this.title, this.value}) : super(key: key);
+  final String? title;
+  final String? value;
+  const CardItem({Key? key, this.title, this.value}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -110,8 +110,8 @@ class CardItem extends StatelessWidget {
       padding:  EdgeInsets.fromLTRB(Dimensions.paddingSizeDefault, Dimensions.paddingSizeSmall, Dimensions.paddingSizeDefault, Dimensions.paddingSizeSmall),
       child: Row(
         children: [
-          Text('${title.tr} : ', style: rubikRegular.copyWith(color:Get.isDarkMode? Theme.of(context).hintColor: Theme.of(context).cardColor)),
-          Text(value, style: rubikMedium.copyWith(color:Get.isDarkMode? Theme.of(context).hintColor: Theme.of(context).cardColor)),
+          Text('${title!.tr} : ', style: rubikRegular.copyWith(color:Get.isDarkMode? Theme.of(context).hintColor: Theme.of(context).cardColor)),
+          Text(value!, style: rubikMedium.copyWith(color:Get.isDarkMode? Theme.of(context).hintColor: Theme.of(context).cardColor)),
 
         ],
       ),

@@ -10,7 +10,7 @@ import 'package:bed3aDelivery/view/base/custom_snackbar.dart';
 import 'package:bed3aDelivery/view/base/custom_text_field.dart';
 
 class BankInfoEditScreen extends StatefulWidget {
-  const BankInfoEditScreen({Key key}) : super(key: key);
+  const BankInfoEditScreen({Key? key}) : super(key: key);
 
   @override
   State<BankInfoEditScreen> createState() => _BankInfoEditScreenState();
@@ -33,10 +33,10 @@ class _BankInfoEditScreenState extends State<BankInfoEditScreen> {
 
   @override
   void initState() {
-    _accountNameController.text = Get.find<ProfileController>().profileModel.holderName??'';
-    _bankNameController.text = Get.find<ProfileController>().profileModel.bankName??'';
-    _branchNameController.text = Get.find<ProfileController>().profileModel.branch??'';
-    _accountNumberController.text = Get.find<ProfileController>().profileModel.accountNo??'';
+    _accountNameController.text = Get.find<ProfileController>().profileModel!.holderName??'';
+    _bankNameController.text = Get.find<ProfileController>().profileModel!.bankName??'';
+    _branchNameController.text = Get.find<ProfileController>().profileModel!.branch??'';
+    _accountNumberController.text = Get.find<ProfileController>().profileModel!.accountNo??'';
     super.initState();
   }
 

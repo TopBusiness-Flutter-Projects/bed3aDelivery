@@ -8,9 +8,9 @@ import 'package:bed3aDelivery/utill/styles.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class NotificationCardWidget extends StatelessWidget {
-  final Notifications notificationModel;
+  final Notifications? notificationModel;
   final bool addTitle;
-  const NotificationCardWidget({Key key, this.notificationModel, this.addTitle = false}) : super(key: key);
+  const NotificationCardWidget({Key? key, this.notificationModel, this.addTitle = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class NotificationCardWidget extends StatelessWidget {
 
           addTitle ?  Padding(
             padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-            child: Text(DateConverter.dateTimeStringToDateOnly(notificationModel.createdAt)),
+            child: Text(DateConverter.dateTimeStringToDateOnly(notificationModel!.createdAt!)),
           ) : const SizedBox(),
 
           ListTile(
@@ -47,13 +47,13 @@ class NotificationCardWidget extends StatelessWidget {
                 child: Image.asset(Images.notIcon)),
             title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('${'order'.tr} # ${notificationModel.orderId.toString() ?? ''}',
+                Text('${'order'.tr} # ${notificationModel!.orderId.toString() ?? ''}',
                   style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
                 ),
 
                 Row(
                   children: [
-                    Text(timeago.format(DateConverter.isoStringToLocalDate(notificationModel.updatedAt)),
+                    Text(timeago.format(DateConverter.isoStringToLocalDate(notificationModel!.updatedAt!)),
                       style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall),),
                     Padding(
                       padding:  EdgeInsets.only(left: Dimensions.paddingSizeExtraSmall),
@@ -63,7 +63,7 @@ class NotificationCardWidget extends StatelessWidget {
                 ),
               ],
             ),
-            subtitle: Text(notificationModel.description ?? '', maxLines: 1, overflow: TextOverflow.clip,
+            subtitle: Text(notificationModel!.description ?? '', maxLines: 1, overflow: TextOverflow.clip,
               style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall),
             ),
 

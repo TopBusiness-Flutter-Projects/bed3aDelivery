@@ -9,7 +9,7 @@ import 'package:bed3aDelivery/view/base/custom_home_app_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HelpAndSupport extends StatelessWidget {
-  const HelpAndSupport({Key key}) : super(key: key);
+  const HelpAndSupport({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class HelpAndSupport extends StatelessWidget {
              padding:  EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
              child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
                Text('you_can_send_us_email_through'.tr, style: rubikRegular.copyWith(color: Theme.of(context).hintColor)),
-               Text(Get.find<SplashController>().configModel.companyEmail,
+               Text(Get.find<SplashController>().configModel!.companyEmail!,
                  style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeDefault),),
                Padding(
                  padding:  EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
@@ -72,7 +72,7 @@ class HelpAndSupport extends StatelessWidget {
                    children: [
                      TextSpan(text: 'contact_with_us'.tr, style: rubikRegular.copyWith(color: Theme.of(context).hintColor)),
                       TextSpan(
-                       text: Get.find<SplashController>().configModel.companyPhone,
+                       text: Get.find<SplashController>().configModel!.companyPhone,
                        style: rubikMedium,
                      ),
                    ],
@@ -104,12 +104,12 @@ class HelpAndSupport extends StatelessWidget {
             Expanded(child: Padding(
               padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault),
               child: CustomButton(btnTxt: 'email'.tr,withIcon: true,icon: Icons.email,
-              onTap: ()=> _launchUrl("sms:${Get.find<SplashController>().configModel.companyEmail}",true),),
+              onTap: ()=> _launchUrl("sms:${Get.find<SplashController>().configModel!.companyEmail}",true),),
             )),
             Expanded(child: Padding(
               padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault),
               child: CustomButton(btnTxt: 'call'.tr,withIcon: true,icon: Icons.call,onTap: (){
-                _launchUrl("tel:${Get.find<SplashController>().configModel.companyPhone}",false);
+                _launchUrl("tel:${Get.find<SplashController>().configModel!.companyPhone}",false);
               },),
             )),
           ],),
@@ -122,7 +122,7 @@ class HelpAndSupport extends StatelessWidget {
 
 final Uri params = Uri(
   scheme: 'mailto',
-  path: Get.find<SplashController>().configModel.companyEmail,
+  path: Get.find<SplashController>().configModel!.companyEmail,
   query: 'subject=support Feedback&body=',
 );
 

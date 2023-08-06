@@ -15,7 +15,7 @@ import 'package:bed3aDelivery/view/screens/order/widget/permission_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   final Function(int index) onTap;
-  const HomeScreen({Key key, @required this.onTap}) : super(key: key);
+  const HomeScreen({Key? key, required this.onTap}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
       body: RefreshIndicator(
         onRefresh: () async {
-          return true;
+         // return true;
         },
         child: CustomScrollView(
           slivers: [

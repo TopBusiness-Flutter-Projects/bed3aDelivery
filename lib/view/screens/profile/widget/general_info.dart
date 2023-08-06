@@ -9,7 +9,7 @@ import 'package:bed3aDelivery/view/base/custom_image.dart';
 import 'package:bed3aDelivery/view/base/custom_text_field.dart';
 
 class GeneralInfo extends StatelessWidget {
-  const GeneralInfo({Key key}) : super(key: key);
+  const GeneralInfo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class GeneralInfo extends StatelessWidget {
                     inputType: TextInputType.name,
                     focusNode: profileController.fNameFocus,
                     nextFocus: profileController.lNameFocus,
-                    hintText: profileController.profileModel.fName ?? '',
+                    hintText: profileController.profileModel!.fName ?? '',
                     controller: profileController.firstNameController,
                   ),
 
@@ -50,7 +50,7 @@ class GeneralInfo extends StatelessWidget {
                     inputType: TextInputType.name,
                     focusNode: profileController.lNameFocus,
                     nextFocus: profileController.addressFocus,
-                    hintText: profileController.profileModel.lName,
+                    hintText: profileController.profileModel!.lName,
                     controller: profileController.lastNameController,
                   ),
                    SizedBox(height: Dimensions.paddingSizeSmall),
@@ -73,7 +73,7 @@ class GeneralInfo extends StatelessWidget {
                     isDisable: false,
                     inputType: TextInputType.name,
                     focusNode: profileController.addressFocus,
-                    hintText: profileController.profileModel.email,
+                    hintText: profileController.profileModel!.email,
                     controller: profileController.emailController ,
                   ),
                    SizedBox(height: Dimensions.paddingSizeSmall),
@@ -96,7 +96,7 @@ class GeneralInfo extends StatelessWidget {
                     isDisable: false,
                     isShowBorder: true,
                     inputType: TextInputType.number,
-                    hintText: profileController.profileModel.phone ?? "",
+                    hintText: profileController.profileModel!.phone ?? "",
                   ),
                    SizedBox(height: Dimensions.paddingSizeSmall),
 
@@ -109,7 +109,7 @@ class GeneralInfo extends StatelessWidget {
                     isShowBorder: true,
                     inputType: TextInputType.name,
                     focusNode: profileController.addressFocus,
-                    hintText: profileController.profileModel.address,
+                    hintText: profileController.profileModel!.address,
                     controller: profileController.addressController,
                   ),
                 ],
@@ -143,7 +143,7 @@ class GeneralInfo extends StatelessWidget {
                     noBg: true,
                     isShowBorder: true,
                     inputType: TextInputType.number,
-                    hintText: '${profileController.profileModel.identityNumber} (${profileController.profileModel.identityType})' ?? "",
+                    hintText: '${profileController.profileModel!.identityNumber} (${profileController.profileModel!.identityType})' ?? "",
                   ),
 
                   Padding(
@@ -153,15 +153,15 @@ class GeneralInfo extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(Dimensions.paddingSizeDefault)),
                         child: ClipRRect(borderRadius: BorderRadius.circular(Dimensions.paddingSizeDefault),
-                          child: CustomImage(image: '${Get.find<SplashController>().baseUrls.bed3aDeliveryImageUrl}/${profileController.profileModel.identityImage[0]}' , height: 120)),)),
+                          child: CustomImage(image: '${Get.find<SplashController>().baseUrls!.bed3aDeliveryImageUrl}/${profileController.profileModel!.identityImage![0]}' , height: 120)),)),
                       SizedBox(width: Dimensions.paddingSizeExtraSmall),
 
-                      profileController.profileModel.identityImage.length>1?
+                      profileController.profileModel!.identityImage!.length>1?
                       Expanded(child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(Dimensions.paddingSizeDefault)),
                         child: ClipRRect(borderRadius: BorderRadius.circular(Dimensions.paddingSizeDefault),
-                          child: CustomImage(image: '${Get.find<SplashController>().baseUrls.bed3aDeliveryImageUrl}/${profileController.profileModel.identityImage[1]}' , height: 120)),)):const SizedBox(),
+                          child: CustomImage(image: '${Get.find<SplashController>().baseUrls!.bed3aDeliveryImageUrl}/${profileController.profileModel!.identityImage![1]}' , height: 120)),)):const SizedBox(),
 
                     ],),
                   )

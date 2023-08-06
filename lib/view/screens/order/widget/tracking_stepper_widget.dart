@@ -6,9 +6,9 @@ import 'package:bed3aDelivery/utill/images.dart';
 import 'package:bed3aDelivery/view/base/custom_stepper.dart';
 
 class TrackingStepperWidget extends StatelessWidget {
-  final String status;
+  final String? status;
 
-  const TrackingStepperWidget({Key key, @required this.status}) : super(key: key);
+  const TrackingStepperWidget({Key? key, required this.status}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -13,8 +13,8 @@ import 'package:bed3aDelivery/view/base/custom_image.dart';
 import 'package:bed3aDelivery/view/base/custom_ink_well.dart';
 
 class ConversationItemCardWidget extends StatelessWidget {
-  final Chat chat;
-  const ConversationItemCardWidget({Key key, this.chat}) : super(key: key);
+  final Chat? chat;
+  const ConversationItemCardWidget({Key? key, this.chat}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,18 +22,18 @@ class ConversationItemCardWidget extends StatelessWidget {
       builder: (chatController) {
 
         String basUrl =  chatController.userTypeIndex == 0?
-        Get.find<SplashController>().baseUrls.shopImageUrl??'':
-        Get.find<SplashController>().baseUrls.customerImageUrl??'';
+        Get.find<SplashController>().baseUrls!.shopImageUrl??'':
+        Get.find<SplashController>().baseUrls!.customerImageUrl??'';
 
-        String image = chatController.userTypeIndex == 0?  chat.sellerInfo != null ?
-        chat.sellerInfo.shops[0].image??'':'':chatController.userTypeIndex == 1? chat.customer?.image?? '':
-        Get.find<SplashController>().configModel.companyLogo;
+        String? image = chatController.userTypeIndex == 0?  chat!.sellerInfo != null ?
+        chat!.sellerInfo!.shops![0].image??'':'':chatController.userTypeIndex == 1? chat!.customer?.image?? '':
+        Get.find<SplashController>().configModel!.companyLogo;
 
-        String name = chatController.userTypeIndex == 0?   chat.sellerInfo != null ?
-        chat.sellerInfo.shops[0].name :'Shop not found' :
-        chatController.userTypeIndex == 1?chat.customer.fName + ' ' +chat.customer.lName:AppConstants.companyName;
+        String name = chatController.userTypeIndex == 0?   chat!.sellerInfo != null ?
+        chat!.sellerInfo!.shops![0].name! :'Shop not found' :
+        chatController.userTypeIndex == 1?chat!.customer!.fName! + ' ' +chat!.customer!.lName!:AppConstants.companyName;
 
-        int userId = chatController.userTypeIndex == 0?  chat.sellerId : chat.userId;
+        int? userId = chatController.userTypeIndex == 0?  chat!.sellerId : chat!.userId;
 
         String path = '$basUrl/$image';
 
@@ -42,14 +42,14 @@ class ConversationItemCardWidget extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(color: Theme.of(context).primaryColor.withOpacity(.5),width: .35),
 
-            color: chat.seenBybed3aDelivery == 1? Theme.of(context).cardColor : Theme.of(context).primaryColor.withOpacity(.1),
+            color: chat!.seenBybed3aDelivery == 1? Theme.of(context).cardColor : Theme.of(context).primaryColor.withOpacity(.1),
             borderRadius: BorderRadius.circular(Dimensions.paddingSizeOverLarge),
-            boxShadow: [BoxShadow(color:Get.isDarkMode? Theme.of(context).primaryColor.withOpacity(.5) : Colors.grey[Get.isDarkMode ? 800 : 200], spreadRadius: 1, blurRadius: 5)],
+            boxShadow: [BoxShadow(color:Get.isDarkMode? Theme.of(context).primaryColor.withOpacity(.5) : Colors.grey[Get.isDarkMode ? 800 : 200]!, spreadRadius: 1, blurRadius: 5)],
           ),
           child: CustomInkWell(
             onTap: () => Get.to(ChatScreen(userId: userId, name: name)),
 
-            highlightColor: Theme.of(context).backgroundColor.withOpacity(0.1),
+            highlightColor: Theme.of(context).colorScheme.background.withOpacity(0.1),
             radius: Dimensions.paddingSizeSmall,
 
             child: Stack(children: [
@@ -66,18 +66,18 @@ class ConversationItemCardWidget extends StatelessWidget {
 
                   Expanded(child: Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [
                      Text(name, style: rubikMedium.copyWith(
-                         color: chatController.userTypeIndex == 0 && chat.sellerInfo == null ?
-                         Colors.red :chatController.userTypeIndex == 1 && chat.customer == null ?  Colors.red : null)),
+                         color: chatController.userTypeIndex == 0 && chat!.sellerInfo == null ?
+                         Colors.red :chatController.userTypeIndex == 1 && chat!.customer == null ?  Colors.red : null)),
                     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                          child: Text(chat.message,
+                          child: Text(chat!.message!,
                             maxLines: 1,overflow: TextOverflow.ellipsis,
                             style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
                           ),
                         ),
                          SizedBox(width: Dimensions.paddingSizeExtraSmall),
-                        Text(timeago.format(DateConverter.isoStringToLocalDate(chat.createdAt)),
+                        Text(timeago.format(DateConverter.isoStringToLocalDate(chat!.createdAt!)),
                           style: rubikRegular.copyWith(color: Theme.of(context).hintColor,fontSize: Dimensions.fontSizeExtraSmall),),
                       ],
                     ),
