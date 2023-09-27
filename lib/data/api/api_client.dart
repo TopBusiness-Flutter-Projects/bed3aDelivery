@@ -19,7 +19,7 @@ class ApiClient extends GetxService {
   final int timeoutInSeconds = 30;
 
   String? token;
-  Map<String, String?>? _mainHeaders;
+  Map<String, String>? _mainHeaders;
 
   ApiClient({required this.appBaseUrl, required this.sharedPreferences}) {
     token = sharedPreferences.getString(AppConstants.token);
@@ -31,7 +31,8 @@ class ApiClient extends GetxService {
   void updateHeader(String? token, String? languageCode) {
     _mainHeaders = {
       'Content-Type': 'application/json; charset=UTF-8',
-      AppConstants.localizationKey: languageCode ?? AppConstants.languages[0].languageCode,
+      AppConstants.localizationKey: languageCode == null ?
+      AppConstants.languages[0].languageCode!:languageCode!,
       'Authorization': 'Bearer $token'
     };
   }
@@ -41,10 +42,12 @@ class ApiClient extends GetxService {
       debugPrint('====> API Call: $uri\nHeader: $_mainHeaders');
       http.Response _response = await http.get(
         Uri.parse(appBaseUrl+uri),
-        headers: headers ?? _mainHeaders as Map<String, String>?,
+        headers: headers ?? _mainHeaders,
       ).timeout(Duration(seconds: timeoutInSeconds));
       return handleResponse(_response, uri);
     } catch (e) {
+      print("object");
+      print(e);
       return const Response(statusCode: 1, statusText: noInternetMessage);
     }
   }

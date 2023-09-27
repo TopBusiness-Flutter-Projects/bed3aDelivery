@@ -5,7 +5,7 @@ class AppConstants {
   static const String companyName = 'bed3aDelivery';
   static const String appName = 'bed3aDelivery';
   static const String polylineMapKey = 'MAP_KEY';
-  static const String baseUri = 'https://medosedo.com';
+  static const String baseUri = 'https://bedah.topbusiness.io';
   static const String profileUri = '/api/v2/delivery-man/info';
   static const String configUri = '/api/v1/config';
   static const String loginUri = '/api/v2/delivery-man/auth/login';

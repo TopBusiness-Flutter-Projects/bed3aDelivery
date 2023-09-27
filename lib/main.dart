@@ -25,8 +25,8 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterL
 
 Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
-  _deleteCacheDir();
-  _deleteAppDir();
+  //_deleteCacheDir();
+ // _deleteAppDir();
   setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
 

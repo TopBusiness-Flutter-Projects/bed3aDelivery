@@ -32,6 +32,9 @@ class SplashController extends GetxController implements GetxService {
   Future<bool> getConfigData() async {
     Response response = await splashRepo.getConfigData();
     bool _isSuccess = false;
+    print("dkkdkdk");
+    print(response.statusCode.toString());
+    print(response.body);
     if(response.statusCode == 200) {
       _configModel = ConfigModel.fromJson(response.body);
       _baseUrls = ConfigModel.fromJson(response.body).baseUrls;

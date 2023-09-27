@@ -21,7 +21,7 @@ class MessageBubbleShimmer extends StatelessWidget {
             child: Shimmer(
               enabled: Get.find<ChatController>().messageModel == null,
               
-              gradient: null,
+              gradient: LinearGradient(colors: []),
               child: Container(
                 height: 30, width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
