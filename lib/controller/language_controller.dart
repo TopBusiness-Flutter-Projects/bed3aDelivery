@@ -6,8 +6,8 @@ import 'package:bed3aDelivery/data/model/response/language_model.dart';
 import 'package:bed3aDelivery/utill/app_constants.dart';
 
 class LanguageController extends GetxController implements GetxService {
-  final SharedPreferences? sharedPreferences;
-  LanguageController({this.sharedPreferences});
+  // final SharedPreferences? sharedPreferences;
+  LanguageController();
 
   int? _selectIndex = 0;
   int? get selectIndex => _selectIndex;

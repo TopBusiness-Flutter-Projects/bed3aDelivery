@@ -59,7 +59,8 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => ThemeController(sharedPreferences: Get.find()));
   Get.lazyPut(() => SplashController(splashRepo: Get.find()));
   Get.lazyPut(() => LocalizationController(sharedPreferences: Get.find()));
-  Get.lazyPut(() => LanguageController(sharedPreferences: Get.find()));
+
+  Get.lazyPut(() => LanguageController());
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
   Get.lazyPut(() => OrderController(orderRepo: Get.find()));
   Get.lazyPut(() => ProfileController(profileRepo: Get.find()));
