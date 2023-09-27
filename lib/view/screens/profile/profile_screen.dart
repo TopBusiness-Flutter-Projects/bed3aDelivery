@@ -62,17 +62,17 @@ class ProfileScreen extends StatelessWidget {
                 Container(
                   padding:  EdgeInsets.all(Dimensions.paddingSizeSmall),
                   child: Column(children: [
-
-                    Padding(
-                      padding:  EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall,horizontal: Dimensions.paddingSizeDefault),
-                      child: Row(children: [
-                        SizedBox(width: 20, child: Image.asset(Images.statusIcon, color: Theme.of(context).colorScheme.primary,)),
-                         SizedBox(width: Dimensions.paddingSizeDefault),
-                        Expanded(child: Text('status'.tr,style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeDefault))),
-                        const OnlineOfflineButton(showProfileImage: false)
-
-                      ],),
-                    ),
+                    //
+                    // Padding(
+                    //   padding:  EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall,horizontal: Dimensions.paddingSizeDefault),
+                    //   child: Row(children: [
+                    //     SizedBox(width: 20, child: Image.asset(Images.statusIcon, color: Theme.of(context).colorScheme.primary,)),
+                    //      SizedBox(width: Dimensions.paddingSizeDefault),
+                    //     Expanded(child: Text('status'.tr,style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeDefault))),
+                    //     const OnlineOfflineButton(showProfileImage: false)
+                    //
+                    //   ],),
+                    // ),
 
 
                     ProfileButton(icon: Images.earnStatement, title: 'earning_statement'.tr,
@@ -80,15 +80,15 @@ class ProfileScreen extends StatelessWidget {
 
 
 
+                    //
+                    // ProfileButton(icon: Images.myReview, title: 'my_reviews'.tr,
+                    //     onTap: () => Get.to(const ReviewScreen())),
+                    //
 
-                    ProfileButton(icon: Images.myReview, title: 'my_reviews'.tr,
-                        onTap: () => Get.to(const ReviewScreen())),
 
-
-
-
-                    ProfileButton(icon: Images.emergencyContact, title: 'emergency_contact'.tr,
-                        onTap: () => Get.to(const EmergencyContactScreen())),
+                    //
+                    // ProfileButton(icon: Images.emergencyContact, title: 'emergency_contact'.tr,
+                    //     onTap: () => Get.to(const EmergencyContactScreen())),
 
 
 
@@ -103,13 +103,13 @@ class ProfileScreen extends StatelessWidget {
                         onTap: () => Get.to(const SettingScreen())),
 
 
-                    ProfileButton(icon: Images.myReview, title: 'privacy_policy'.tr,
-                        onTap: () => Get.to(const HtmlViewerScreen(isPrivacyPolicy: true))),
-
-
-                    ProfileButton(icon: Images.myReview, title: 'terms_and_condition'.tr,
-                        onTap: () => Get.to(const HtmlViewerScreen(isPrivacyPolicy: false))),
-
+                    // ProfileButton(icon: Images.myReview, title: 'privacy_policy'.tr,
+                    //     onTap: () => Get.to(const HtmlViewerScreen(isPrivacyPolicy: true))),
+                    //
+                    //
+                    // ProfileButton(icon: Images.myReview, title: 'terms_and_condition'.tr,
+                    //     onTap: () => Get.to(const HtmlViewerScreen(isPrivacyPolicy: false))),
+                    //
 
 
                     ProfileButton(icon: Images.logOut, title: 'log_out'.tr,
