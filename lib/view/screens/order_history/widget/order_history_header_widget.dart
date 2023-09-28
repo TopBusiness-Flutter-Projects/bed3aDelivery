@@ -22,71 +22,71 @@ class _OrderHistoryHeaderWidgetState extends State<OrderHistoryHeaderWidget> {
     return GetBuilder<OrderController>(
       builder: (orderController) {
         return Container(
-          height: 200,decoration: BoxDecoration(
+          height: 130,decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
           borderRadius:  BorderRadius.only(bottomLeft: Radius.circular(Dimensions.paddingSizeOverLarge),
               bottomRight: Radius.circular(Dimensions.paddingSizeOverLarge))),
           padding:  EdgeInsets.only(top : Dimensions.paddingSizeSmall),
           child: Column(children: [
-            GetBuilder<OrderController>(
-            builder: (order) {
-              return Padding(
-                padding:  EdgeInsets.fromLTRB(Dimensions.paddingSizeDefault,
-                    Dimensions.fontSizeExtraSmall, Dimensions.paddingSizeDefault,5),
-                child: Container(height: 48,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.secondary,
-                      borderRadius: BorderRadius.circular(Dimensions.flagSize),
-                    ),
-                    child: Stack(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 48, right: 10),
-                          child: ListView(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            children: [
-                              OrderTypeButton(text: 'all'.tr, index: 0),
-
-                              OrderTypeButton(text: 'out_for_delivery'.tr, index: 1),
-
-                              OrderTypeButton(text: 'paused'.tr, index: 2),
-
-                              OrderTypeButton(text: 'delivered'.tr, index: 3),
-
-                              OrderTypeButton(text: 'return'.tr, index: 4),
-
-                              OrderTypeButton(text: 'canceled'.tr, index: 5),
-
-
-                            ],
-                          ),
-                        ),
-                        AnimSearchBar(
-                          width: MediaQuery.of(context).size.width,
-                          textController: textController,
-                          onSuffixTap: () {
-                            textController.clear();
-                          },
-                          onChanged: (value){
-                            if(value != null){
-                              orderController.setOrderTypeIndex(orderController.orderTypeIndex,
-                                  search: textController.text);
-                            }
-                          },
-
-                          color: Theme.of(context).cardColor,
-                          helpText: "Search Text...",
-                          autoFocus: true,
-                          closeSearchOnSuffixTap: true,
-                          animationDurationInMilli: 200,
-                          rtl: false,
-                        ),
-                      ],
-                    )),
-              );
-            }
-          ),
+          //   GetBuilder<OrderController>(
+          //   builder: (order) {
+          //     return Padding(
+          //       padding:  EdgeInsets.fromLTRB(Dimensions.paddingSizeDefault,
+          //           Dimensions.fontSizeExtraSmall, Dimensions.paddingSizeDefault,5),
+          //       child: Container(height: 48,
+          //           decoration: BoxDecoration(
+          //             color: Theme.of(context).colorScheme.secondary,
+          //             borderRadius: BorderRadius.circular(Dimensions.flagSize),
+          //           ),
+          //           child: Stack(
+          //             children: [
+          //               Padding(
+          //                 padding: const EdgeInsets.only(left: 48, right: 10),
+          //                 child: ListView(
+          //                   shrinkWrap: true,
+          //                   scrollDirection: Axis.horizontal,
+          //                   children: [
+          //                     OrderTypeButton(text: 'all'.tr, index: 0),
+          //
+          //                     OrderTypeButton(text: 'out_for_delivery'.tr, index: 1),
+          //
+          //                     OrderTypeButton(text: 'paused'.tr, index: 2),
+          //
+          //                     OrderTypeButton(text: 'delivered'.tr, index: 3),
+          //
+          //                     OrderTypeButton(text: 'return'.tr, index: 4),
+          //
+          //                     OrderTypeButton(text: 'canceled'.tr, index: 5),
+          //
+          //
+          //                   ],
+          //                 ),
+          //               ),
+          //               AnimSearchBar(
+          //                 width: MediaQuery.of(context).size.width,
+          //                 textController: textController,
+          //                 onSuffixTap: () {
+          //                   textController.clear();
+          //                 },
+          //                 onChanged: (value){
+          //                   if(value != null){
+          //                     orderController.setOrderTypeIndex(orderController.orderTypeIndex,
+          //                         search: textController.text);
+          //                   }
+          //                 },
+          //
+          //                 color: Theme.of(context).cardColor,
+          //                 helpText: "Search Text...",
+          //                 autoFocus: true,
+          //                 closeSearchOnSuffixTap: true,
+          //                 animationDurationInMilli: 200,
+          //                 rtl: false,
+          //               ),
+          //             ],
+          //           )),
+          //     );
+          //   }
+          // ),
             const DeliverySearchFilterWidget(fromHistory : true),
 
         ],),);

@@ -55,10 +55,10 @@ class EarnStatementWidget extends StatelessWidget {
                               child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text(''),
-                                  Get.find<ProfileController>().profileModel !=null?
-                                  Text('${'hi'.tr}, ${Get.find<ProfileController>().profileModel!.fName??''} ${Get.find<ProfileController>().profileModel!.lName}',
-                                    overflow: TextOverflow.ellipsis, maxLines: 1,
-                                    style: rubikRegular.copyWith(color: Colors.white,fontSize: Dimensions.fontSizeDefault),):const SizedBox(),
+                                  // Get.find<ProfileController>().profileModel !=null?
+                                  // Text('${'hi'.tr}, ${Get.find<ProfileController>().profileModel!.fName??''} ${Get.find<ProfileController>().profileModel!.lName}',
+                                  //   overflow: TextOverflow.ellipsis, maxLines: 1,
+                                  //   style: rubikRegular.copyWith(color: Colors.white,fontSize: Dimensions.fontSizeDefault),):const SizedBox(),
                                 ],
                               )),
                           ),
@@ -95,11 +95,11 @@ class EarnStatementWidget extends StatelessWidget {
                             amount: profileController.profileModel!.pendingWithdraw,),
                           CalculationWidget(title: 'withdrawn'.tr,
                               amount: profileController.profileModel!.totalWithdraw),
-                          CalculationWidget(title: 'withdrawable_balance'.tr,
-                              amount: profileController.profileModel!.withdrawableBalance, isWithdrawable: true,
-                            onTap: () => Get.to(const WalletScreen()),
-
-                          ),
+                          // CalculationWidget(title: 'withdrawable_balance'.tr,
+                          //     amount: profileController.profileModel!.withdrawableBalance, isWithdrawable: true,
+                          //   onTap: () => Get.to(const WalletScreen()),
+                          //
+                          // ),
 
                         ],),
                       ),

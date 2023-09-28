@@ -42,7 +42,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       debugPrint("onMessage: ${message.data}");
       NotificationHelper.showNotification(message, flutterLocalNotificationsPlugin, false);
-      if(message != null){
+      if(message.data.isNotEmpty){
         Get.find<OrderController>().getCurrentOrders(context);
       }
 
@@ -51,7 +51,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       debugPrint("onMessageOpenedApp: ${message.data}");
-      if(message != null){
+      if(message.data.isNotEmpty){
         Get.find<OrderController>().getCurrentOrders(context);
       }
 
@@ -124,7 +124,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           SizedBox(width: Dimensions.iconSizeMedium,
               child: Image.asset(icon, color : index == menuController.currentTab ?
               Theme.of(context).cardColor : ColorResources.colorGrey)),
-          const SizedBox(width: 4),
+          const SizedBox(width: 1),
           Text(label, style: rubikRegular.copyWith(color: index == menuController.currentTab ?
           Colors.white : ColorResources.colorGrey)),
         ],

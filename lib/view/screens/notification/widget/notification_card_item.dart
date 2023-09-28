@@ -21,7 +21,7 @@ class NotificationCardWidget extends StatelessWidget {
           Dimensions.paddingSizeDefault,Dimensions.paddingSizeExtraSmall),
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor.withOpacity(.05),
+          color: Color(0xFFeef3f9),
           borderRadius: BorderRadius.circular(Dimensions.paddingSizeExtraSmall)
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -47,13 +47,13 @@ class NotificationCardWidget extends StatelessWidget {
                 child: Image.asset(Images.notIcon)),
             title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('${'order'.tr} # ${notificationModel!.orderId.toString() ?? ''}',
+                Text('${'order'.tr} # ${'14'}',
                   style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
                 ),
 
                 Row(
                   children: [
-                    Text(timeago.format(DateConverter.isoStringToLocalDate(notificationModel!.updatedAt!)),
+                    Text("4 month ago",
                       style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall),),
                     Padding(
                       padding:  EdgeInsets.only(left: Dimensions.paddingSizeExtraSmall),
@@ -63,7 +63,7 @@ class NotificationCardWidget extends StatelessWidget {
                 ),
               ],
             ),
-            subtitle: Text(notificationModel!.description ?? '', maxLines: 1, overflow: TextOverflow.clip,
+            subtitle: Text('Order rescheduled ID : ' '14', maxLines: 1, overflow: TextOverflow.clip,
               style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall),
             ),
 

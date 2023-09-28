@@ -27,8 +27,8 @@ class TripStatusWidget extends StatelessWidget {
             ),
             GestureDetector(
               onTap: ()=> Get.to(()=> const DashboardScreen(pageIndex: 1)),
-              child: TripItem(color: Theme.of(context).colorScheme.tertiaryContainer,icon: Images.assigned,
-                  title: 'assigned', totalCount: profileController.profileModel != null?
+              child: TripItem(color: Color(0xFFd0dff6),color1: Color(0xFFeff6ff),icon: Images.waiting,
+                  title: 'pending', totalCount: profileController.profileModel != null?
                 profileController.profileModel!.totalDelivery??0 : 0,
                 onTap: (){
                 Get.find<BottomMenuController>().selectOrderHistoryScreen(fromHome: true);
@@ -37,8 +37,8 @@ class TripStatusWidget extends StatelessWidget {
                 },),
             ),
 
-            TripItem(color: Theme.of(context).colorScheme.surface, icon: Images.pending,
-                title: 'paused',totalCount: profileController.profileModel!.pendingDelivery,
+            TripItem(color:Color(0xFFf2e4b7),color1: Color(0xFFf4f7dd), icon: Images.pending,
+                title: 'Preparing',totalCount: profileController.profileModel!.pendingDelivery,
               onTap: ()
                 {
                  Get.find<BottomMenuController>().selectOrderHistoryScreen(fromHome: true);
@@ -47,8 +47,22 @@ class TripStatusWidget extends StatelessWidget {
                 }
             ),
 
-            TripItem(color: Theme.of(context).colorScheme.primaryContainer,icon: Images.completed,
+            TripItem(color: Color(0xFFc6f3de),color1: Color(0xFFe4fcef),icon: Images.assigned,
+                title: 'in_way', totalCount: profileController.profileModel!.completedDelivery,
+              onTap: (){
+                Get.find<BottomMenuController>().selectOrderHistoryScreen(fromHome: true);
+                onTap(1);
+                Get.find<OrderController>().setOrderTypeIndex(3, reload: true);
+              }),
+            TripItem(color: Color(0xFF13ea60),color1: Color(0xFFffaf),icon: Images.completed,
                 title: 'delivered', totalCount: profileController.profileModel!.completedDelivery,
+              onTap: (){
+                Get.find<BottomMenuController>().selectOrderHistoryScreen(fromHome: true);
+                onTap(1);
+                Get.find<OrderController>().setOrderTypeIndex(3, reload: true);
+              }),
+            TripItem(color: Color(0xFFbbbbbb),color1: Color(0xFFe4e4e4),icon: Images.cancel,
+                title: 'refuese_recive', totalCount: profileController.profileModel!.completedDelivery,
               onTap: (){
                 Get.find<BottomMenuController>().selectOrderHistoryScreen(fromHome: true);
                 onTap(1);
@@ -65,11 +79,12 @@ class TripStatusWidget extends StatelessWidget {
 
 class TripItem extends StatelessWidget {
   final Color? color;
+  final Color? color1;
   final String? icon;
   final String? title;
   final int? totalCount;
   final Function? onTap;
-  const TripItem({Key? key, this.icon, this.title, this.totalCount, this.color, this.onTap}) : super(key: key);
+  const TripItem({Key? key, this.icon, this.title, this.totalCount, this.color, this.onTap, this.color1}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +94,7 @@ class TripItem extends StatelessWidget {
         padding:  EdgeInsets.only(top: Dimensions.paddingSizeExtraSmall),
         child: Container(decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
-          color: color!.withOpacity(.55)),
+          color: color),
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
              Container(padding:  EdgeInsets.symmetric(horizontal : Dimensions.paddingSizeSmall, vertical: Dimensions.paddingSizeSmall),
                child: Row(children: [
@@ -94,7 +109,7 @@ class TripItem extends StatelessWidget {
             child: Container(padding:  EdgeInsets.symmetric(vertical : Dimensions.paddingSizeDefault, horizontal: Dimensions.paddingSizeLarge),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
-              color: color!.withOpacity(.75)
+              color: color1!
             ),child: Text(NumberFormat.compact().format(totalCount),style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge),),),
           )
         ],)),

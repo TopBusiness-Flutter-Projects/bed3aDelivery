@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: CustomRiderAppBar(title: 'dashboard'.tr, isSwitch: true),
+      appBar: CustomRiderAppBar(title: 'dashboard'.tr, isSwitch: false),
 
       body: RefreshIndicator(
         onRefresh: () async {
@@ -59,35 +59,35 @@ class _HomeScreenState extends State<HomeScreen> {
                   TripStatusWidget(onTap: (int index) => widget.onTap(index)),
 
 
-                  Padding(
-                    padding:  EdgeInsets.fromLTRB(Dimensions.paddingSizeDefault,
-                        Dimensions.paddingSizeDefault,Dimensions.paddingSizeDefault,Dimensions.paddingSizeExtraSmall),
-                    child: TitleWidget(title: 'ongoing'.tr,onTap: (){
-
-                      Get.find<BottomMenuController>().selectOrderHistoryScreen(fromHome: true);
-                      Get.find<OrderController>().setOrderTypeIndex(0);
-
-                    },),
-                  ),
-
-
-
-
-                  Padding(
-                    padding:  EdgeInsets.symmetric(horizontal : Dimensions.paddingSizeDefault, vertical: Dimensions.paddingSizeSmall),
-                    child:  GetBuilder<OrderController>(builder: (orderController) {
-                      return !orderController.isLoading ? orderController.currentOrders.isNotEmpty ?
-                      ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: orderController.currentOrders.length,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index){
-                          return OnGoingOrderWidget(orderModel: orderController.currentOrders[index], index: index);
-                        },
-                      ) : const Center(child: NoDataScreen(),
-                      ) : Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor),);
-                    }),
-                  ),
+                  // Padding(
+                  //   padding:  EdgeInsets.fromLTRB(Dimensions.paddingSizeDefault,
+                  //       Dimensions.paddingSizeDefault,Dimensions.paddingSizeDefault,Dimensions.paddingSizeExtraSmall),
+                  //   child: TitleWidget(title: 'ongoing'.tr,onTap: (){
+                  //
+                  //     Get.find<BottomMenuController>().selectOrderHistoryScreen(fromHome: true);
+                  //     Get.find<OrderController>().setOrderTypeIndex(0);
+                  //
+                  //   },),
+                  // ),
+                  //
+                  //
+                  //
+                  //
+                  // Padding(
+                  //   padding:  EdgeInsets.symmetric(horizontal : Dimensions.paddingSizeDefault, vertical: Dimensions.paddingSizeSmall),
+                  //   child:  GetBuilder<OrderController>(builder: (orderController) {
+                  //     return !orderController.isLoading ? orderController.currentOrders.isNotEmpty ?
+                  //     ListView.builder(
+                  //       shrinkWrap: true,
+                  //       itemCount: orderController.currentOrders.length,
+                  //       physics: const NeverScrollableScrollPhysics(),
+                  //       itemBuilder: (context, index){
+                  //         return OnGoingOrderWidget(orderModel: orderController.currentOrders[index], index: index);
+                  //       },
+                  //     ) : const Center(child: NoDataScreen(),
+                  //     ) : Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor),);
+                  //   }),
+                  // ),
 
                 ],
               ),

@@ -85,6 +85,7 @@ class Images {
   static const String userIcon = 'assets/image/user_icon.png';
   static const String pause = 'assets/image/pause.png';
   static const String cancel = 'assets/image/cancel.png';
+  static const String waiting = 'assets/image/waiting.png';
   static const String statusIcon = 'assets/image/status_icon.png';
   static const String leftBox = 'assets/image/left_box.png';
   static const String rightBox = 'assets/image/right_box.png';

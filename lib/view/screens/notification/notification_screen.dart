@@ -22,16 +22,18 @@ class NotificationScreen extends StatelessWidget {
           onRefresh: () async {
             await notificationController.getNotificationList(1);
           },
-          child: !notificationController.isLoading? notificationController.notificationList!.isNotEmpty?
+          child: !notificationController.isLoading? notificationController.notificationList!.isEmpty?
           Scrollbar(child: SingleChildScrollView(child: Center(child: SizedBox(width: 1170, child:
            ListView.builder(
-            itemCount: notificationController.notificationList!.length,
+            itemCount:2,
             padding: EdgeInsets.zero,
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) {
               bool _addTitle = false;
-              return NotificationCardWidget(notificationModel: notificationController.notificationList![index],addTitle: _addTitle);
+              return NotificationCardWidget(
+                  notificationModel: notificationController.notificationList!.isNotEmpty? notificationController.notificationList![index]:null,
+                  addTitle: _addTitle);
             },
           ))))):const NoDataScreen(): const CustomLoader(),
         );
