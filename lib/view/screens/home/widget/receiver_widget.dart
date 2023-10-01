@@ -44,7 +44,7 @@ class ReceiverWidget extends StatelessWidget {
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('${orderModel!.customer!.fName} ${orderModel!.customer!.lName}',
-                        style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge),),
+                        style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeSmall),),
 
                       Text('customer'.tr,
                         style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeDefault,
@@ -59,7 +59,7 @@ class ReceiverWidget extends StatelessWidget {
                     color: Theme.of(context).hintColor.withOpacity(.05),
                     borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall)),
                       child: Icon(Icons.bookmark,color: Theme.of(context).colorScheme.secondary.withOpacity(.125))):
-              CallAndChatWidget(orderModel: orderModel),
+              CallAndChatWidget(orderModel: orderModel,isDetails: true,),
             ],
           ):const SizedBox(),
 

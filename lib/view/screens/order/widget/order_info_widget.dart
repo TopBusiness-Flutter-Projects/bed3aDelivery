@@ -38,17 +38,17 @@ class OrderInfoWidget extends StatelessWidget {
             child: Column(children: [
               OrderItemInfoWidget(title: 'order_id',info: orderModel!.id.toString()),
               OrderItemInfoWidget(title: 'order_placed',info: orderModel!.updatedAt.toString(),isDate: true,),
-              OrderItemInfoWidget(title: 'payment',info: orderModel!.paymentMethod),
-              InkWell(
-                  onTap: ()=> Get.bottomSheet(
-                    OrderedItemProductList(orderController: orderController),
-                    isScrollControlled: true,
-                    clipBehavior: Clip.none,
-                    enableDrag: true,
-
-
-                  ),
-                  child: OrderItemInfoWidget(title: 'products',info: orderController!.orderDetails!.length.toString(), isProduct: true,)),
+              // OrderItemInfoWidget(title: 'payment',info: orderModel!.paymentMethod),
+              // InkWell(
+              //     onTap: ()=> Get.bottomSheet(
+              //       OrderedItemProductList(orderController: orderController),
+              //       isScrollControlled: true,
+              //       clipBehavior: Clip.none,
+              //       enableDrag: true,
+              //
+              //
+              //     ),
+              //     child: OrderItemInfoWidget(title: 'products',info: orderController!.orderDetails!.length.toString(), isProduct: true,)),
             ],),
           )
 

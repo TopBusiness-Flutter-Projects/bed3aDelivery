@@ -58,52 +58,55 @@ class OrderDetailsScreen extends StatelessWidget {
                 Padding(padding:  EdgeInsets.only(bottom: Dimensions.paddingSizeDefault),
                   child: OrderStatusWidget(orderModel : orderModel)),
 
-                orderModel!.orderStatus == 'processing' || orderModel!.orderStatus == 'out_for_delivery'?
-                OrderInfoWithCustomerWidget(orderModel: orderModel): const SizedBox(),
-
+                // orderModel!.orderStatus == 'processing' || orderModel!.orderStatus == 'out_for_delivery'?
+                OrderInfoWithCustomerWidget(orderModel: orderModel)
+                    //: const SizedBox(),
+,
                 orderModel!.sellerInfo != null?
-                SellerInfoWidget(orderModel: orderModel): const SizedBox(),
+                SellerInfoWidget(orderModel: orderModel)
+                    :
+                const SizedBox(),
                  SizedBox(height: Dimensions.paddingSizeSmall,),
 
                 OrderInfoWidget(orderModel: orderModel, orderController: orderController,fromDetails: true),
 
                  SizedBox(height: Dimensions.paddingSizeSmall),
 
-                PaymentInfoWidget(itemsPrice: _itemsPrice,tax: _tax,subTotal: _subTotal,discount: _discount,deliveryCharge: deliveryCharge,totalPrice: totalPrice,),
+                // PaymentInfoWidget(itemsPrice: _itemsPrice,tax: _tax,subTotal: _subTotal,discount: _discount,deliveryCharge: deliveryCharge,totalPrice: totalPrice,),
+                //
+                // Padding(
+                //   padding:  EdgeInsets.only(top: Dimensions.paddingSizeSmall),
+                //   child: Container(decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(Dimensions.paddingSizeExtraSmall),
+                //     boxShadow: [BoxShadow(color: Colors.grey[Get.find<ThemeController>().darkTheme ? 700 : 100]!,
+                //       blurRadius: 5, spreadRadius: 1,)],
+                //     color: Theme.of(context).cardColor),
+                //     padding:  EdgeInsets.all(Dimensions.paddingSizeDefault),
+                //     child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                //       Text('additional_delivery_charge_by_admin'.tr, style: rubikMedium,),
+                //       DottedBorder(
+                //         color: Theme.of(context).primaryColor,
+                //         borderType: BorderType.RRect,
+                //         radius: const Radius.circular(45),
+                //         child: Container(
+                //           color: Theme.of(context).primaryColor.withOpacity(.05),
+                //           padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraSmall),
+                //           child: Row( children: [
+                //             Text(PriceConverter.convertPrice(orderModel!.bed3aDeliveryCharge??0),style: rubikMedium),
+                //           ],),),),
+                //
+                //     ],),
+                //   ),
+                // ),
 
-                Padding(
-                  padding:  EdgeInsets.only(top: Dimensions.paddingSizeSmall),
-                  child: Container(decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Dimensions.paddingSizeExtraSmall),
-                    boxShadow: [BoxShadow(color: Colors.grey[Get.find<ThemeController>().darkTheme ? 700 : 100]!,
-                      blurRadius: 5, spreadRadius: 1,)],
-                    color: Theme.of(context).cardColor),
-                    padding:  EdgeInsets.all(Dimensions.paddingSizeDefault),
-                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                      Text('additional_delivery_charge_by_admin'.tr, style: rubikMedium,),
-                      DottedBorder(
-                        color: Theme.of(context).primaryColor,
-                        borderType: BorderType.RRect,
-                        radius: const Radius.circular(45),
-                        child: Container(
-                          color: Theme.of(context).primaryColor.withOpacity(.05),
-                          padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraSmall),
-                          child: Row( children: [
-                            Text(PriceConverter.convertPrice(orderModel!.bed3aDeliveryCharge),style: rubikMedium),
-                          ],),),),
-
-                    ],),
-                  ),
-                ),
-
-                Padding(padding:  EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
-                  child: CustomerWidget(orderModel: orderModel, ),),
+                // Padding(padding:  EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
+                //   child: CustomerWidget(orderModel: orderModel, ),),
 
               ],
             ),
             ),
 
-            OrderStatusChangeCustomButton(orderModel: orderModel,totalPrice: totalPrice)
+        //    OrderStatusChangeCustomButton(orderModel: orderModel,totalPrice: totalPrice)
 
 
           ],) : CustomLoader(height: Get.height);

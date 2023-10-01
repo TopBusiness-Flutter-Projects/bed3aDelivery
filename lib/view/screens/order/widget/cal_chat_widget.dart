@@ -12,7 +12,8 @@ class CallAndChatWidget extends StatelessWidget {
   final OrderModel? orderModel;
   final bool isSeller;
   final bool isAdmin;
-  const CallAndChatWidget({Key? key, this.orderModel, this.isSeller = false, this.isAdmin = false}) : super(key: key);
+  final bool isDetails;
+  const CallAndChatWidget({Key? key, this.orderModel, this.isSeller = false, this.isAdmin = false,  this.isDetails=false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +62,54 @@ class CallAndChatWidget extends StatelessWidget {
           ),
             padding:  EdgeInsets.all(Dimensions.paddingSizeSmall),
             child: Image.asset(Images.smsIcon,color:Get.isDarkMode? Theme.of(context).hintColor: Theme.of(context).primaryColor,),),
+        ),
+      )  ,
+
+      Visibility(
+        visible: !isDetails,
+        child: InkWell(
+          onTap: (){
+            print('====>name==>$name');
+            if(!isSeller){
+            //  Get.find<ChatController>().setUserTypeIndex(1);
+            }
+         //   Get.to(ChatScreen(userId: id, name: name));
+          },
+          child: Padding(
+            padding:  EdgeInsets.only(right: Dimensions.paddingSizeSmall),
+            child: Container(width: 40,decoration: BoxDecoration(
+              color: Theme.of(context).hintColor.withOpacity(.0525),
+              border: Border.all(color: Theme.of(context).hintColor),
+              borderRadius: BorderRadius.circular(50),
+
+            ),
+              padding:  EdgeInsets.all(Dimensions.paddingSizeSmall),
+              child: Image.asset(Images.completed,),),
+          ),
+        ),
+      ) ,
+      Visibility(
+        visible: !isDetails,
+
+        child: InkWell(
+          onTap: (){
+            print('====>name==>$name');
+            if(!isSeller){
+              Get.find<ChatController>().setUserTypeIndex(1);
+            }
+            Get.to(ChatScreen(userId: id, name: name));
+          },
+          child: Padding(
+            padding:  EdgeInsets.only(right: Dimensions.paddingSizeSmall),
+            child: Container(width: 40,decoration: BoxDecoration(
+              color: Theme.of(context).hintColor.withOpacity(.0525),
+              border: Border.all(color: Theme.of(context).hintColor),
+              borderRadius: BorderRadius.circular(50),
+
+            ),
+              padding:  EdgeInsets.all(Dimensions.paddingSizeSmall),
+              child: Image.asset(Images.userIcon,),),
+          ),
         ),
       )
     ],);

@@ -75,7 +75,7 @@ class ProfileScreen extends StatelessWidget {
                     // ),
 
 
-                    ProfileButton(icon: Images.earnStatement, title: 'earning_statement'.tr,
+                    ProfileButton(icon: Images.earnStatement, title: 'reports'.tr,
                         onTap: () => Get.to(const EarningStatementScreen())),
 
 

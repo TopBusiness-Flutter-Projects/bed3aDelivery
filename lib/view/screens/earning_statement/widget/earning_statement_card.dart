@@ -27,10 +27,10 @@ class EarningStatementCard extends StatelessWidget {
           children: [Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text('${'order'.tr}# ${ordersWiseEarned!.id}',
               style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeDefault),),
-            Row(children: [Padding(padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall),
-              child: SizedBox(width: 20, child: Image.asset(Images.cash))),
-              Text('${'by'.tr} ${'cash'.tr}',
-                style: rubikMedium.copyWith(color: Get.isDarkMode? Theme.of(context).hintColor.withOpacity(.5) :Theme.of(context).primaryColor),)])
+            // Row(children: [Padding(padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall),
+            //   child: SizedBox(width: 20, child: Image.asset(Images.cash))),
+            //   Text('${'by'.tr} ${'cash'.tr}',
+            //     style: rubikMedium.copyWith(color: Get.isDarkMode? Theme.of(context).hintColor.withOpacity(.5) :Theme.of(context).primaryColor),)])
         ],),
 
             Padding(padding: EdgeInsets.symmetric(vertical: Dimensions.fontSizeExtraSmall),
@@ -40,7 +40,7 @@ class EarningStatementCard extends StatelessWidget {
                     child: Text(DateConverter.isoStringToLocalDateOnly(ordersWiseEarned!.createdAt!))
                   )
                 ],),
-                 Text(PriceConverter.convertPrice(ordersWiseEarned!.bed3aDeliveryCharge))
+                 Text(PriceConverter.convertPrice(ordersWiseEarned!.bed3aDeliveryCharge??0))
               ],),
             ),
 

@@ -35,8 +35,9 @@ class OrderHistoryItemWidget extends StatelessWidget {
                 child: Align(
                   alignment: Get.find<LocalizationController>().isLtr? Alignment.topRight: Alignment.topLeft,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: SizedBox(width: Get.find<LocalizationController>().isLtr? Get.context!.width<= 400? 160 : 170 :Get.context!.width<= 400? 140 : 150,
+                    padding: const EdgeInsets.only(top: 16.0),
+                    child: SizedBox(
+                      width: Get.find<LocalizationController>().isLtr? Get.context!.width<= 400? 170 : 170 :Get.context!.width<= 400? 140 : 160,
                       child: Column(children: [
                         Row(children: [
                           Row(
@@ -56,11 +57,20 @@ class OrderHistoryItemWidget extends StatelessWidget {
                             children: [
                               Text('${'expected_date'.tr} : ',
                                 style: rubikRegular.copyWith(color: Theme.of(context).hintColor, fontSize: Dimensions.fontSizeSmall),),
-                              Text(orderModel!.expectedDate!, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall),),
+                              Text('10-01-2023', style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall),),
                             ],
                           ),
                         ): const SizedBox(),
-
+                        Padding(
+                          padding:  EdgeInsets.only(top: Dimensions.paddingSizeExtraSmall),
+                          child: Row(
+                            children: [
+                              Text('${'المورد : '} : ',
+                                style: rubikRegular.copyWith(color: Theme.of(context).hintColor, fontSize: Dimensions.fontSizeSmall),),
+                              Text('شركة الزهران 2 للتجارة', style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall),),
+                            ],
+                          ),
+                        )
 
                       ]),
                     ),
@@ -70,12 +80,19 @@ class OrderHistoryItemWidget extends StatelessWidget {
               Column(crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding:  EdgeInsets.only(left: 7,top: Dimensions.paddingSizeSmall),
+                      padding:  EdgeInsets.only(left: 3,top: Dimensions.paddingSizeMin),
                       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Expanded(
-                          child: Text('${'order'.tr} #${orderModel!.id}',
-                              style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge,
-                                  color: Theme.of(context).colorScheme.secondary)),
+                        Container(
+                          width:MediaQuery.of(context).size.width/2.8,
+                          decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary,
+                            borderRadius: BorderRadius.all(Radius.circular(Dimensions.radiusSmall))
+                          ),
+                          child: Center(
+                            child: Text('${orderModel!.orderAmount}ج.م',
+                                style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeLarge,
+                                    color: Colors.white)),
+                          ),
                         ),
 
 
@@ -83,8 +100,8 @@ class OrderHistoryItemWidget extends StatelessWidget {
                       ]),
                     ),
                     Padding(
-                      padding:  EdgeInsets.fromLTRB( Dimensions.paddingSizeDefault,
-                          Dimensions.paddingSizeDefault, Dimensions.paddingSizeDefault, 0),
+                      padding:  EdgeInsets.fromLTRB( Dimensions.paddingSizeMin,
+                          Dimensions.paddingSizeMin, Dimensions.paddingSizeMin, 0),
                       child: CustomerInfoWidget(orderModel: orderModel, showCustomerImage: true),
                     ),
                     Container(

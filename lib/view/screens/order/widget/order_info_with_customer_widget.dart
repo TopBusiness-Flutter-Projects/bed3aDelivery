@@ -58,16 +58,16 @@ class OrderInfoWithCustomerWidget extends StatelessWidget {
               ReceiverWidget(orderModel: orderModel),
 
               Row(children:  [
-                Expanded(child: OrderActionItem(icon: Images.cancelIcon, title: 'cancel',
-                  onTap: () => showAnimatedDialog(context,  OrderStatusUpdateDialog(icon: Images.cancelIcon,
-                  title: 'why_you_want_to_cancel_this_delivery'.tr,
-                   onYesPressed: (){
-                     Get.back();
-                     orderController.cancelOrderStatus(
-                         orderId: orderModel!.id,
-                         cause: orderController.reasonValue!.tr,
-                         context: context);
-                  },),isFlip: true),)),
+                // Expanded(child: OrderActionItem(icon: Images.cancelIcon, title: 'cancel',
+                //   onTap: () => showAnimatedDialog(context,  OrderStatusUpdateDialog(icon: Images.cancelIcon,
+                //   title: 'why_you_want_to_cancel_this_delivery'.tr,
+                //    onYesPressed: (){
+                //      Get.back();
+                //      orderController.cancelOrderStatus(
+                //          orderId: orderModel!.id,
+                //          cause: orderController.reasonValue!.tr,
+                //          context: context);
+                //   },),isFlip: true),)),
                  Expanded(child: OrderActionItem(icon: Images.reachedIcon,title: 'reached',
 
                   onTap: () => showAnimatedDialog(context,  OrderStatusUpdateDialog(icon: Images.reachedIcon,

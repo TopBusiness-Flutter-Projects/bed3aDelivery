@@ -59,7 +59,7 @@ class SellerInfoWidget extends StatelessWidget {
                 ),
               ),
 
-              CallAndChatWidget(orderModel: orderModel, isSeller: true, isAdmin: orderModel!.sellerIs == 'admin',),
+              CallAndChatWidget(isDetails:true,orderModel: orderModel, isSeller: true, isAdmin: orderModel!.sellerIs == 'admin',),
             ],
           ):const SizedBox(),
 

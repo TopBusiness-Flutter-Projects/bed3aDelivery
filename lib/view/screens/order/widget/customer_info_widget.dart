@@ -21,38 +21,32 @@ class CustomerInfoWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 2),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [
-          SizedBox(width: 14,child: Image.asset(Images.customerIcon)),
-          const SizedBox(width: 8),
-          showCustomerImage?
-          Text('customer_info'.tr,style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeDefault,
-              color: Get.isDarkMode? Theme.of(context).hintColor: Theme.of(context).primaryColor)):
+        // Row(children: [
+        //   SizedBox(width: 14,child: Image.asset(Images.customerIcon)),
+        //   const SizedBox(width: 8),
+        //   showCustomerImage?
+        //   Text('customer_info'.tr,style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeDefault,
+        //       color: Get.isDarkMode? Theme.of(context).hintColor: Theme.of(context).primaryColor)):
+        //
+        //   Text('customer'.tr,style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeDefault,
+        //       color: Theme.of(context).colorScheme.tertiary))
+        //
+        //
+        // ],),
 
-          Text('customer'.tr,style: rubikMedium.copyWith(fontSize: Dimensions.fontSizeDefault,
-              color: Theme.of(context).colorScheme.tertiary))
 
 
-        ],),
-
-
-
-        Padding(padding:  EdgeInsets.only(left: Dimensions.paddingSizeExtraLarge,
+        Padding(padding:  EdgeInsets.only(left: Dimensions.paddingSizeMin,
               top: Dimensions.paddingSizeExtraSmall, bottom: Dimensions.paddingSizeExtraSmall),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  orderModel!.customer != null?
-                  Text('${orderModel!.customer!.fName??''} ${orderModel!.customer!.lName??''}',
-                      style: rubikRegular.copyWith()):const SizedBox(),
-                   SizedBox(width: Dimensions.paddingSizeSmall),
-
-
                   showCustomerImage?
                   Container(decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor.withOpacity(.25),
-                    border: Border.all(color: Theme.of(context).primaryColor),
-                    borderRadius: BorderRadius.circular(30)),
+                      color: Theme.of(context).cardColor.withOpacity(.25),
+                      border: Border.all(color: Theme.of(context).primaryColor),
+                      borderRadius: BorderRadius.circular(30)),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: orderModel!.customer != null? CustomImage(
@@ -61,13 +55,21 @@ class CustomerInfoWidget extends StatelessWidget {
                       ):const SizedBox(),
                     ),
                   ): const SizedBox(),
+                  SizedBox(width: Dimensions.paddingSizeSmall),
+                  orderModel!.customer != null?
+                  Text('${orderModel!.customer!.fName??''} ${orderModel!.customer!.lName??''}',
+                      style: rubikRegular.copyWith()):const SizedBox(),
+
+
+
+
                 ],
               ),
 
 
-               SizedBox(height: Dimensions.paddingSizeExtraSmall),
+               SizedBox(height: Dimensions.paddingSizeExtraLarge),
               orderModel!.customer != null?
-              Text('${jsonDecode(orderModel!.shippingAddressData!)['address']}',
+              Text('${orderModel!.shippingAddressData!=null?jsonDecode(orderModel!.shippingAddressData!)['address']??'':""}',
                   style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall,
                       color: Theme.of(context).hintColor)):const SizedBox(),
                SizedBox(height: Dimensions.paddingSizeSmall),
