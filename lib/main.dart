@@ -21,15 +21,16 @@ import 'firebase_options.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'helper/notification_helper.dart';
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
+  ////ahmed elsaoagh
   HttpOverrides.global = MyHttpOverrides();
   //_deleteCacheDir();
- // _deleteAppDir();
+  // _deleteAppDir();
   setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
-
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -40,7 +41,7 @@ Future<void> main() async {
       await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
       FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
     }
-  }catch(e) {
+  } catch (e) {
     debugPrint('');
   }
   runApp(MyApp(languages: _languages));
@@ -54,14 +55,15 @@ class MyApp extends StatelessWidget {
     return GetBuilder<ThemeController>(builder: (themeController) {
       return GetBuilder<LocalizationController>(builder: (localizeController) {
         return GetBuilder<SplashController>(builder: (splashController) {
-          return  GetMaterialApp(
+          return GetMaterialApp(
             title: AppConstants.appName,
             debugShowCheckedModeBanner: false,
             navigatorKey: Get.key,
             theme: themeController.darkTheme ? dark : light,
             locale: localizeController.locale,
             translations: Messages(languages: languages),
-            fallbackLocale: Locale(AppConstants.languages[0].languageCode!, AppConstants.languages[0].countryCode),
+            fallbackLocale: Locale(AppConstants.languages[0].languageCode!,
+                AppConstants.languages[0].countryCode),
             // ignore: prefer_const_constructors
             home: SplashScreen(),
             defaultTransition: Transition.topLevel,
@@ -84,13 +86,16 @@ Future<void> _deleteCacheDir() async {
 Future<void> _deleteAppDir() async {
   final appDir = await getApplicationSupportDirectory();
 
-  if(appDir.existsSync()){
+  if (appDir.existsSync()) {
     appDir.deleteSync(recursive: true);
   }
 }
+
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
