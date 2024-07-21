@@ -16,8 +16,6 @@ import 'controller/splash_controller.dart';
 import 'controller/theme_controller.dart';
 import 'helper/get_di.dart' as di;
 import 'firebase_options.dart';
-
-// ...
 import 'package:url_strategy/url_strategy.dart';
 import 'helper/notification_helper.dart';
 
