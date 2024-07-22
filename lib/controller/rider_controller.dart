@@ -11,14 +11,18 @@ import 'package:bed3aDelivery/utill/app_constants.dart';
 import 'package:bed3aDelivery/utill/images.dart';
 
 class RiderController extends GetxController implements GetxService {
-  final RiderRepo? riderRepo;
+  RiderRepo? riderRepo;
   RiderController({this.riderRepo});
 
-  double _persistentContentHeight = Get.context!.width<= 400? 220 :260;
+  double _persistentContentHeight = Get.context!.width <= 400 ? 220 : 260;
   double get persistentContentHeight => _persistentContentHeight;
 
-  final List<LatLng> _latLngList = [const LatLng(23.8376661, 90.3701626),];
-  List<LatLng> toTatLngList = [const LatLng(23.8376661, 90.3701626),];
+  final List<LatLng> _latLngList = [
+    const LatLng(23.8376661, 90.3701626),
+  ];
+  List<LatLng> toTatLngList = [
+    const LatLng(23.8376661, 90.3701626),
+  ];
 
   List<LatLng> get latLngList => _latLngList;
   double? _distance;
@@ -41,76 +45,82 @@ class RiderController extends GetxController implements GetxService {
   final bool _showCancelTripButton = false;
   bool get showCancelTripButton => _showCancelTripButton;
 
-
-
-
-
   @override
   void onInit() {
     super.onInit();
     getCurrentLocation();
     getPolyline(
         from: _initialPosition,
-        to:  LatLng(double.parse(Get.find<OrderController>().selectedOrderLat!), double.parse(Get.find<OrderController>().selectedOrderLng!))
-    );
+        to: LatLng(double.parse(Get.find<OrderController>().selectedOrderLat!),
+            double.parse(Get.find<OrderController>().selectedOrderLng!)));
     setFromToMarker(
         from: _initialPosition,
-        to:  LatLng(double.parse(Get.find<OrderController>().selectedOrderLat!), double.parse(Get.find<OrderController>().selectedOrderLng!))
-    );
-
-
-
-
+        to: LatLng(double.parse(Get.find<OrderController>().selectedOrderLat!),
+            double.parse(Get.find<OrderController>().selectedOrderLng!)));
   }
 
-
-  void setFullView(){
+  void setFullView() {
     _persistentContentHeight = 600;
     update();
   }
-  void setHalfView(){
+
+  void setHalfView() {
     _persistentContentHeight = 260;
     update();
   }
 
-
-
   Future<void> getCurrentLocation() async {
     try {
-      Position newLocalData = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+      Position newLocalData = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
       _position = newLocalData;
-      _initialPosition = LatLng(_position!.latitude, _position!.longitude);
-      mapController!.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: _initialPosition, zoom: 15)));
-      _distance = await getDistanceInKM(_initialPosition, LatLng(double.parse(Get.find<OrderController>().selectedOrderLat!), double.parse(Get.find<OrderController>().selectedOrderLng!)));
-
-
-    }catch(e){
+      _initialPosition =
+          LatLng(_position?.latitude ?? 0, _position?.longitude ?? 0);
+      mapController!.animateCamera(CameraUpdate.newCameraPosition(
+          CameraPosition(target: _initialPosition, zoom: 15)));
+      _distance = await getDistanceInKM(
+          _initialPosition,
+          LatLng(double.parse(Get.find<OrderController>().selectedOrderLat!),
+              double.parse(Get.find<OrderController>().selectedOrderLng!)));
+    } catch (e) {
       debugPrint(e.toString());
     }
   }
 
-  Future<double?> getDistanceInKM(LatLng originLatLng, LatLng destinationLatLng) async {
+  Future<double?> getDistanceInKM(
+      LatLng originLatLng, LatLng destinationLatLng) async {
     _distance = -1;
-    Response response = await riderRepo!.getDistanceInMeter(originLatLng, destinationLatLng);
+    Response response =
+        await riderRepo!.getDistanceInMeter(originLatLng, destinationLatLng);
     try {
       if (response.statusCode == 200 && response.body['status'] == 'OK') {
-        _distance = DistanceModel.fromJson(response.body).rows![0].elements![0].distance!.value! / 1000;
+        _distance = DistanceModel.fromJson(response.body)
+                .rows![0]
+                .elements![0]
+                .distance!
+                .value! /
+            1000;
       } else {
         _distance = Geolocator.distanceBetween(
-          originLatLng.latitude, originLatLng.longitude, destinationLatLng.latitude, destinationLatLng.longitude,
-        ) / 1000;
-
+              originLatLng.latitude,
+              originLatLng.longitude,
+              destinationLatLng.latitude,
+              destinationLatLng.longitude,
+            ) /
+            1000;
       }
     } catch (e) {
       _distance = Geolocator.distanceBetween(
-        originLatLng.latitude, originLatLng.longitude, destinationLatLng.latitude, destinationLatLng.longitude,
-      ) / 1000;
+            originLatLng.latitude,
+            originLatLng.longitude,
+            destinationLatLng.latitude,
+            destinationLatLng.longitude,
+          ) /
+          1000;
     }
     update();
     return _distance;
   }
-
-
 
   void getPolyline({LatLng? from, LatLng? to}) async {
     List<LatLng> polylineCoordinates = [];
@@ -118,16 +128,15 @@ class RiderController extends GetxController implements GetxService {
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
       AppConstants.polylineMapKey,
       PointLatLng(_initialPosition.latitude, _initialPosition.longitude),
-      PointLatLng(double.parse(Get.find<OrderController>().selectedOrderLat!), double.parse(Get.find<OrderController>().selectedOrderLng!)),
+      PointLatLng(double.parse(Get.find<OrderController>().selectedOrderLat!),
+          double.parse(Get.find<OrderController>().selectedOrderLng!)),
       travelMode: TravelMode.driving,
     );
     if (result.points.isNotEmpty) {
       for (var point in result.points) {
         polylineCoordinates.add(LatLng(point.latitude, point.longitude));
       }
-    } else {
-
-    }
+    } else {}
     _addPolyLine(polylineCoordinates);
   }
 
@@ -143,9 +152,7 @@ class RiderController extends GetxController implements GetxService {
     update();
   }
 
-
-
-  void setFromToMarker({required LatLng from, required LatLng to}) async{
+  void setFromToMarker({required LatLng from, required LatLng to}) async {
     _customMarkers.clear();
     _customMarkers.add(MarkerData(
       marker: Marker(markerId: const MarkerId('id-0'), position: from),
@@ -158,43 +165,43 @@ class RiderController extends GetxController implements GetxService {
     ));
     _distance = await getDistanceInKM(from, to);
     try {
-
       LatLngBounds? bounds;
-      if(mapController != null) {
+      if (mapController != null) {
         bounds = LatLngBounds(
           southwest: Get.find<RiderController>().initialPosition,
-          northeast: LatLng(double.parse(Get.find<OrderController>().selectedOrderLat!), double.parse(Get.find<OrderController>().selectedOrderLng!)),
+          northeast: LatLng(
+              double.parse(Get.find<OrderController>().selectedOrderLat!),
+              double.parse(Get.find<OrderController>().selectedOrderLng!)),
         );
       }
 
       LatLng centerBounds = LatLng(
-        (bounds!.northeast.latitude + bounds.southwest.latitude)/2,
-        (bounds.northeast.longitude + bounds.southwest.longitude)/2,
+        (bounds!.northeast.latitude + bounds.southwest.latitude) / 2,
+        (bounds.northeast.longitude + bounds.southwest.longitude) / 2,
       );
-      mapController!.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(target: centerBounds, zoom: GetPlatform.isWeb ? 10 : 17)));
+      mapController!.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(
+          target: centerBounds, zoom: GetPlatform.isWeb ? 10 : 17)));
       zoomToFit(mapController, bounds, centerBounds, padding: 1.5);
-
-    }catch(e) {
+    } catch (e) {
       // debugPrint(e);
     }
 
-
     await Future.delayed(const Duration(milliseconds: 500));
     _reload = 0;
-    if(_reload == 0) {
+    if (_reload == 0) {
       update();
       _reload = 1;
     }
   }
 
-
-
-  Future<void> zoomToFit(GoogleMapController? controller, LatLngBounds? bounds, LatLng centerBounds, {double padding = 0.5}) async {
+  Future<void> zoomToFit(GoogleMapController? controller, LatLngBounds? bounds,
+      LatLng centerBounds,
+      {double padding = 0.5}) async {
     bool keepZoomingOut = true;
 
-    while(keepZoomingOut) {
+    while (keepZoomingOut) {
       final LatLngBounds screenBounds = await controller!.getVisibleRegion();
-      if(fits(bounds!, screenBounds)){
+      if (fits(bounds!, screenBounds)) {
         keepZoomingOut = false;
         final double zoomLevel = await controller.getZoomLevel() - padding;
         controller.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(
@@ -202,8 +209,7 @@ class RiderController extends GetxController implements GetxService {
           zoom: zoomLevel,
         )));
         break;
-      }
-      else {
+      } else {
         final double zoomLevel = await controller.getZoomLevel() - 0.1;
         controller.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(
           target: centerBounds,
@@ -214,15 +220,19 @@ class RiderController extends GetxController implements GetxService {
   }
 
   bool fits(LatLngBounds fitBounds, LatLngBounds screenBounds) {
-    final bool northEastLatitudeCheck = screenBounds.northeast.latitude >= fitBounds.northeast.latitude;
-    final bool northEastLongitudeCheck = screenBounds.northeast.longitude >= fitBounds.northeast.longitude;
+    final bool northEastLatitudeCheck =
+        screenBounds.northeast.latitude >= fitBounds.northeast.latitude;
+    final bool northEastLongitudeCheck =
+        screenBounds.northeast.longitude >= fitBounds.northeast.longitude;
 
-    final bool southWestLatitudeCheck = screenBounds.southwest.latitude <= fitBounds.southwest.latitude;
-    final bool southWestLongitudeCheck = screenBounds.southwest.longitude <= fitBounds.southwest.longitude;
+    final bool southWestLatitudeCheck =
+        screenBounds.southwest.latitude <= fitBounds.southwest.latitude;
+    final bool southWestLongitudeCheck =
+        screenBounds.southwest.longitude <= fitBounds.southwest.longitude;
 
-    return northEastLatitudeCheck && northEastLongitudeCheck && southWestLatitudeCheck && southWestLongitudeCheck;
+    return northEastLatitudeCheck &&
+        northEastLongitudeCheck &&
+        southWestLatitudeCheck &&
+        southWestLongitudeCheck;
   }
-
-
-
 }
